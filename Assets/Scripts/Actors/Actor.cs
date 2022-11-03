@@ -20,7 +20,7 @@ public class Actor : MonoBehaviour
     public float delayDestroyOnDeath;
 
     // Actor Events
-    public UnityEngine.Events.UnityEvent onHit = new UnityEngine.Events.UnityEvent();
+    public UnityEngine.Events.UnityEvent OnTakeDamage = new UnityEngine.Events.UnityEvent();
     public UnityEngine.Events.UnityEvent onDeath = new UnityEngine.Events.UnityEvent();
     public UnityEngine.Events.UnityEvent onDestroyed = new UnityEngine.Events.UnityEvent();
 
@@ -29,14 +29,14 @@ public class Actor : MonoBehaviour
         CurrentHP = maxHP;
     }
 
-    public bool TakeDamage(float amount, Actor source = null, bool ignoreInvulnerability = false)
+    public bool ApplyDamage(float damage, bool ignoreInvulnerability = false)
     {
         if (IsInvulnerable && !ignoreInvulnerability)
             return false;
 
         // Handle Damage
-        CurrentHP -= amount;
-        onHit?.Invoke();
+        CurrentHP -= damage;
+        OnTakeDamage?.Invoke();
 
         // Invoke invulnerability timer
         if (invulnerabilityTime > 0)
@@ -69,7 +69,7 @@ public class Actor : MonoBehaviour
     [ContextMenu("Instant Kill Actor")]
     public void InstantKill()
     {
-        TakeDamage(maxHP, ignoreInvulnerability: true);
+        ApplyDamage(maxHP, ignoreInvulnerability: true);
     }
 
     /// <summary>
@@ -95,7 +95,7 @@ public class Actor : MonoBehaviour
         onDestroyed?.Invoke();
 
         // remove all listeners to avoid null references
-        onHit.RemoveAllListeners();
+        OnTakeDamage.RemoveAllListeners();
         onDeath.RemoveAllListeners();
         onDestroyed.RemoveAllListeners();
     }

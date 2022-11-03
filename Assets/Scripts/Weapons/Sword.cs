@@ -5,19 +5,14 @@ using UnityEngine;
 
 public class Sword : MonoBehaviour
 {
-    private Action<Collider> onHitCallBack;
+    private Action<Collision> onHitCallBack;
 
-    public void SetOnHitCallBack(Action<Collider> callback)
+    public void SetOnHitCallBack(Action<Collision> callback)
     {
         onHitCallBack = callback;
     }
 
-    void OnCollisionEnter(Collision other)
-    {
-        Debug.Log(other);
-    }
-
-    public void OnTriggerEnter(Collider other)
+    public void OnCollisionEnter(Collision other)
     {
         onHitCallBack(other);
     }
