@@ -35,7 +35,7 @@ public class SwordController : MonoBehaviour
 
     public void OnHit(Collision collision)
     {
-        Debug.Log("Hit Collider: " + collision.gameObject.name);
+        // Debug.Log("Hit Collider: " + collision.gameObject.name);
         Actor hit = collision.gameObject.GetComponent<Actor>();
 
         if (hit != null && hit != _owner)
