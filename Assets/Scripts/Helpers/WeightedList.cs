@@ -16,7 +16,7 @@ namespace JDR.Utils
         }
     }
 
-    public static class Extensions
+    public static class WeightedListExtensionMethods
     {
         public static T GetRandomElement<T>(this ICollection<WeightedElement<T>> list)
         {

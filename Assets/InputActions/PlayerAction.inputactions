@@ -1,5 +1,5 @@
 {
-    "name": "Player",
+    "name": "PlayerAction",
     "maps": [
         {
             "name": "Player",
@@ -15,7 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Fire",
+                    "name": "Sword",
                     "type": "Button",
                     "id": "e604edae-8618-4363-885c-2ab87eb51c93",
                     "expectedControlType": "Button",
@@ -138,11 +138,11 @@
                 {
                     "name": "",
                     "id": "143bb1cd-cc10-4eca-a2f0-a3664166fe91",
-                    "path": "<Gamepad>/rightTrigger",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Fire",
+                    "action": "Sword",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -153,7 +153,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Fire",
+                    "action": "Sword",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9aa5717f-58f8-4511-b491-c760c7eb17a0",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Sword",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
