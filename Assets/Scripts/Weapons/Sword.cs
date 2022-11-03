@@ -12,6 +12,11 @@ public class Sword : MonoBehaviour
         onHitCallBack = callback;
     }
 
+    void OnCollisionEnter(Collision other)
+    {
+        Debug.Log(other);
+    }
+
     public void OnTriggerEnter(Collider other)
     {
         onHitCallBack(other);

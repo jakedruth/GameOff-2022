@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SwordController : MonoBehaviour
 {
-    private Pawn _owner;
+    private Actor _owner;
     private Sword _swordPrefab;
 
     [SerializeField] private Transform _spawnPoint;
@@ -17,9 +17,9 @@ public class SwordController : MonoBehaviour
         _swordPrefab = Resources.Load<Sword>("Prefabs/Sword");
     }
 
-    public void SetOwner(Pawn pawn)
+    public void SetOwner(Actor actor)
     {
-        _owner = pawn;
+        _owner = actor;
     }
 
     public void StartAttack()

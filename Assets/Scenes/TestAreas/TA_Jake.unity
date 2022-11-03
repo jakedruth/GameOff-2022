@@ -367,7 +367,6 @@ GameObject:
   - component: {fileID: 1833365147}
   - component: {fileID: 1833365146}
   - component: {fileID: 1833365145}
-  - component: {fileID: 1833365144}
   - component: {fileID: 1833365149}
   - component: {fileID: 1833365150}
   m_Layer: 0
@@ -377,19 +376,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!135 &1833365144
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1833365143}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1833365145
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -479,22 +465,24 @@ MonoBehaviour:
   onDestroyed:
     m_PersistentCalls:
       m_Calls: []
---- !u!54 &1833365150
-Rigidbody:
+--- !u!143 &1833365150
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1833365143}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Height: 1
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2090578066
 GameObject:
   m_ObjectHideFlags: 0

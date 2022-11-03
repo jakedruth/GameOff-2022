@@ -6,7 +6,7 @@ using JDR.ExtensionMethods;
 public class PlayerController : MonoBehaviour
 {
     // Pawn
-    public Pawn pawn { get; private set; }
+    public Actor actor { get; private set; }
 
     // Components
     private CharacterController _characterController;
@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        pawn = GetComponent<Pawn>();
+        actor = GetComponent<Actor>();
 
         _characterController = GetComponent<CharacterController>();
         _swordController = GetComponent<SwordController>();
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 
     private void Init()
     {
-        _swordController.SetOwner(pawn);
+        _swordController.SetOwner(actor);
         _facing = Vector3.forward;
     }
 
