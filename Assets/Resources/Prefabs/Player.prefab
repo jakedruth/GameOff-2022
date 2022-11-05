@@ -128,6 +128,7 @@ GameObject:
   - component: {fileID: 3112893051104742689}
   - component: {fileID: 3112893051104742688}
   - component: {fileID: 3112893051104742719}
+  - component: {fileID: 569088337688399833}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -185,7 +186,7 @@ MonoBehaviour:
   maxHP: 6
   invulnerabilityTime: 1
   delayDestroyOnDeath: 0
-  onHit:
+  OnTakeDamage:
     m_PersistentCalls:
       m_Calls: []
   onDeath:
@@ -292,6 +293,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 0bc937af-8e8d-43b4-989e-06d94431738b
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3112893051104742688}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnBoomerang
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: b5457345-fa58-4d12-b9ce-aa6d70adc61e
+    m_ActionName: Player/Boomerang[/Mouse/rightButton,/Keyboard/k]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -325,6 +342,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 1256399448}
   _damage: 1
+--- !u!114 &569088337688399833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3112893051104742693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aff54a38845541747a7286d89004ab30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnPoint: {fileID: 1256399448}
+  _damage: 1
+  _moveTime: 0.4
+  _distance: 4
+  _acceleration: 50
+  _waitTime: 0.5
 --- !u!1 &3112893051248249481
 GameObject:
   m_ObjectHideFlags: 0

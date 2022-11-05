@@ -9,6 +9,8 @@ public class SwordController : MonoBehaviour
 
     [SerializeField] private Transform _spawnPoint;
     private Sword _instance;
+
+    [Header("Sword Value")]
     [SerializeField] private float _damage;
 
     void Awake()
@@ -24,13 +26,22 @@ public class SwordController : MonoBehaviour
 
     public void StartAttack()
     {
+        if (_instance != null)
+            return;
+
         _instance = Instantiate(_swordPrefab, _spawnPoint, false);
         _instance.SetOnHitCallBack(OnHit);
+
+        Collider c1 = GetComponent<Collider>();
+        Collider c2 = _instance.GetComponent<Collider>();
+
+        Physics.IgnoreCollision(c1, c2, true);
     }
 
     public void EndAttack()
     {
         Destroy(_instance.gameObject);
+        _instance = null;
     }
 
     public void OnHit(Collision collision)
