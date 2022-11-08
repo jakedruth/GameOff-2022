@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 _facing;
     private Vector3 _inputMove;
     private bool _inputAttack1; // I should move these booleans to their controllers
-    private bool _inputAttack2;
+    // private bool _inputAttack2;
 
     [Header("Movement Values")]
     [SerializeField] private float _maxSpeed;
@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
         {
             case UnityEngine.InputSystem.InputActionPhase.Disabled:
                 _boomerangController.EndAttack();
-                _inputAttack2 = false;
+                // _inputAttack2 = false;
                 break;
             case UnityEngine.InputSystem.InputActionPhase.Waiting:
                 break;
@@ -96,12 +96,12 @@ public class PlayerController : MonoBehaviour
                 _boomerangController.StartAttack();
                 break;
             case UnityEngine.InputSystem.InputActionPhase.Performed:
-                _inputAttack2 = true;
+                // _inputAttack2 = true;
                 _Animator.SetTrigger("Attack2");
                 break;
             case UnityEngine.InputSystem.InputActionPhase.Canceled:
                 _boomerangController.EndAttack();
-                _inputAttack2 = false;
+                // _inputAttack2 = false;
                 break;
         }
     }
