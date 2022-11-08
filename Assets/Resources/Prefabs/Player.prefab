@@ -82,7 +82,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.75
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -243,8 +243,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86e466043b35e0488c5794f3e0790ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 4
-  _acceleration: 40
+  _maxSpeed: 6
+  _acceleration: 50
 --- !u!114 &3112893051104742719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,7 +320,7 @@ Animator:
   m_GameObject: {fileID: 5805760983474929454}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bcea8902db8ca5c439238a32ee2d3e16, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -391,6 +391,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: 7618c352736374a439188324f91c8101,
+        type: 3}
+      propertyPath: m_CastShadows
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -6400281290468069383, guid: 7618c352736374a439188324f91c8101,
         type: 3}
