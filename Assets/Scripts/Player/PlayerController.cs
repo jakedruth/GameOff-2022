@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private CharacterController _characterController;
     private SwordController _swordController;
     private BoomerangController _boomerangController;
+    private Animator _Animator;
 
     // Inputs
     private Vector3 _facing;
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         _swordController = GetComponent<SwordController>();
         _boomerangController = GetComponent<BoomerangController>();
+        _Animator = GetComponentInChildren<Animator>();
 
         Init();
     }
@@ -80,6 +82,8 @@ public class PlayerController : MonoBehaviour
 
     public void OnBoomerang(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
+        // TODO: Pause player movement briefly when attacking
+
         switch (context.phase)
         {
             case UnityEngine.InputSystem.InputActionPhase.Disabled:
@@ -93,6 +97,7 @@ public class PlayerController : MonoBehaviour
                 break;
             case UnityEngine.InputSystem.InputActionPhase.Performed:
                 _inputAttack2 = true;
+                _Animator.SetTrigger("Attack2");
                 break;
             case UnityEngine.InputSystem.InputActionPhase.Canceled:
                 _boomerangController.EndAttack();
@@ -107,15 +112,24 @@ public class PlayerController : MonoBehaviour
         // Update rotation
         transform.rotation = Quaternion.LookRotation(_facing, Vector3.up);
 
-        // Update Velocity
+        // Update velocity
         float targetSpeed = _inputAttack1 ? 0 : _maxSpeed;
         Vector3 targetVel = _inputMove * targetSpeed;
         _velocity = Vector3.MoveTowards(_velocity, targetVel, _acceleration * Time.deltaTime);
+
+        // Update animator
+        HandleAnimator();
     }
 
     void FixedUpdate()
     {
         _characterController.Move(_velocity * Time.deltaTime);
+    }
+
+    void HandleAnimator()
+    {
+        _Animator.SetFloat("Walk_Speed", _velocity.sqrMagnitude);
+        _Animator.SetBool("Attack1", _inputAttack1);
     }
 
     Vector3 SnapToAngle(Vector3 input, float snapAngle, Vector3 forward)
