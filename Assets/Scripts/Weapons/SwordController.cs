@@ -46,16 +46,31 @@ public class SwordController : MonoBehaviour
 
     public void OnHit(Collision collision)
     {
-        // Debug.Log("Hit Collider: " + collision.gameObject.name);
-        Actor hit = collision.gameObject.GetComponent<Actor>();
 
-        if (hit != null && hit != _owner)
+        string otherTag = collision.gameObject.tag;
+
+        switch (otherTag)
         {
-            hit.ApplyDamage(_damage);
+            case "Switch":
+                Switch s = collision.gameObject.GetComponent<Switch>();
+                s.ActivateSwitch();
+                break;
+            case "Enemy":
+                Actor hit = collision.gameObject.GetComponent<Actor>();
 
-            // Push the target away
-            // TODO: Should move the position quickly overtime (0.1s?) instead of instantly
-            // hit.transform.position += transform.forward * 2;
+                if (hit != null && hit != _owner)
+                {
+                    hit.ApplyDamage(_damage);
+
+                    // Push the target away
+                    // TODO: Should move the position quickly overtime (0.1s?) instead of instantly
+                    // hit.transform.position += transform.forward * 2;
+                }
+                break;
+            default:
+                break;
         }
+
+
     }
 }
