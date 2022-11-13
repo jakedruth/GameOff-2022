@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
         if (target == null)
             return;
 
-        Vector3 pos = Vector3.Lerp(transform.position, target.position, 1 - Mathf.Exp(-maxSpeed * Time.deltaTime));
+        Vector3 pos = Vector3.MoveTowards(transform.position, target.position, maxSpeed * Time.deltaTime);
         transform.position = pos;
     }
 }
