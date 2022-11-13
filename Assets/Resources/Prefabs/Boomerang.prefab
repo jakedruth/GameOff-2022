@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 444137199246010708}
   - component: {fileID: 1794416602064761122}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 6390617996999292659}
   - component: {fileID: 6390617996999292661}
   - component: {fileID: 6390617996999292658}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   - component: {fileID: 6390617997086520148}
   - component: {fileID: 6390617997086520150}
   - component: {fileID: 6390617997086520151}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6390617997651641216}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 6390617998184287667}
   - component: {fileID: 5340229137491942175}
   - component: {fileID: 5828102410941153373}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Boomerang
   m_TagString: Untagged
   m_Icon: {fileID: 0}

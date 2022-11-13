@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using JDR.ExtensionMethods;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
     // Pawn
     public Actor actor { get; private set; }
 
@@ -25,9 +27,13 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _acceleration;
     private Vector3 _velocity;
 
+    // Inventory (not a good name and should probably move anyways)
+    public int keys;
+
     // Start is called before the first frame update
     void Awake()
     {
+        instance = this;
         actor = GetComponent<Actor>();
 
         _characterController = GetComponent<CharacterController>();
@@ -55,6 +61,16 @@ public class PlayerController : MonoBehaviour
             _facing = input;
 
         _inputMove = input;
+    }
+
+    public UnityEngine.Events.UnityEvent onInteractEvent;
+    public void OnInteract(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (onInteractEvent != null)
+                onInteractEvent.Invoke();
+        }
     }
 
     public void OnSword(UnityEngine.InputSystem.InputAction.CallbackContext context)

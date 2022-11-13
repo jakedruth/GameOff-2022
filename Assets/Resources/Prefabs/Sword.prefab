@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9343287769952890}
   - component: {fileID: 9343287769952892}
   - component: {fileID: 9343287769952893}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Blade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 9343287850751425}
   - component: {fileID: 9343287850751427}
   - component: {fileID: 9343287850751424}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hilt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 9343288237069690}
   - component: {fileID: 3026832393714474809}
   - component: {fileID: -4045674503444197646}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7465937686485169350}
   - component: {fileID: 3597669143474047173}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}

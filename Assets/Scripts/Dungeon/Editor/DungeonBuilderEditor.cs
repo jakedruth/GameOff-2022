@@ -10,7 +10,8 @@ public class DungeonBuilderEditor : EditorWindow
 {
     static private readonly string pathSwitch = "Prefabs/Interactable/Switch";
     static private readonly string pathDoor = "Prefabs/Interactable/Door";
-
+    static private readonly string pathKey = "Prefabs/Interactable/Key";
+    static private readonly string pathLockedDoor = "Prefabs/Interactable/LockedDoor";
 
     [MenuItem("GameObject/Dungeon Helper/Switch and Door", false, -1)]
     public static void CreateSwitchAndDoor()
@@ -19,6 +20,54 @@ public class DungeonBuilderEditor : EditorWindow
         Switch switchInstance = Resources.Load<Switch>(pathSwitch);
         Door doorInstance = Resources.Load<Door>(pathDoor);
 
+        // Instantiate game objects
+        Vector3 point = GetSpawnPoint();
+        Switch s = PrefabUtility.InstantiatePrefab(switchInstance) as Switch;
+        s.transform.position = point + Vector3.back * 2;
+        s.transform.parent = Selection.activeTransform;
+        s.transform.SetAsLastSibling();
+
+        Door d = PrefabUtility.InstantiatePrefab(doorInstance) as Door;
+        d.transform.position = point + Vector3.forward * 2;
+        d.transform.parent = Selection.activeTransform;
+        d.transform.SetAsLastSibling();
+
+        string key = GenerateUniqueKey();
+
+        s.name = $"switch {key}";
+        d.name = $"door {key}";
+
+        // link switch to door
+        UnityEditor.Events.UnityEventTools.AddPersistentListener(s.onActivate, d.OpenDoor);
+    }
+
+    [MenuItem("GameObject/Dungeon Helper/Key and Locked Door", false, -1)]
+    public static void CreateKeyAndLockedDoor()
+    {
+        // Get instances
+        Key keyInstance = Resources.Load<Key>(pathKey);
+        Door doorInstance = Resources.Load<Door>(pathLockedDoor);
+
+        // Instantiate game objects
+        Vector3 point = GetSpawnPoint();
+        Key k = PrefabUtility.InstantiatePrefab(keyInstance) as Key;
+        k.transform.position = point + Vector3.back * 2;
+        k.transform.parent = Selection.activeTransform;
+        k.transform.SetAsLastSibling();
+
+        Door d = PrefabUtility.InstantiatePrefab(doorInstance) as Door;
+        d.transform.position = point + Vector3.forward * 2;
+        d.transform.parent = Selection.activeTransform;
+        d.transform.SetAsLastSibling();
+
+        string key = GenerateUniqueKey();
+
+        k.name = $"Key {key}";
+        d.name = $"L_Door {key}";
+    }
+
+    private static Vector3 GetSpawnPoint()
+    {
         // Get spawn point
         Camera cam = SceneView.GetAllSceneCameras().First();
         Ray ray = new(cam.transform.position, cam.transform.forward);
@@ -33,17 +82,11 @@ public class DungeonBuilderEditor : EditorWindow
             point.z = Mathf.RoundToInt(point.z);
         }
 
-        // Instantiate game objects
-        Switch s = PrefabUtility.InstantiatePrefab(switchInstance) as Switch;
-        s.transform.position = point + Vector3.back * 2;
-        s.transform.parent = Selection.activeTransform;
-        s.transform.SetAsLastSibling();
+        return point;
+    }
 
-        Door d = PrefabUtility.InstantiatePrefab(doorInstance) as Door;
-        d.transform.position = point + Vector3.forward * 2;
-        d.transform.parent = Selection.activeTransform;
-        d.transform.SetAsLastSibling();
-
+    private static string GenerateUniqueKey()
+    {
         // Generate unique (hopefully) keys
         const string glyphs = "abcdefghijklmnopqrstuvwxyz0123456789";
         const int keyLength = 4;
@@ -51,10 +94,6 @@ public class DungeonBuilderEditor : EditorWindow
         for (int i = 0; i < keyLength; i++)
             key += glyphs[UnityEngine.Random.Range(0, glyphs.Length)];
 
-        s.name = $"switch {key}";
-        d.name = $"door {key}";
-
-        // link switch to door
-        UnityEditor.Events.UnityEventTools.AddPersistentListener(s.onActivate, d.OpenDoor);
+        return key;
     }
 }

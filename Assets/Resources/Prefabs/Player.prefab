@@ -258,6 +258,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b5457345-fa58-4d12-b9ce-aa6d70adc61e
     m_ActionName: Player/Boomerang[/Mouse/rightButton,/Keyboard/k]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3112893051104742688}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnInteract
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 786027e4-7f61-4793-960f-ecf13147b767
+    m_ActionName: Player/Interact[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -277,6 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxSpeed: 6
   _acceleration: 50
+  keys: 0
 --- !u!114 &3112893051104742719
 MonoBehaviour:
   m_ObjectHideFlags: 0
