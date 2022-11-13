@@ -25,10 +25,16 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Values")]
     [SerializeField] private float _maxSpeed;
     [SerializeField] private float _acceleration;
-    private Vector3 _velocity;
+    private Vector3 _hVelocity;
+    private Vector3 _vVelocity;
+
+    [Header("Physics Properties")]
+    [SerializeField] private float _gravity;
+    [SerializeField] private LayerMask _groundLayerMask;
+    private bool _isGrounded;
 
     // Inventory (not a good name and should probably move anyways)
-    public int keys;
+    public int KeyCount { get; set; }
 
     // Start is called before the first frame update
     void Awake()
@@ -52,6 +58,7 @@ public class PlayerController : MonoBehaviour
         _facing = Vector3.forward;
     }
 
+    #region Input System Events
     public void OnMove(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         Vector3 input = context.ReadValue<Vector2>().Vector2ToVector3_XZ();
@@ -63,13 +70,12 @@ public class PlayerController : MonoBehaviour
         _inputMove = input;
     }
 
-    public UnityEngine.Events.UnityEvent onInteractEvent;
+    public UnityEngine.Events.UnityEvent OnInteractEvent { get; set; } = new UnityEngine.Events.UnityEvent();
     public void OnInteract(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            if (onInteractEvent != null)
-                onInteractEvent.Invoke();
+            OnInteractEvent?.Invoke();
         }
     }
 
@@ -121,6 +127,7 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
+    #endregion
 
     // Update is called once per frame
     void Update()
@@ -128,10 +135,17 @@ public class PlayerController : MonoBehaviour
         // Update rotation
         transform.rotation = Quaternion.LookRotation(_facing, Vector3.up);
 
-        // Update velocity
+        // Update Horizontal velocity
         float targetSpeed = _inputAttack1 ? 0 : _maxSpeed;
         Vector3 targetVel = _inputMove * targetSpeed;
-        _velocity = Vector3.MoveTowards(_velocity, targetVel, _acceleration * Time.deltaTime);
+        _hVelocity = Vector3.MoveTowards(_hVelocity, targetVel, _acceleration * Time.deltaTime);
+
+        // Update vertical velocity
+        _vVelocity.y -= _gravity * Time.deltaTime;
+        //_isGrounded = Physics.CheckSphere(transform.position, 0.2f, _groundLayerMask);
+        _isGrounded = (_characterController.collisionFlags & CollisionFlags.Below) != 0;
+        if (_isGrounded)
+            _vVelocity.y = 0;
 
         // Update animator
         HandleAnimator();
@@ -139,12 +153,12 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        _characterController.Move(_velocity * Time.deltaTime);
+        _characterController.Move((_hVelocity + _vVelocity) * Time.deltaTime);
     }
 
     void HandleAnimator()
     {
-        _Animator.SetFloat("Walk_Speed", _velocity.sqrMagnitude);
+        _Animator.SetFloat("Walk_Speed", _hVelocity.sqrMagnitude);
         _Animator.SetBool("Attack1", _inputAttack1);
     }
 

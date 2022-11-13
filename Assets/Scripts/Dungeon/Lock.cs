@@ -13,11 +13,11 @@ public class Lock : MonoBehaviour
         Debug.Log("Attempting Unlock");
         if (_requireKey)
         {
-            if (PlayerController.instance.keys == 0)
+            if (PlayerController.instance.KeyCount == 0)
                 return;
 
-            PlayerController.instance.keys--;
-            Debug.Log($"Using key. New key count: {PlayerController.instance.keys}");
+            PlayerController.instance.KeyCount--;
+            Debug.Log($"Using key. New key count: {PlayerController.instance.KeyCount}");
         }
 
         onUnlock.Invoke();
@@ -26,20 +26,20 @@ public class Lock : MonoBehaviour
 
     void OnDestroy()
     {
-        PlayerController.instance.onInteractEvent.RemoveListener(Unlock);
+        PlayerController.instance?.OnInteractEvent.RemoveListener(Unlock);
     }
 
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("Lock on Enter");
         if (other.CompareTag("Player"))
-            other.GetComponent<PlayerController>().onInteractEvent.AddListener(Unlock);
+            other.GetComponent<PlayerController>().OnInteractEvent.AddListener(Unlock);
     }
 
     void OnTriggerExit(Collider other)
     {
         Debug.Log("Lock on Exit");
         if (other.CompareTag("Player"))
-            other.GetComponent<PlayerController>().onInteractEvent.RemoveListener(Unlock);
+            other.GetComponent<PlayerController>().OnInteractEvent.RemoveListener(Unlock);
     }
 }
