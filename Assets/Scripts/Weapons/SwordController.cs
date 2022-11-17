@@ -55,6 +55,7 @@ public class SwordController : MonoBehaviour
                 Switch s = collision.gameObject.GetComponent<Switch>();
                 s.ActivateSwitch();
                 break;
+            case "Pot":
             case "Enemy":
                 Actor hit = collision.gameObject.GetComponent<Actor>();
 
