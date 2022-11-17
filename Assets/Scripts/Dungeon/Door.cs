@@ -5,31 +5,43 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    [Header("Base Door Properties")]
+    private Transform _doorCollider;
+
+    [Header("Door Properties")]
+    [SerializeField] private bool _isOpen;
     [SerializeField] private float _animateDoorTime;
     [SerializeField] private float _moveDistance;
-    public bool isOpen { get; private set; }
     public UnityEngine.Events.UnityEvent onDoorOpened;
 
-    public void OpenDoor()
+    void Awake()
     {
-        if (!isOpen)
-            HandleOpenDoor();
+        _doorCollider = transform.GetChild(0);
+        if (_isOpen)
+            _doorCollider.localPosition = Vector3.down * _moveDistance;
     }
 
-    private void HandleOpenDoor()
+    public void ToggleDoorState()
     {
-        isOpen = true;
+        SetDoorState(!_isOpen);
+    }
+
+    public void SetDoorState(bool isOpen)
+    {
+        if (_isOpen == isOpen)
+            return;
+
+        _isOpen = isOpen;
         onDoorOpened.Invoke();
-        StartCoroutine(AnimateOpenDoor());
+        StartCoroutine(AnimateDoor());
     }
 
-    private IEnumerator AnimateOpenDoor()
+    private IEnumerator AnimateDoor()
     {
-        isOpen = true;
+        Vector3 closedPos = Vector3.zero;
+        Vector3 openPos = Vector3.down * _moveDistance;
 
-        Vector3 startPos = transform.position;
-        Vector3 endPos = startPos + Vector3.down * _moveDistance;
+        Vector3 startPos = _isOpen ? closedPos : openPos;
+        Vector3 endPos = _isOpen ? openPos : closedPos;
         float timer = 0;
 
         while (timer < _animateDoorTime)
@@ -37,9 +49,12 @@ public class Door : MonoBehaviour
             timer += Time.deltaTime;
             float t = Mathf.Clamp01(timer / _animateDoorTime);
 
-            transform.position = Vector3.Lerp(startPos, endPos, t);
+            _doorCollider.localPosition = Vector3.Lerp(startPos, endPos, t);
 
             yield return null;
         }
     }
 }
+
+
+

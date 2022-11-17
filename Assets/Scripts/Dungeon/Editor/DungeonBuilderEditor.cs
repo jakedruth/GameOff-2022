@@ -38,7 +38,7 @@ public class DungeonBuilderEditor : EditorWindow
         d.name = $"door {key}";
 
         // link switch to door
-        UnityEditor.Events.UnityEventTools.AddPersistentListener(s.onActivate, d.OpenDoor);
+        UnityEditor.Events.UnityEventTools.AddBoolPersistentListener(s.onActivate, d.SetDoorState, true);
     }
 
     [MenuItem("GameObject/Dungeon Helper/Key and Locked Door", false, -1)]
