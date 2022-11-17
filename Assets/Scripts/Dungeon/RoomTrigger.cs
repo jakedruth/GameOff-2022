@@ -5,6 +5,7 @@ using UnityEngine;
 public class RoomTrigger : MonoBehaviour
 {
     [SerializeField] private bool _triggerRoomOnce;
+    private bool _didOnce;
     private bool _roomTriggerIsActive;
     [SerializeField] private float _disablePlayerInputTime;
     public UnityEngine.Events.UnityEvent onBeginTriggerRoom;
@@ -20,32 +21,23 @@ public class RoomTrigger : MonoBehaviour
 
     public void BeginTriggerRoom()
     {
-        if (_roomTriggerIsActive)
+        if (_roomTriggerIsActive || (_triggerRoomOnce && _didOnce))
             return;
 
         _roomTriggerIsActive = true;
-        StartCoroutine(DisableInput(_disablePlayerInputTime));
+        PlayerController.instance.TemporaryDisableInput(_disablePlayerInputTime);
         onBeginTriggerRoom.Invoke();
     }
 
     public void EndTriggerRoom()
     {
-        if (!_roomTriggerIsActive)
+        if (!_roomTriggerIsActive || (_triggerRoomOnce && _didOnce))
             return;
 
-        if (_triggerRoomOnce)
-            _roomTriggerIsActive = false;
+        _roomTriggerIsActive = false;
+        _didOnce = true;
 
-        StartCoroutine(DisableInput(_disablePlayerInputTime));
+        PlayerController.instance.TemporaryDisableInput(_disablePlayerInputTime);
         onEndTriggerRoom.Invoke();
-    }
-
-    private IEnumerator DisableInput(float timer)
-    {
-        PlayerController.instance.SetPlayerInputMap("Cutscene");
-
-        yield return new WaitForSeconds(timer);
-
-        PlayerController.instance.SetPlayerInputMap("Player");
     }
 }

@@ -60,6 +60,28 @@ public class PlayerController : MonoBehaviour
         _facing = Vector3.forward;
     }
 
+    public void TemporaryDisableInput(float timer)
+    {
+        StartCoroutine(DisableInputTimer(timer));
+    }
+
+    private IEnumerator DisableInputTimer(float timer)
+    {
+        DisableInput();
+        yield return new WaitForSeconds(timer);
+        ActivateInput();
+    }
+
+    private void DisableInput()
+    {
+        _playerInput.DeactivateInput();
+    }
+
+    private void ActivateInput()
+    {
+        _playerInput.ActivateInput();
+    }
+
     #region Input System Events
     public void SetPlayerInputMap(string map)
     {
