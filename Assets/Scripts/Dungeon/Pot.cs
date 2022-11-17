@@ -16,7 +16,14 @@ public class Pot : MonoBehaviour
 
     private void SpawnItem()
     {
+        if (_spawnPool == null)
+            return;
+
         GameObject prefab = _spawnPool.GetRandomPrefab();
+
+        if (prefab == null)
+            return;
+
         GameObject instance = Instantiate(prefab, transform.position, Quaternion.identity);
     }
 }

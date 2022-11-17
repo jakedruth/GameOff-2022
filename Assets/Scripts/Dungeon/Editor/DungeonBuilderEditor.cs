@@ -34,8 +34,8 @@ public class DungeonBuilderEditor : EditorWindow
 
         string key = GenerateUniqueKey();
 
-        s.name = $"switch {key}";
-        d.name = $"door {key}";
+        s.name = $"Switch {key}";
+        d.name = $"Door {key}";
 
         // link switch to door
         UnityEditor.Events.UnityEventTools.AddBoolPersistentListener(s.onActivate, d.SetDoorState, true);
