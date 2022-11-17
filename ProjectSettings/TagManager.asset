@@ -9,6 +9,7 @@ TagManager:
   - Switch
   - Pickup
   - Pot
+  - Wall
   layers:
   - Default
   - TransparentFX

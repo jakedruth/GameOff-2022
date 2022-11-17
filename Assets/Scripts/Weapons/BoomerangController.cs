@@ -45,20 +45,36 @@ public class BoomerangController : MonoBehaviour
 
     public void OnHit(Collision collision)
     {
-        // Return to sender for most cases
-        // This will bite me in the ass later haha
-        _instance.ReturnImmediately();
+        string otherTag = collision.gameObject.tag;
 
-        Actor hit = collision.gameObject.GetComponent<Actor>();
-
-        if (hit != null)
+        switch (otherTag)
         {
-            if (hit == _owner)
-            {
+            case "Player":
                 Destroy(_instance.gameObject);
                 _instance = null;
-                return;
-            }
+                break;
+            case "Switch":
+                _instance.ReturnImmediately();
+                Switch s = collision.gameObject.GetComponent<Switch>();
+                s.ActivateSwitch();
+                break;
+            case "Enemy":
+                _instance.ReturnImmediately();
+                Actor hit = collision.gameObject.GetComponent<Actor>();
+
+                if (hit != null && hit != _owner)
+                {
+                    hit.ApplyDamage(_damage);
+                }
+                break;
+            case "Pickup":
+                Pickup pickup = collision.gameObject.GetComponent<Pickup>();
+                pickup.DisableCollision();
+                _instance.grabbedItems.Add(pickup.transform);
+                break;
+            default:
+                _instance.ReturnImmediately();
+                break;
         }
     }
 }

@@ -26,6 +26,8 @@ public class Boomerang : MonoBehaviour
     private float _acceleration;
     private float _waitTime;
 
+    public List<Transform> grabbedItems;
+
     public void InitParameters(Actor actor, float moveTime, float distance, float acceleration, float waitTime)
     {
         _owner = actor;
@@ -79,6 +81,21 @@ public class Boomerang : MonoBehaviour
         }
 
         transform.position += _velocity * Time.deltaTime;
+
+        if (grabbedItems.Count > 0)
+        {
+            for (int i = grabbedItems.Count - 1; i >= 0; i--)
+            {
+                Transform item = grabbedItems[i];
+                if (item == null)
+                {
+                    grabbedItems.RemoveAt(i);
+                    continue;
+                }
+
+                item.position = transform.position;
+            }
+        }
     }
 
     public void ReturnImmediately()
@@ -100,7 +117,7 @@ public class Boomerang : MonoBehaviour
         Collider c2 = _owner.GetComponent<Collider>();
 
         // Ignore collisions during the first phase
-        Physics.IgnoreCollision(c1, c2, phase == Phase.MOVE);
+        //Physics.IgnoreCollision(c1, c2, phase == Phase.MOVE);
 
     }
 
