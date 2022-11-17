@@ -12,12 +12,17 @@ public class Door : MonoBehaviour
     [SerializeField] private float _animateDoorTime;
     [SerializeField] private float _moveDistance;
     public UnityEngine.Events.UnityEvent onDoorOpened;
+    private Vector3 _closedPos;
+    private Vector3 _openPos;
 
     void Awake()
     {
         _doorCollider = transform.GetChild(0);
+        _closedPos = _doorCollider.localPosition;
+        _openPos = _closedPos + Vector3.down * _moveDistance;
+
         if (_isOpen)
-            _doorCollider.localPosition = Vector3.down * _moveDistance;
+            _doorCollider.localPosition = _openPos;
     }
 
     public void ToggleDoorState()
@@ -37,19 +42,15 @@ public class Door : MonoBehaviour
 
     private IEnumerator AnimateDoor()
     {
-        Vector3 closedPos = Vector3.zero;
-        Vector3 openPos = Vector3.down * _moveDistance;
-
-        Vector3 startPos = _isOpen ? closedPos : openPos;
-        Vector3 endPos = _isOpen ? openPos : closedPos;
         float timer = 0;
 
         while (timer < _animateDoorTime)
         {
             timer += Time.deltaTime;
             float t = Mathf.Clamp01(timer / _animateDoorTime);
+            float k = _isOpen ? 1 - t : t;
 
-            _doorCollider.localPosition = Vector3.Lerp(startPos, endPos, t);
+            _doorCollider.localPosition = Vector3.Lerp(_openPos, _closedPos, k);
 
             yield return null;
         }

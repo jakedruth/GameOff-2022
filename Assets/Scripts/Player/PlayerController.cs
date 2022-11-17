@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public Actor actor { get; private set; }
 
     // Components
+    private UnityEngine.InputSystem.PlayerInput _playerInput;
     private CharacterController _characterController;
     private SwordController _swordController;
     private BoomerangController _boomerangController;
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
         instance = this;
         actor = GetComponent<Actor>();
 
+        _playerInput = GetComponent<UnityEngine.InputSystem.PlayerInput>();
         _characterController = GetComponent<CharacterController>();
         _swordController = GetComponent<SwordController>();
         _boomerangController = GetComponent<BoomerangController>();
@@ -59,6 +61,11 @@ public class PlayerController : MonoBehaviour
     }
 
     #region Input System Events
+    public void SetPlayerInputMap(string map)
+    {
+        _playerInput.SwitchCurrentActionMap(map);
+    }
+
     public void OnMove(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         Vector3 input = context.ReadValue<Vector2>().Vector2ToVector3_XZ();
