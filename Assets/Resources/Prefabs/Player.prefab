@@ -324,6 +324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 1256399448}
+  _maxBoomerangCount: 1
   _damage: 1
   _moveTime: 0.4
   _distance: 4

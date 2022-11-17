@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Boomerang : MonoBehaviour
 {
-    private Action<Collision> onHitCallBack;
+    private Action<Boomerang, Collision> onHitCallBack;
 
     public enum Phase
     {
@@ -14,7 +14,6 @@ public class Boomerang : MonoBehaviour
         RETURN,
     }
 
-    private Actor _owner;
     private Phase phase;
     private float _timer;
     private Vector3 _direction;
@@ -30,7 +29,6 @@ public class Boomerang : MonoBehaviour
 
     public void InitParameters(Actor actor, float moveTime, float distance, float acceleration, float waitTime)
     {
-        _owner = actor;
         SetPhase(Phase.MOVE);
 
         _direction = transform.forward;
@@ -65,8 +63,7 @@ public class Boomerang : MonoBehaviour
                 }
                 break;
             case Phase.RETURN:
-                Vector3 dir = _owner.transform.position - transform.position;
-                dir.y += _yOffset;
+                Vector3 dir = PlayerController.instance.GetCenter() - transform.position;
                 dir.Normalize();
                 Vector3 targetVel = dir * _speed;
 
@@ -101,8 +98,7 @@ public class Boomerang : MonoBehaviour
     public void ReturnImmediately()
     {
         SetPhase(Phase.RETURN);
-        Vector3 dir = _owner.transform.position - transform.position;
-        dir.y += _yOffset;
+        Vector3 dir = PlayerController.instance.GetCenter() - transform.position;
         dir.Normalize();
         _velocity = dir * _speed;
     }
@@ -114,21 +110,20 @@ public class Boomerang : MonoBehaviour
 
         // Get collider with the owner and self
         Collider c1 = GetComponent<Collider>();
-        Collider c2 = _owner.GetComponent<Collider>();
+        Collider c2 = PlayerController.instance.GetComponent<Collider>();
 
         // Ignore collisions during the first phase
-        //Physics.IgnoreCollision(c1, c2, phase == Phase.MOVE);
-
+        Physics.IgnoreCollision(c1, c2, phase == Phase.MOVE);
     }
 
-    public void SetOnHitCallBack(Action<Collision> callback)
+    public void SetOnHitCallBack(Action<Boomerang, Collision> callback)
     {
         onHitCallBack = callback;
     }
 
     public void OnCollisionEnter(Collision other)
     {
-        onHitCallBack(other);
+        onHitCallBack(this, other);
     }
 }
 

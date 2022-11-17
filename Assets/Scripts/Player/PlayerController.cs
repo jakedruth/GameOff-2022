@@ -20,8 +20,6 @@ public class PlayerController : MonoBehaviour
     // Inputs
     private Vector3 _facing;
     private Vector3 _inputMove;
-    private bool _inputAttack1; // I should move these booleans to their controllers
-    // private bool _inputAttack2;
 
     [Header("Movement Values")]
     [SerializeField] private float _maxSpeed;
@@ -60,6 +58,12 @@ public class PlayerController : MonoBehaviour
         _facing = Vector3.forward;
     }
 
+    public Vector3 GetCenter()
+    {
+        return _characterController.bounds.center;
+    }
+
+    #region Input System Events
     public void TemporaryDisableInput(float timer)
     {
         StartCoroutine(DisableInputTimer(timer));
@@ -82,7 +86,7 @@ public class PlayerController : MonoBehaviour
         _playerInput.ActivateInput();
     }
 
-    #region Input System Events
+
     public void SetPlayerInputMap(string map)
     {
         _playerInput.SwitchCurrentActionMap(map);
@@ -114,7 +118,6 @@ public class PlayerController : MonoBehaviour
         {
             case UnityEngine.InputSystem.InputActionPhase.Disabled:
                 _swordController.EndAttack();
-                _inputAttack1 = false;
                 break;
             case UnityEngine.InputSystem.InputActionPhase.Waiting:
                 break;
@@ -122,37 +125,34 @@ public class PlayerController : MonoBehaviour
                 _swordController.StartAttack();
                 break;
             case UnityEngine.InputSystem.InputActionPhase.Performed:
-                _inputAttack1 = true;
                 break;
             case UnityEngine.InputSystem.InputActionPhase.Canceled:
                 _swordController.EndAttack();
-                _inputAttack1 = false;
                 break;
         }
     }
 
     public void OnBoomerang(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        // TODO: Pause player movement briefly when attacking
-
         switch (context.phase)
         {
             case UnityEngine.InputSystem.InputActionPhase.Disabled:
                 _boomerangController.EndAttack();
-                // _inputAttack2 = false;
                 break;
             case UnityEngine.InputSystem.InputActionPhase.Waiting:
                 break;
             case UnityEngine.InputSystem.InputActionPhase.Started:
-                _boomerangController.StartAttack();
+                if (_boomerangController.CanThrow)
+                {
+                    _boomerangController.StartAttack();
+                    TemporaryDisableInput(0.25f);
+                    _Animator.SetTrigger("Attack2");
+                }
                 break;
             case UnityEngine.InputSystem.InputActionPhase.Performed:
-                // _inputAttack2 = true;
-                _Animator.SetTrigger("Attack2");
                 break;
             case UnityEngine.InputSystem.InputActionPhase.Canceled:
                 _boomerangController.EndAttack();
-                // _inputAttack2 = false;
                 break;
         }
     }
@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(_facing, Vector3.up);
 
         // Update Horizontal velocity
-        float targetSpeed = _inputAttack1 ? 0 : _maxSpeed;
+        float targetSpeed = _swordController.inputKey ? 0 : _maxSpeed;
         Vector3 targetVel = _inputMove * targetSpeed;
         _hVelocity = Vector3.MoveTowards(_hVelocity, targetVel, _acceleration * Time.deltaTime);
 
@@ -188,7 +188,7 @@ public class PlayerController : MonoBehaviour
     void HandleAnimator()
     {
         _Animator.SetFloat("Walk_Speed", _hVelocity.sqrMagnitude);
-        _Animator.SetBool("Attack1", _inputAttack1);
+        _Animator.SetBool("Attack1", _swordController.inputKey);
     }
 
     Vector3 SnapToAngle(Vector3 input, float snapAngle, Vector3 forward)

@@ -13,6 +13,8 @@ public class SwordController : MonoBehaviour
     [Header("Sword Value")]
     [SerializeField] private float _damage;
 
+    public bool inputKey { get; set; }
+
     void Awake()
     {
         // TODO: Make this string public and changeable?
@@ -26,6 +28,7 @@ public class SwordController : MonoBehaviour
 
     public void StartAttack()
     {
+        inputKey = true;
         if (_instance != null)
             return;
 
@@ -40,6 +43,8 @@ public class SwordController : MonoBehaviour
 
     public void EndAttack()
     {
+        inputKey = false;
+
         Destroy(_instance.gameObject);
         _instance = null;
     }
