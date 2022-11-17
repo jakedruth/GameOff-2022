@@ -7,7 +7,6 @@ using JDR.ExtensionMethods;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
-    // Pawn
     public Actor actor { get; private set; }
 
     // Components
