@@ -14,6 +14,8 @@ public class Slime : MonoBehaviour
 
     // Components
     public Actor actor { get; private set; }
+
+    // TODO: Switch to rigidbody that is kinematic
     private CharacterController _characterController;
 
     private AI_State _currentState;
@@ -46,6 +48,8 @@ public class Slime : MonoBehaviour
 
     void Update()
     {
+        // TODO: Enemy needs to deal damage to the player on contact
+
         // Update vertical velocity
         _isGrounded = (_characterController.collisionFlags & CollisionFlags.Below) != 0;
         if (_isGrounded)
