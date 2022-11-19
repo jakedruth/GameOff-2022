@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour
 
         // TODO: Check if the enemy can move first
         // Need to raycast based on the velocity to see if the enemy can move in that direction
+        // Currently the push back (potentially) sends the enemy through walls
 
         _rigidBody.MovePosition(transform.position + step);
     }
@@ -46,6 +47,7 @@ public class Enemy : MonoBehaviour
 
     public void ApplyPushBack(Vector3 direction, float distance)
     {
+
         // Fancy math to apply the right amount of force
         Vector3 pushMagnitude = distance * new Vector3(
             Mathf.Log(1f / (Time.deltaTime * _drag.x + 1)) / -Time.deltaTime, 0,
