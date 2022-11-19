@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 _vVelocity;
 
     [Header("Physics Properties")]
-    [SerializeField] private float _gravity;
     [SerializeField] private LayerMask _groundLayerMask;
     private bool _isGrounded;
 
@@ -169,11 +168,12 @@ public class PlayerController : MonoBehaviour
         _hVelocity = Vector3.MoveTowards(_hVelocity, targetVel, _acceleration * Time.deltaTime);
 
         // Update vertical velocity
-        _vVelocity.y -= _gravity * Time.deltaTime;
         //_isGrounded = Physics.CheckSphere(transform.position, 0.2f, _groundLayerMask);
         _isGrounded = (_characterController.collisionFlags & CollisionFlags.Below) != 0;
         if (_isGrounded)
             _vVelocity.y = 0;
+
+        _vVelocity += Physics.gravity * Time.deltaTime;
 
         // Update animator
         HandleAnimator();

@@ -16,15 +16,19 @@ public class Slime : MonoBehaviour
     public Actor actor { get; private set; }
     private CharacterController _characterController;
 
-
     private AI_State _currentState;
     [Header("Movement Values")]
     [SerializeField] private float _maxSpeed;
     [SerializeField] private RangedFloat _moveDistance;
     [SerializeField] private RangedFloat _waitTime;
+    private Vector3 _hVelocity;
+    private Vector3 _vVelocity;
+    private bool _isGrounded;
+
     private float _timer;
     private Vector3 _facing;
     private Vector3 _targetPos;
+    private
 
     void Awake()
     {
@@ -44,29 +48,29 @@ public class Slime : MonoBehaviour
 
     void Update()
     {
+        // Update vertical velocity
+        _isGrounded = (_characterController.collisionFlags & CollisionFlags.Below) != 0;
+        if (_isGrounded)
+            _vVelocity.y = 0;
+
+        _vVelocity += Physics.gravity * Time.deltaTime;
+
+        _timer -= Time.deltaTime;
         switch (_currentState)
         {
             case AI_State.WAIT:
-                _timer -= Time.deltaTime;
                 if (_timer <= 0)
                 {
                     _currentState = AI_State.MOVE;
-                    CalculateRandomTargetPoint();
+                    CalculateNewTargetPoint();
                 }
                 break;
             case AI_State.MOVE:
-
-                Vector3 pos = Vector3.MoveTowards(transform.position, _targetPos, _maxSpeed * Time.deltaTime);
-                transform.position = pos;
-
-                // Use the character controller here
-
-                Vector3 delta = _targetPos - pos;
-                if (delta.magnitude <= 0.0001f)
+                if (_timer <= 0)
                 {
-                    transform.position = _targetPos;
                     _currentState = AI_State.WAIT;
                     _timer = _waitTime.GetRandomValue();
+                    _hVelocity = Vector3.zero;
                 }
                 break;
             default:
@@ -74,15 +78,23 @@ public class Slime : MonoBehaviour
         }
     }
 
+    void FixedUpdate()
+    {
+        if (_currentState == AI_State.MOVE)
+        {
+            _characterController.Move((_vVelocity + _hVelocity) * Time.deltaTime);
+        }
+    }
+
     private static readonly Vector3[] facings = new Vector3[] { Vector3.forward, Vector3.right, Vector3.back, Vector3.left };
-    void CalculateRandomTargetPoint()
+    void CalculateNewTargetPoint()
     {
         int i = Random.Range(0, 4);
         _facing = facings[i];
+        _hVelocity = _facing * _maxSpeed;
         int dist = Mathf.RoundToInt(_moveDistance.GetRandomValue());
+        //transform.rotation = Quaternion.LookRotation(_facing, Vector3.up);
 
-        _targetPos = transform.position + _facing * dist;
-
-        transform.rotation = Quaternion.LookRotation(_facing, Vector3.up);
+        _timer = dist / _maxSpeed;
     }
 }
