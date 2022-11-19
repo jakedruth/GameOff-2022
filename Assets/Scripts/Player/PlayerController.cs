@@ -190,6 +190,16 @@ public class PlayerController : MonoBehaviour
         _Animator.SetBool("Attack1", _swordController.inputKey);
     }
 
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+
+        // Handle taking a hit?
+        if (hit.gameObject.CompareTag("Enemy"))
+        {
+
+        }
+    }
+
     Vector3 SnapToAngle(Vector3 input, float snapAngle, Vector3 forward)
     {
         float angle = Vector3.Angle(input, forward);

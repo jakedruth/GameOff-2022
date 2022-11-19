@@ -3,29 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using JDR.Utils;
 
-[RequireComponent(typeof(Actor))]
+[System.Serializable]
+public enum AI_State : int
+{
+    WAIT = 0,
+    MOVE
+}
+
+[RequireComponent(typeof(Enemy))]
 public class Slime : MonoBehaviour
 {
-    public enum AI_State
-    {
-        WAIT,
-        MOVE
-    }
-
     // Components
-    public Actor actor { get; private set; }
-
-    private Rigidbody _rigidBody;
-    private CapsuleCollider _capsuleCollider;
+    public Enemy enemy { get; private set; }
 
     private AI_State _currentState;
     [Header("Movement Values")]
     [SerializeField] private float _maxSpeed;
     [SerializeField] private RangedFloat _moveDistance;
     [SerializeField] private RangedFloat _waitTime;
-    private Vector3 _hVelocity;
-    private Vector3 _vVelocity;
-    private bool _isGrounded;
 
     private float _timer;
     private Vector3 _facing;
@@ -33,9 +28,7 @@ public class Slime : MonoBehaviour
     void Awake()
     {
         // Get components
-        actor = GetComponent<Actor>();
-        _rigidBody = GetComponent<Rigidbody>();
-        _capsuleCollider = GetComponent<CapsuleCollider>();
+        enemy = GetComponent<Enemy>();
 
         Init();
     }
@@ -49,24 +42,13 @@ public class Slime : MonoBehaviour
 
     void Update()
     {
-        // TODO: Enemy needs to deal damage to the player on contact
-
-        // Update vertical velocity
-        Vector3 point1 = transform.TransformPoint(_capsuleCollider.center + Vector3.down * (_capsuleCollider.height - _capsuleCollider.radius));
-        Vector3 point2 = transform.TransformPoint(_capsuleCollider.center + Vector3.up * (_capsuleCollider.height - _capsuleCollider.radius));
-        //_isGrounded = Physics.CapsuleCast(point1, point2, _capsuleCollider.radius, Vector3.down, 0.1f);
-        //_isGrounded = (_characterController.collisionFlags & CollisionFlags.Below) != 0;
-
-        _vVelocity += Physics.gravity * Time.deltaTime;
-
         _timer -= Time.deltaTime;
         switch (_currentState)
         {
             case AI_State.WAIT:
                 if (_timer <= 0)
                 {
-                    _currentState = AI_State.MOVE;
-                    CalculateNewTargetPoint();
+                    SetState(1);
                 }
                 break;
             case AI_State.MOVE:
@@ -74,7 +56,7 @@ public class Slime : MonoBehaviour
                 {
                     _currentState = AI_State.WAIT;
                     _timer = _waitTime.GetRandomValue();
-                    _hVelocity = Vector3.zero;
+                    enemy.SetVelocity(Vector3.zero);
                 }
                 break;
             default:
@@ -82,23 +64,36 @@ public class Slime : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    public void SetState(int state)
     {
-        if (_currentState == AI_State.MOVE)
+        SetState((AI_State)state);
+    }
+
+    public void SetState(AI_State state)
+    {
+        _currentState = state;
+        switch (_currentState)
         {
-            Vector3 step = (_hVelocity) * Time.deltaTime;
-            _rigidBody.MovePosition(transform.position + step);
+            default:
+            case AI_State.WAIT:
+                // Should make function
+                enemy.SetVelocity(Vector3.zero);
+                _timer = _waitTime.GetRandomValue();
+                break;
+            case AI_State.MOVE:
+                HandleStateChangeToMove();
+                break;
         }
     }
 
     private static readonly Vector3[] facings = new Vector3[] { Vector3.forward, Vector3.right, Vector3.back, Vector3.left };
-    void CalculateNewTargetPoint()
+    private void HandleStateChangeToMove()
     {
         int i = Random.Range(0, 4);
         _facing = facings[i];
-        _hVelocity = _facing * _maxSpeed;
+        enemy.SetVelocity(_facing * _maxSpeed);
         int dist = Mathf.RoundToInt(_moveDistance.GetRandomValue());
-        //transform.rotation = Quaternion.LookRotation(_facing, Vector3.up);
+        transform.rotation = Quaternion.LookRotation(_facing, Vector3.up);
 
         // TODO: Check if the new target position is in the bounds
 

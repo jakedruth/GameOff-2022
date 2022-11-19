@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4569661355139327249}
   - component: {fileID: 6696752730603288754}
   - component: {fileID: 2726137293179962085}
+  - component: {fileID: 4219544339324528881}
   - component: {fileID: 2726137293179962080}
   m_Layer: 0
   m_Name: Slime
@@ -79,17 +80,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 150
-  invulnerabilityTime: 0
+  invulnerabilityTime: 0.5
   delayDestroyOnDeath: 0
   OnTakeDamage:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2726137293179962080}
+        m_TargetAssemblyTypeName: Slime, Assembly-CSharp
+        m_MethodName: SetState
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   onDeath:
     m_PersistentCalls:
       m_Calls: []
   onDestroyed:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4219544339324528881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2726137293179962084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ddf44b0454c2c14196c24d3d0c80c1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _drag: {x: 20, y: 20, z: 20}
 --- !u!114 &2726137293179962080
 MonoBehaviour:
   m_ObjectHideFlags: 0

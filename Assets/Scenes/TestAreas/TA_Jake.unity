@@ -603,7 +603,7 @@ PrefabInstance:
     - target: {fileID: 4938155144438270712, guid: b436cf6abaec2174b87a11c7896137b7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4938155144438270712, guid: b436cf6abaec2174b87a11c7896137b7,
         type: 3}
@@ -13985,7 +13985,7 @@ PrefabInstance:
     - target: {fileID: 4938155144438270712, guid: b436cf6abaec2174b87a11c7896137b7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4938155144438270712, guid: b436cf6abaec2174b87a11c7896137b7,
         type: 3}
@@ -36078,7 +36078,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1089922124
 MonoBehaviour:
@@ -37202,7 +37202,7 @@ PrefabInstance:
     - target: {fileID: 4938155144438270712, guid: b436cf6abaec2174b87a11c7896137b7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4938155144438270712, guid: b436cf6abaec2174b87a11c7896137b7,
         type: 3}
@@ -37386,7 +37386,7 @@ PrefabInstance:
     - target: {fileID: 2726137293179962083, guid: 573694fdca3125042ba03562cd59297f,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2726137293179962083, guid: 573694fdca3125042ba03562cd59297f,
         type: 3}
@@ -37680,6 +37680,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3112893051104742689, guid: 9169389b5f0da0d4a9a182a689907ad6,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112893051104742689, guid: 9169389b5f0da0d4a9a182a689907ad6,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_ActionId
+      value: 3e7f7d3a-b4bb-4762-9721-e6026053e6c3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3112893051104742689, guid: 9169389b5f0da0d4a9a182a689907ad6,
+        type: 3}
+      propertyPath: m_ActionEvents.Array.data[14].m_ActionName
+      value: Cutscene/Continue[/Mouse/leftButton,/Keyboard/j]
+      objectReference: {fileID: 0}
     - target: {fileID: 3112893051104742692, guid: 9169389b5f0da0d4a9a182a689907ad6,
         type: 3}
       propertyPath: m_RootOrder

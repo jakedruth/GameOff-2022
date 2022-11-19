@@ -12,6 +12,7 @@ public class SwordController : MonoBehaviour
 
     [Header("Sword Value")]
     [SerializeField] private float _damage;
+    [SerializeField] private float _pushBackDist;
 
     public bool inputKey { get; set; }
 
@@ -62,16 +63,12 @@ public class SwordController : MonoBehaviour
                 break;
             case "Pot":
             case "Enemy":
-                // TODO: The enemy Collides with the sword and moves it around in negative ways.
-                Actor hit = collision.gameObject.GetComponent<Actor>();
+                Enemy enemy = collision.gameObject.GetComponent<Enemy>();
 
-                if (hit != null && hit != _owner)
+                if (enemy != null)
                 {
-                    hit.ApplyDamage(_damage);
-
-                    // Push the target away
-                    // TODO: Should move the position quickly overtime (0.1s?) instead of instantly
-                    // hit.transform.position += transform.forward * 2;
+                    enemy.actor.ApplyDamage(_damage);
+                    enemy.ApplyPushBack(transform.forward, _pushBackDist);
                 }
                 break;
             default:

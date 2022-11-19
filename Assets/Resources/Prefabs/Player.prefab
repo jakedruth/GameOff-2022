@@ -310,6 +310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 1256399448}
   _damage: 5
+  _pushBackDist: 3
 --- !u!114 &569088337688399833
 MonoBehaviour:
   m_ObjectHideFlags: 0
