@@ -62,6 +62,7 @@ public class SwordController : MonoBehaviour
                 break;
             case "Pot":
             case "Enemy":
+                // TODO: The enemy Collides with the sword and moves it around in negative ways.
                 Actor hit = collision.gameObject.GetComponent<Actor>();
 
                 if (hit != null && hit != _owner)

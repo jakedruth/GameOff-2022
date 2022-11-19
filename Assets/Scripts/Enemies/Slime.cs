@@ -27,8 +27,6 @@ public class Slime : MonoBehaviour
 
     private float _timer;
     private Vector3 _facing;
-    private Vector3 _targetPos;
-    private
 
     void Awake()
     {
@@ -94,6 +92,8 @@ public class Slime : MonoBehaviour
         _hVelocity = _facing * _maxSpeed;
         int dist = Mathf.RoundToInt(_moveDistance.GetRandomValue());
         //transform.rotation = Quaternion.LookRotation(_facing, Vector3.up);
+
+        // TODO: Check if the new target position is in the bounds
 
         _timer = dist / _maxSpeed;
     }
