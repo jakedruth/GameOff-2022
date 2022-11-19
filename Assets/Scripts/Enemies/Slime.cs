@@ -15,8 +15,8 @@ public class Slime : MonoBehaviour
     // Components
     public Actor actor { get; private set; }
 
-    // TODO: Switch to rigidbody that is kinematic
-    private CharacterController _characterController;
+    private Rigidbody _rigidBody;
+    private CapsuleCollider _capsuleCollider;
 
     private AI_State _currentState;
     [Header("Movement Values")]
@@ -34,7 +34,8 @@ public class Slime : MonoBehaviour
     {
         // Get components
         actor = GetComponent<Actor>();
-        _characterController = GetComponent<CharacterController>();
+        _rigidBody = GetComponent<Rigidbody>();
+        _capsuleCollider = GetComponent<CapsuleCollider>();
 
         Init();
     }
@@ -51,9 +52,10 @@ public class Slime : MonoBehaviour
         // TODO: Enemy needs to deal damage to the player on contact
 
         // Update vertical velocity
-        _isGrounded = (_characterController.collisionFlags & CollisionFlags.Below) != 0;
-        if (_isGrounded)
-            _vVelocity.y = 0;
+        Vector3 point1 = transform.TransformPoint(_capsuleCollider.center + Vector3.down * (_capsuleCollider.height - _capsuleCollider.radius));
+        Vector3 point2 = transform.TransformPoint(_capsuleCollider.center + Vector3.up * (_capsuleCollider.height - _capsuleCollider.radius));
+        //_isGrounded = Physics.CapsuleCast(point1, point2, _capsuleCollider.radius, Vector3.down, 0.1f);
+        //_isGrounded = (_characterController.collisionFlags & CollisionFlags.Below) != 0;
 
         _vVelocity += Physics.gravity * Time.deltaTime;
 
@@ -84,7 +86,8 @@ public class Slime : MonoBehaviour
     {
         if (_currentState == AI_State.MOVE)
         {
-            _characterController.Move((_vVelocity + _hVelocity) * Time.deltaTime);
+            Vector3 step = (_hVelocity) * Time.deltaTime;
+            _rigidBody.MovePosition(transform.position + step);
         }
     }
 
