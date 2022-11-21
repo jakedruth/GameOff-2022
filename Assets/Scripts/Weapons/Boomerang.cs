@@ -14,7 +14,7 @@ public class Boomerang : MonoBehaviour
         RETURN,
     }
 
-    private Phase phase;
+    public Phase phase { get; private set; }
     private float _timer;
     private Vector3 _direction;
     private Vector3 _velocity;

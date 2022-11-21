@@ -51,10 +51,11 @@ public class BoomerangController : MonoBehaviour
     public void OnHit(Boomerang boomerang, Collider collider)
     {
         string otherTag = collider.gameObject.tag;
-
         switch (otherTag)
         {
             case "Player":
+                if (boomerang.phase == Boomerang.Phase.MOVE)
+                    break;
                 Destroy(boomerang.gameObject);
                 _boomerangCount--;
                 break;
