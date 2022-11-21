@@ -62,13 +62,12 @@ public class SwordController : MonoBehaviour
                 break;
             case "Pot":
             case "Enemy":
-                Enemy enemy = collider.gameObject.GetComponent<Enemy>();
+                Actor actor = collider.gameObject.GetComponent<Actor>();
+                actor.ApplyDamage(_damage);
 
-                if (enemy != null)
-                {
-                    enemy.actor.ApplyDamage(_damage);
+                if (actor is Enemy enemy)
                     enemy.ApplyPushBack(transform.forward, _pushBackDist);
-                }
+
                 break;
             default:
                 break;

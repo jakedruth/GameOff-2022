@@ -63,15 +63,16 @@ public class BoomerangController : MonoBehaviour
                 Switch s = collider.gameObject.GetComponent<Switch>();
                 s.ActivateSwitch();
                 break;
-            case "Enemy":
-                boomerang.ReturnImmediately();
-                Actor hit = collider.gameObject.GetComponent<Actor>();
-                hit?.ApplyDamage(_damage);
-                break;
             case "Pickup":
                 Pickup pickup = collider.gameObject.GetComponent<Pickup>();
                 pickup.DisableCollision();
                 boomerang.grabbedItems.Add(pickup.transform);
+                break;
+            //case "Pot":
+            case "Enemy":
+                boomerang.ReturnImmediately();
+                Actor hit = collider.gameObject.GetComponent<Actor>();
+                hit?.ApplyDamage(_damage);
                 break;
             default:
                 boomerang.ReturnImmediately();

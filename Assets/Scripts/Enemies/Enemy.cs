@@ -2,13 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Actor))]
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(CapsuleCollider))]
-public class Enemy : MonoBehaviour
+public class Enemy : Actor
 {
     // Components
-    public Actor actor { get; private set; }
     private Rigidbody _rigidBody;
     private CapsuleCollider _capsuleCollider;
 
@@ -22,9 +20,9 @@ public class Enemy : MonoBehaviour
         tag = "Enemy";
     }
 
-    void Awake()
+    public override void Awake()
     {
-        actor = GetComponent<Actor>();
+        base.Awake();
         _rigidBody = GetComponent<Rigidbody>();
         _capsuleCollider = GetComponent<CapsuleCollider>();
     }
