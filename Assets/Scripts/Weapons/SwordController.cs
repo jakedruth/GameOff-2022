@@ -63,9 +63,9 @@ public class SwordController : MonoBehaviour
             case "Pot":
             case "Enemy":
                 Actor actor = collider.gameObject.GetComponent<Actor>();
-                actor.ApplyDamage(_damage);
+                bool tookDamage = actor.ApplyDamage(_damage);
 
-                if (actor is Enemy enemy)
+                if (tookDamage && actor is Enemy enemy)
                     enemy.ApplyPushBack(transform.forward, _pushBackDist);
 
                 break;

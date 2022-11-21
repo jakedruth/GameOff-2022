@@ -9,17 +9,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
-  m_Name: DungeonWallRuleTile
+  m_Script: {fileID: 11500000, guid: 4c779848d9dd029409ca676b49e10a18, type: 3}
+  m_Name: DungeonFloorRuleTIle
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 21300000, guid: 00313f173259fb3458fde60b3bd80a67, type: 3}
+  m_Tile: {fileID: 11400000, guid: 68c24b90f7133cc479cb20241e11cc00, type: 2}
+  m_Sprites:
+  - m_OriginalSprite: {fileID: 21300000, guid: 00313f173259fb3458fde60b3bd80a67, type: 3}
+    m_OverrideSprite: {fileID: 21300000, guid: 65f0e363b74cf5845ab8c3fbc14f39ac, type: 3}
+  m_GameObjects:
+  - m_OriginalGameObject: {fileID: 6584447352082440837, guid: 6cb11c695bcb29945ac9b6f609b9f9d2,
+      type: 3}
+    m_OverrideGameObject: {fileID: 4470782829867917140, guid: 419ecb9dad0873a4db27e493d2626fae,
+      type: 3}
+  m_InstanceTile: {fileID: 8310472827882479347}
+--- !u!114 &8310472827882479347
+MonoBehaviour:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1514134bc4fbd41bb739b1b9a49231, type: 3}
+  m_Name: DungeonWallRuleTile (Override)
+  m_EditorClassIdentifier: 
+  m_DefaultSprite: {fileID: 21300000, guid: 65f0e363b74cf5845ab8c3fbc14f39ac, type: 3}
   m_DefaultGameObject: {fileID: 4940954552021839189, guid: 0b317873832c75f4ca90c9063c9d8d41,
     type: 3}
   m_DefaultColliderType: 0
   m_TilingRules:
   - m_Id: 23
     m_Sprites:
-    - {fileID: 21300000, guid: 00313f173259fb3458fde60b3bd80a67, type: 3}
+    - {fileID: 21300000, guid: 65f0e363b74cf5845ab8c3fbc14f39ac, type: 3}
     m_GameObject: {fileID: 4940954552021839189, guid: 0b317873832c75f4ca90c9063c9d8d41,
       type: 3}
     m_MinAnimationSpeed: 1
@@ -434,7 +456,7 @@ MonoBehaviour:
   - m_Id: 1
     m_Sprites:
     - {fileID: 0}
-    m_GameObject: {fileID: 6584447352082440837, guid: 6cb11c695bcb29945ac9b6f609b9f9d2,
+    m_GameObject: {fileID: 4470782829867917140, guid: 419ecb9dad0873a4db27e493d2626fae,
       type: 3}
     m_MinAnimationSpeed: 1
     m_MaxAnimationSpeed: 1

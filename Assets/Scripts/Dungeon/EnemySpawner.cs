@@ -4,7 +4,7 @@ using UnityEngine;
 
 // I hate the name Enemy Room Handler. It should be Enemy Spawner....
 [RequireComponent(typeof(BoxCollider))]
-public class EnemyRoomHandler : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private bool _spawnOnce;
     private bool _didOnce;
