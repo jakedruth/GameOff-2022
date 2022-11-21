@@ -36,20 +36,27 @@ public class Enemy : MonoBehaviour
         _pushBackVel.y /= 1 + _drag.y * Time.deltaTime;
         _pushBackVel.z /= 1 + _drag.z * Time.deltaTime;
 
-        Vector3 step = (_moveVel + _pushBackVel) * Time.deltaTime;
+        Vector3 velocity = _moveVel + _pushBackVel;
+        Vector3 step = (velocity) * Time.deltaTime;
+        Vector3 dir = velocity.normalized;
 
         // TODO: Check if the enemy can move first
         // Need to raycast based on the velocity to see if the enemy can move in that direction
         // Currently the push back (potentially) sends the enemy through walls
 
-        Ray ray = new(_capsuleCollider.bounds.center, step);
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        const float skin = 0.05f;
+        //Ray ray = new(_capsuleCollider.bounds.center + dir * (_capsuleCollider.radius), dir);
+
+        Vector3 center = _capsuleCollider.bounds.center;
+        float distToCenter = (_capsuleCollider.height - _capsuleCollider.radius) * 0.5f;
+        if (Physics.CapsuleCast(center + Vector3.up * distToCenter, center + Vector3.down * distToCenter, _capsuleCollider.radius - skin, dir, out RaycastHit hit))
+        //if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            float dist = hit.distance - _capsuleCollider.radius;
+            float dist = hit.distance - skin;
             if (dist * dist <= step.sqrMagnitude)
             {
                 step.Normalize();
-                step *= hit.distance;
+                step *= (hit.distance + skin);
             }
         }
 
