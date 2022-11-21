@@ -37543,11 +37543,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoomTrigger
       objectReference: {fileID: 0}
-    - target: {fileID: 6078714841656642169, guid: e68f4fbd78874be4fac1fda60a9e60e6,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 8677508472184914006, guid: e68f4fbd78874be4fac1fda60a9e60e6,
         type: 3}
       propertyPath: onEndTriggerRoom.m_PersistentCalls.m_Calls.Array.size
