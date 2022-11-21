@@ -48,9 +48,9 @@ public class BoomerangController : MonoBehaviour
         inputKey = false;
     }
 
-    public void OnHit(Boomerang boomerang, Collision collision)
+    public void OnHit(Boomerang boomerang, Collider collider)
     {
-        string otherTag = collision.gameObject.tag;
+        string otherTag = collider.gameObject.tag;
 
         switch (otherTag)
         {
@@ -60,20 +60,16 @@ public class BoomerangController : MonoBehaviour
                 break;
             case "Switch":
                 boomerang.ReturnImmediately();
-                Switch s = collision.gameObject.GetComponent<Switch>();
+                Switch s = collider.gameObject.GetComponent<Switch>();
                 s.ActivateSwitch();
                 break;
             case "Enemy":
                 boomerang.ReturnImmediately();
-                Actor hit = collision.gameObject.GetComponent<Actor>();
-
-                if (hit != null && hit != _owner)
-                {
-                    hit.ApplyDamage(_damage);
-                }
+                Actor hit = collider.gameObject.GetComponent<Actor>();
+                hit?.ApplyDamage(_damage);
                 break;
             case "Pickup":
-                Pickup pickup = collision.gameObject.GetComponent<Pickup>();
+                Pickup pickup = collider.gameObject.GetComponent<Pickup>();
                 pickup.DisableCollision();
                 boomerang.grabbedItems.Add(pickup.transform);
                 break;

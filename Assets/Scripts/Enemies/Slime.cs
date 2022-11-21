@@ -13,6 +13,8 @@ public enum AI_State : int
 [RequireComponent(typeof(Enemy))]
 public class Slime : MonoBehaviour
 {
+    private Vector3[] Facings { get; } = new Vector3[] { Vector3.forward, Vector3.right, Vector3.back, Vector3.left };
+
     // Components
     public Enemy enemy { get; private set; }
 
@@ -33,31 +35,35 @@ public class Slime : MonoBehaviour
         Init();
     }
 
+    private void SetFacing(Vector3 facing)
+    {
+        _facing = facing;
+        transform.rotation = Quaternion.LookRotation(_facing, Vector3.up);
+    }
+
     private void Init()
     {
-        _facing = Vector3.forward;
-        _timer = _waitTime.GetRandomValue();
-        _currentState = AI_State.WAIT;
+        // Randomly rotate the slime
+        int i = Random.Range(0, 4);
+        SetFacing(Facings[i]);
+
+        // Set the state to wait
+        SetState(AI_State.WAIT);
     }
 
     void Update()
     {
+        // Handle timer
         _timer -= Time.deltaTime;
         switch (_currentState)
         {
             case AI_State.WAIT:
                 if (_timer <= 0)
-                {
-                    SetState(1);
-                }
+                    SetState(AI_State.MOVE);
                 break;
             case AI_State.MOVE:
                 if (_timer <= 0)
-                {
-                    _currentState = AI_State.WAIT;
-                    _timer = _waitTime.GetRandomValue();
-                    enemy.SetVelocity(Vector3.zero);
-                }
+                    SetState(AI_State.WAIT);
                 break;
             default:
                 break;
@@ -66,6 +72,7 @@ public class Slime : MonoBehaviour
 
     public void SetState(int state)
     {
+        state = Mathf.Clamp(state, 0, (int)AI_State.MOVE);
         SetState((AI_State)state);
     }
 
@@ -76,9 +83,7 @@ public class Slime : MonoBehaviour
         {
             default:
             case AI_State.WAIT:
-                // Should make function
-                enemy.SetVelocity(Vector3.zero);
-                _timer = _waitTime.GetRandomValue();
+                HandleStateChangeToWait();
                 break;
             case AI_State.MOVE:
                 HandleStateChangeToMove();
@@ -86,17 +91,24 @@ public class Slime : MonoBehaviour
         }
     }
 
-    private static readonly Vector3[] facings = new Vector3[] { Vector3.forward, Vector3.right, Vector3.back, Vector3.left };
+    private void HandleStateChangeToWait()
+    {
+        enemy.SetVelocity(Vector3.zero);
+        _timer = _waitTime.GetRandomValue();
+    }
+
     private void HandleStateChangeToMove()
     {
         int i = Random.Range(0, 4);
-        _facing = facings[i];
-        enemy.SetVelocity(_facing * _maxSpeed);
+        Vector3 dir = Facings[i];
         int dist = Mathf.RoundToInt(_moveDistance.GetRandomValue());
-        transform.rotation = Quaternion.LookRotation(_facing, Vector3.up);
 
         // TODO: Check if the new target position is in the bounds
 
         _timer = dist / _maxSpeed;
+        SetFacing(dir);
+        enemy.SetVelocity(_facing * _maxSpeed);
     }
+
+
 }

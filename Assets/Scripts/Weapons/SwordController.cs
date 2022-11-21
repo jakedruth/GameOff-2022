@@ -50,20 +50,19 @@ public class SwordController : MonoBehaviour
         _instance = null;
     }
 
-    public void OnHit(Collision collision)
+    public void OnHit(Collider collider)
     {
-
-        string otherTag = collision.gameObject.tag;
+        string otherTag = collider.gameObject.tag;
 
         switch (otherTag)
         {
             case "Switch":
-                Switch s = collision.gameObject.GetComponent<Switch>();
+                Switch s = collider.gameObject.GetComponent<Switch>();
                 s.ActivateSwitch();
                 break;
             case "Pot":
             case "Enemy":
-                Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+                Enemy enemy = collider.gameObject.GetComponent<Enemy>();
 
                 if (enemy != null)
                 {

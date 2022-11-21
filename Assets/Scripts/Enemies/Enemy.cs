@@ -4,11 +4,15 @@ using UnityEngine;
 
 [RequireComponent(typeof(Actor))]
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(CapsuleCollider))]
 public class Enemy : MonoBehaviour
 {
     // Components
     public Actor actor { get; private set; }
     private Rigidbody _rigidBody;
+    private CapsuleCollider _capsuleCollider;
+
+    [Header("Physics properties")]
     [SerializeField] private Vector3 _drag;
     private Vector3 _moveVel;
     private Vector3 _pushBackVel;
@@ -22,6 +26,7 @@ public class Enemy : MonoBehaviour
     {
         actor = GetComponent<Actor>();
         _rigidBody = GetComponent<Rigidbody>();
+        _capsuleCollider = GetComponent<CapsuleCollider>();
     }
 
     void FixedUpdate()
@@ -37,7 +42,20 @@ public class Enemy : MonoBehaviour
         // Need to raycast based on the velocity to see if the enemy can move in that direction
         // Currently the push back (potentially) sends the enemy through walls
 
+        Ray ray = new(_capsuleCollider.bounds.center, step);
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            float dist = hit.distance - _capsuleCollider.radius;
+            if (dist * dist <= step.sqrMagnitude)
+            {
+                step.Normalize();
+                step *= hit.distance;
+            }
+        }
+
         _rigidBody.MovePosition(transform.position + step);
+
+        //_rigidBody.AddForce((_moveVel + _pushBackVel) * Time.deltaTime, ForceMode.VelocityChange);
     }
 
     public void SetVelocity(Vector3 vel)

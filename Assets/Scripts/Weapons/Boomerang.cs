@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Boomerang : MonoBehaviour
 {
-    private Action<Boomerang, Collision> onHitCallBack;
+    private Action<Boomerang, Collider> onHitCallBack;
 
     public enum Phase
     {
@@ -116,12 +116,12 @@ public class Boomerang : MonoBehaviour
         Physics.IgnoreCollision(c1, c2, phase == Phase.MOVE);
     }
 
-    public void SetOnHitCallBack(Action<Boomerang, Collision> callback)
+    public void SetOnHitCallBack(Action<Boomerang, Collider> callback)
     {
         onHitCallBack = callback;
     }
 
-    public void OnCollisionEnter(Collision other)
+    public void OnTriggerEnter(Collider other)
     {
         onHitCallBack(this, other);
     }
