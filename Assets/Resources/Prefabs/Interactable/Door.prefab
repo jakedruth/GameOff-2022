@@ -142,7 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3455cca9ac91ffd41aa97acbabbd62b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animateDoorTime: 1
+  _isOpen: 0
+  _animateDoorTime: 0.75
   _moveDistance: 2.5
   onDoorOpened:
     m_PersistentCalls:

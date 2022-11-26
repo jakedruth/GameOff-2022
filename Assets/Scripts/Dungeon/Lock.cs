@@ -10,7 +10,6 @@ public class Lock : MonoBehaviour
 
     public void Unlock()
     {
-        Debug.Log("Attempting Unlock");
         if (_requireKey)
         {
             if (PlayerController.instance.KeyCount == 0)
@@ -31,14 +30,12 @@ public class Lock : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Lock on Enter");
         if (other.CompareTag("Player"))
             other.GetComponent<PlayerController>().OnInteractEvent.AddListener(Unlock);
     }
 
     void OnTriggerExit(Collider other)
     {
-        Debug.Log("Lock on Exit");
         if (other.CompareTag("Player"))
             other.GetComponent<PlayerController>().OnInteractEvent.RemoveListener(Unlock);
     }
