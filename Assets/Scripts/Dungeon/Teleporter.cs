@@ -51,6 +51,7 @@ public class Teleporter : MonoBehaviour
 
         _destination.ignoreOnEnter = true;
         player.TemporaryDisableInput(0.25f);
+        player.SetVelocity(Vector3.zero);
         player.WarpToPoint(_destination.transform.position);
     }
 

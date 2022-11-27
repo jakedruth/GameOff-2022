@@ -67,6 +67,11 @@ public class PlayerController : MonoBehaviour
         return _characterController.bounds.center;
     }
 
+    public void SetVelocity(Vector3 velocity)
+    {
+        _hVelocity = velocity;
+    }
+
     public void WarpToPoint(Vector3 point)
     {
         _characterController.enabled = false;
@@ -172,6 +177,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
+
 
     // Update is called once per frame
     void Update()
