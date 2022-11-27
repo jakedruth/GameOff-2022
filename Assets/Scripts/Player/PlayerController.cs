@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _acceleration;
     private Vector3 _hVelocity;
     private Vector3 _vVelocity;
+    private Vector3 _pushVelocity;
 
     [Header("Physics Properties")]
     [SerializeField] private LayerMask _groundLayerMask;
@@ -66,6 +67,11 @@ public class PlayerController : MonoBehaviour
         _characterController.enabled = false;
         transform.position = point;
         _characterController.enabled = true;
+    }
+
+    public void SetPushVelocity(Vector3 velocity)
+    {
+        _pushVelocity = velocity;
     }
 
     #region Input System Events
@@ -187,7 +193,8 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        _characterController.Move((_hVelocity + _vVelocity) * Time.deltaTime);
+        _characterController.Move((_hVelocity + _vVelocity + _pushVelocity) * Time.deltaTime);
+        _pushVelocity = Vector3.zero;
     }
 
     void HandleAnimator()
@@ -206,7 +213,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    Vector3 SnapToAngle(Vector3 input, float snapAngle, Vector3 forward)
+    private Vector3 SnapToAngle(Vector3 input, float snapAngle, Vector3 forward)
     {
         float angle = Vector3.Angle(input, forward);
         if (angle < snapAngle / 2.0f)          // Cannot do cross product 
