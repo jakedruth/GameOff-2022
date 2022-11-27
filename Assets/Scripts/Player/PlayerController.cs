@@ -1,7 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 using JDR.ExtensionMethods;
 
 public class PlayerController : MonoBehaviour
@@ -10,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public Actor actor { get; private set; }
 
     // Components
-    private UnityEngine.InputSystem.PlayerInput _playerInput;
+    private PlayerInput _playerInput;
     private CharacterController _characterController;
     private SwordController _swordController;
     private BoomerangController _boomerangController;
@@ -31,6 +32,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask _groundLayerMask;
     private bool _isGrounded;
 
+    // Events
+    public PlayerInput.ControlsChangedEvent ControlsChangedEvent { get { return _playerInput.controlsChangedEvent; } }
+    public PlayerInput CurrentPlayerInput { get { return _playerInput; } }
+
     // Inventory (not a good name and should probably move anyways)
     public int KeyCount { get; set; }
 
@@ -40,7 +45,7 @@ public class PlayerController : MonoBehaviour
         instance = this;
         actor = GetComponent<Actor>();
 
-        _playerInput = GetComponent<UnityEngine.InputSystem.PlayerInput>();
+        _playerInput = GetComponent<PlayerInput>();
         _characterController = GetComponent<CharacterController>();
         _swordController = GetComponent<SwordController>();
         _boomerangController = GetComponent<BoomerangController>();
@@ -102,7 +107,7 @@ public class PlayerController : MonoBehaviour
         _playerInput.SwitchCurrentActionMap(map);
     }
 
-    public void OnMove(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    public void OnMove(InputAction.CallbackContext context)
     {
         Vector3 input = context.ReadValue<Vector2>().Vector2ToVector3_XZ();
         input = SnapToAngle(input, 45f, Vector3.forward);
@@ -114,7 +119,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public UnityEngine.Events.UnityEvent OnInteractEvent { get; set; } = new UnityEngine.Events.UnityEvent();
-    public void OnInteract(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.started)
         {
@@ -122,36 +127,36 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void OnSword(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    public void OnSword(InputAction.CallbackContext context)
     {
         switch (context.phase)
         {
-            case UnityEngine.InputSystem.InputActionPhase.Disabled:
+            case InputActionPhase.Disabled:
                 _swordController.EndAttack();
                 break;
-            case UnityEngine.InputSystem.InputActionPhase.Waiting:
+            case InputActionPhase.Waiting:
                 break;
-            case UnityEngine.InputSystem.InputActionPhase.Started:
+            case InputActionPhase.Started:
                 _swordController.StartAttack();
                 break;
-            case UnityEngine.InputSystem.InputActionPhase.Performed:
+            case InputActionPhase.Performed:
                 break;
-            case UnityEngine.InputSystem.InputActionPhase.Canceled:
+            case InputActionPhase.Canceled:
                 _swordController.EndAttack();
                 break;
         }
     }
 
-    public void OnBoomerang(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    public void OnBoomerang(InputAction.CallbackContext context)
     {
         switch (context.phase)
         {
-            case UnityEngine.InputSystem.InputActionPhase.Disabled:
+            case InputActionPhase.Disabled:
                 _boomerangController.EndAttack();
                 break;
-            case UnityEngine.InputSystem.InputActionPhase.Waiting:
+            case InputActionPhase.Waiting:
                 break;
-            case UnityEngine.InputSystem.InputActionPhase.Started:
+            case InputActionPhase.Started:
                 if (_boomerangController.CanThrow)
                 {
                     _boomerangController.StartAttack();
@@ -159,9 +164,9 @@ public class PlayerController : MonoBehaviour
                     _Animator.SetTrigger("Attack2");
                 }
                 break;
-            case UnityEngine.InputSystem.InputActionPhase.Performed:
+            case InputActionPhase.Performed:
                 break;
-            case UnityEngine.InputSystem.InputActionPhase.Canceled:
+            case InputActionPhase.Canceled:
                 _boomerangController.EndAttack();
                 break;
         }
@@ -205,7 +210,6 @@ public class PlayerController : MonoBehaviour
 
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
-
         // Handle taking a hit?
         if (hit.gameObject.CompareTag("Enemy"))
         {
@@ -228,4 +232,5 @@ public class PlayerController : MonoBehaviour
         Quaternion q = Quaternion.AngleAxis(deltaAngle, axis);
         return q * input;
     }
+
 }
