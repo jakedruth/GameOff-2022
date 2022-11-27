@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4938155143509218053
+--- !u!1 &1168291625375426350
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,47 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4938155143509218058}
-  - component: {fileID: 4938155143509218057}
-  - component: {fileID: 4938155143509218056}
-  - component: {fileID: 4938155143509218059}
+  - component: {fileID: 7962562557830427669}
+  - component: {fileID: 5068690506602302815}
+  - component: {fileID: 8606978156987935179}
   m_Layer: 0
-  m_Name: Model
+  m_Name: model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4938155143509218058
+--- !u!4 &7962562557830427669
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4938155143509218053}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 1168291625375426350}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 4938155144438270712}
+  m_Father: {fileID: 7653497976968135027}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &4938155143509218057
+--- !u!33 &5068690506602302815
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4938155143509218053}
-  m_Mesh: {fileID: -2432090755550338912, guid: aeecfb313e397954790949074fad47a2, type: 3}
---- !u!23 &4938155143509218056
+  m_GameObject: {fileID: 1168291625375426350}
+  m_Mesh: {fileID: -2432090755550338912, guid: 2bac5b9966495cf4a9b397285ea047d4, type: 3}
+--- !u!23 &8606978156987935179
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4938155143509218053}
+  m_GameObject: {fileID: 1168291625375426350}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -62,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8469494145858465668, guid: aeecfb313e397954790949074fad47a2, type: 3}
+  - {fileID: -8469494145858465668, guid: 2bac5b9966495cf4a9b397285ea047d4, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -84,20 +83,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4938155143509218059
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4938155143509218053}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4, y: 2, z: 2}
-  m_Center: {x: 0, y: 1, z: 0}
---- !u!1 &4938155144438270714
+--- !u!1 &7653497976968135024
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,46 +91,75 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4938155144438270712}
-  - component: {fileID: 4938155144438270715}
-  m_Layer: 0
-  m_Name: Door
+  - component: {fileID: 7653497976968135027}
+  - component: {fileID: 7653497976968135026}
+  - component: {fileID: 7653497976968135025}
+  m_Layer: 9
+  m_Name: FloorButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4938155144438270712
+--- !u!4 &7653497976968135027
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4938155144438270714}
+  m_GameObject: {fileID: 7653497976968135024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 7}
+  m_LocalPosition: {x: -47, y: 0, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 4938155143509218058}
+  - {fileID: 7962562557830427669}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4938155144438270715
+--- !u!114 &7653497976968135026
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4938155144438270714}
+  m_GameObject: {fileID: 7653497976968135024}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3455cca9ac91ffd41aa97acbabbd62b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 98b0fc6b69c3baa43b3dae6419f8a029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isOpen: 0
-  _animateDoorTime: 0.75
-  _moveDistance: 2.5
-  onDoorOpened:
+  onMesh: {fileID: -2432090755550338912, guid: cb0a1bcd425997642adaf96c846c9eee, type: 3}
+  offMesh: {fileID: -2432090755550338912, guid: 2bac5b9966495cf4a9b397285ea047d4,
+    type: 3}
+  onButtonDown:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: SingleItemRespawner, Assembly-CSharp
+        m_MethodName: TrySpawnItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onButtonStateChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!65 &7653497976968135025
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7653497976968135024}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
+  m_Center: {x: 0, y: 0.75, z: 0}

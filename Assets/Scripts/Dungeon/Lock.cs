@@ -34,7 +34,6 @@ public class Lock : MonoBehaviour
 
     private void UpdateText(PlayerInput input)
     {
-        Debug.Log(input.currentControlScheme);
         DeviceDisplaySettings_SO displaySetting = DisplayManager.instance.FindDisplaySetting(input.currentControlScheme);
         _promptText.text = $"Press {displaySetting.interactTag}";
     }

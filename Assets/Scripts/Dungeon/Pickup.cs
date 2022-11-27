@@ -6,8 +6,9 @@ using UnityEngine;
 abstract public class Pickup : MonoBehaviour
 {
     protected Rigidbody _rb;
+    public UnityEngine.Events.UnityEvent OnPickedUp;
 
-    public abstract void OnPlayerEnter(PlayerController pc);
+    public abstract void handleOnPlayerEnter(PlayerController pc);
 
     void Reset()
     {
@@ -19,6 +20,10 @@ abstract public class Pickup : MonoBehaviour
     void Awake()
     {
         _rb = GetComponent<Rigidbody>();
+    }
+
+    public void Start()
+    {
         _rb?.AddForce(Vector3.up * 10, ForceMode.Impulse);
     }
 
@@ -26,7 +31,8 @@ abstract public class Pickup : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            OnPlayerEnter(other.GetComponent<PlayerController>());
+            OnPickedUp.Invoke();
+            handleOnPlayerEnter(other.GetComponent<PlayerController>());
             Destroy(gameObject);
         }
     }
@@ -34,5 +40,10 @@ abstract public class Pickup : MonoBehaviour
     public void DisableCollision()
     {
         _rb.isKinematic = true;
+    }
+
+    void OnDestroy()
+    {
+        OnPickedUp.RemoveAllListeners();
     }
 }

@@ -4,16 +4,28 @@ using UnityEngine;
 
 public class Switch : MonoBehaviour
 {
-    public bool isTriggered { get; private set; }
+    public bool IsTriggered { get; private set; }
+    [SerializeField] private SwapMaterial _swapMaterial;
+    [SerializeField] private GameObject _light;
+    [SerializeField] private FloatingGameObject _orb;
+
+    public void HandleSwitchOn()
+    {
+        _swapMaterial?.Swap();
+        _light?.SetActive(true);
+        _orb?.SetIsOn(true);
+    }
+
     public UnityEngine.Events.UnityEvent onActivate;
 
     [ContextMenu("activate Switch")]
     public void ActivateSwitch()
     {
-        if (!isTriggered)
+        if (!IsTriggered)
         {
-            isTriggered = true;
+            IsTriggered = true;
             onActivate.Invoke();
+            HandleSwitchOn();
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Key : Pickup
 {
-    public override void OnPlayerEnter(PlayerController pc)
+    public override void handleOnPlayerEnter(PlayerController pc)
     {
         pc.KeyCount++;
         Debug.Log($"Key count: {pc.KeyCount}");
