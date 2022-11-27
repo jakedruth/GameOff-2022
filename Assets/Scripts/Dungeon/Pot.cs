@@ -5,17 +5,25 @@ using UnityEngine;
 
 public class Pot : MonoBehaviour
 {
+    private ParticleSystem _particleSystem;
+
     public Actor actor { get; private set; }
     [SerializeField] private SpawnPool_SO _spawnPool;
 
+
     void Awake()
     {
+        _particleSystem = GetComponentInChildren<ParticleSystem>();
+        _particleSystem.gameObject.SetActive(false);
         actor = GetComponent<Actor>();
-        actor.onDeath.AddListener(SpawnItem);
+        actor.onDeath.AddListener(HandleOnDeath);
     }
 
-    private void SpawnItem()
+    private void HandleOnDeath()
     {
+        _particleSystem.transform.SetParent(null);
+        _particleSystem.gameObject.SetActive(true);
+
         if (_spawnPool == null)
             return;
 
