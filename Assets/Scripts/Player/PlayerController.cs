@@ -61,6 +61,13 @@ public class PlayerController : MonoBehaviour
         return _characterController.bounds.center;
     }
 
+    public void WarpToPoint(Vector3 point)
+    {
+        _characterController.enabled = false;
+        transform.position = point;
+        _characterController.enabled = true;
+    }
+
     #region Input System Events
     public void TemporaryDisableInput(float timer)
     {
@@ -83,7 +90,6 @@ public class PlayerController : MonoBehaviour
     {
         _playerInput.ActivateInput();
     }
-
 
     public void SetPlayerInputMap(string map)
     {

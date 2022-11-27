@@ -8,10 +8,11 @@ using UnityEditor;
 
 public class DungeonBuilderEditor : EditorWindow
 {
-    static private readonly string pathSwitch = "Prefabs/Interactable/Switch";
-    static private readonly string pathDoor = "Prefabs/Interactable/Door";
-    static private readonly string pathKey = "Prefabs/Interactable/Key";
-    static private readonly string pathLockedDoor = "Prefabs/Interactable/LockedDoor";
+    const string pathSwitch = "Prefabs/Interactable/Switch";
+    const string pathDoor = "Prefabs/Interactable/Door";
+    const string pathKey = "Prefabs/Interactable/Key";
+    const string pathLockedDoor = "Prefabs/Interactable/LockedDoor";
+    const string pathTeleporter = "Prefabs/Interactable/Teleporter";
 
     [MenuItem("GameObject/Dungeon Helper/Switch and Door", false, -1)]
     public static void CreateSwitchAndDoor()
@@ -39,6 +40,33 @@ public class DungeonBuilderEditor : EditorWindow
 
         // link switch to door
         UnityEditor.Events.UnityEventTools.AddBoolPersistentListener(s.onActivate, d.SetDoorState, true);
+    }
+
+    [MenuItem("GameObject/Dungeon Helper/Two Teleporters", false, -1)]
+    public static void CreateTeleporters()
+    {
+        Teleporter teleporter = Resources.Load<Teleporter>(pathTeleporter);
+
+        // Instantiate game objects
+        Vector3 point = GetSpawnPoint();
+        Teleporter t1 = PrefabUtility.InstantiatePrefab(teleporter) as Teleporter;
+        t1.transform.position = point + Vector3.left * 2;
+        t1.transform.parent = Selection.activeTransform;
+        t1.transform.SetAsLastSibling();
+
+        Teleporter t2 = PrefabUtility.InstantiatePrefab(teleporter) as Teleporter;
+        t2.transform.position = point + Vector3.right * 2;
+        t2.transform.parent = Selection.activeTransform;
+        t2.transform.SetAsLastSibling();
+
+        string key = GenerateUniqueKey();
+
+        t1.name = $"Teleporter {key}-1";
+        t2.name = $"Teleporter {key}-2";
+
+        // Link the teleporters
+        t1.SetDestinationTeleporter(t2);
+        t2.SetDestinationTeleporter(t1);
     }
 
     [MenuItem("GameObject/Dungeon Helper/Key and Locked Door", false, -1)]

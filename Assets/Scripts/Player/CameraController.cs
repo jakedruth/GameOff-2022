@@ -5,12 +5,15 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     private Transform _camHolder;
+    private Quaternion _startRotation;
     public Transform target;
     public float maxSpeed;
+    public float maxTilt;
 
     void Awake()
     {
         _camHolder = transform.GetChild(0);
+        _startRotation = _camHolder.rotation;
     }
 
     void FixedUpdate()
@@ -23,6 +26,7 @@ public class CameraController : MonoBehaviour
         transform.position = pos;
 
         // Rotate the camera
-        _camHolder.rotation = Quaternion.LookRotation(target.position - _camHolder.position, Vector3.up);
+        Quaternion targetLook = Quaternion.LookRotation(target.position - _camHolder.position, Vector3.up);
+        _camHolder.rotation = Quaternion.RotateTowards(_startRotation, targetLook, maxTilt);
     }
 }
