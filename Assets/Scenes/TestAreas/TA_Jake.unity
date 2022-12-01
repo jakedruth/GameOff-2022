@@ -681,7 +681,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 962200f5cdc61b14b951f8c8caf9be6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnOnce: 0
+  _spawnOnce: 1
   _enemySpawnPoints:
   - enemy: {fileID: 4219544339324528881, guid: 573694fdca3125042ba03562cd59297f, type: 3}
     point: {x: 8, y: 0, z: 3}
