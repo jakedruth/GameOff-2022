@@ -17,6 +17,7 @@ public class Slime : MonoBehaviour
 
     // Components
     public Enemy enemy { get; private set; }
+    private Animator _animator;
 
     private AI_State _currentState;
     [Header("Movement Values")]
@@ -31,6 +32,7 @@ public class Slime : MonoBehaviour
     {
         // Get components
         enemy = GetComponent<Enemy>();
+        _animator = GetComponentInChildren<Animator>();
 
         Init();
     }
@@ -94,6 +96,7 @@ public class Slime : MonoBehaviour
     private void HandleStateChangeToWait()
     {
         enemy.SetVelocity(Vector3.zero);
+        _animator.SetFloat("Walk_Speed", 0f);
         _timer = _waitTime.GetRandomValue();
     }
 
@@ -108,6 +111,8 @@ public class Slime : MonoBehaviour
         _timer = dist / _maxSpeed;
         SetFacing(dir);
         enemy.SetVelocity(_facing * _maxSpeed);
+
+        _animator.SetFloat("Walk_Speed", _maxSpeed);
     }
 
 
