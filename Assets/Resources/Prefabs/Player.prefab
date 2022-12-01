@@ -293,6 +293,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxSpeed: 6
   _acceleration: 50
+  _drag: {x: 20, y: 20, z: 20}
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 192

@@ -23,7 +23,7 @@ public class FloorPusher : MonoBehaviour
             dir.Normalize();
 
             // Set the player's push speed
-            PlayerController.instance.SetPushVelocity(dir * maxPushSpeed);
+            PlayerController.instance.SetFloorPusherVelocity(dir * maxPushSpeed);
 
             pushersAffectingPlayer.Clear();
         }

@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
     public Transform target;
     public float maxSpeed;
     public float maxTilt;
+    public float maxDistance;
 
     void Awake()
     {
@@ -22,6 +23,9 @@ public class CameraController : MonoBehaviour
             return;
 
         // Move the Camera
+        if ((target.position - transform.position).sqrMagnitude >= maxDistance)
+            transform.position = target.position;
+
         Vector3 pos = Vector3.MoveTowards(transform.position, target.position, maxSpeed * Time.deltaTime);
         transform.position = pos;
 

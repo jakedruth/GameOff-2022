@@ -24,9 +24,11 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Values")]
     [SerializeField] private float _maxSpeed;
     [SerializeField] private float _acceleration;
+    [SerializeField] private Vector3 _drag;
     private Vector3 _hVelocity;
     private Vector3 _vVelocity;
-    private Vector3 _pushVelocity;
+    private Vector3 _pushBackVelocity;
+    private Vector3 _floorPusherVelocity;
 
     [Header("Physics Properties")]
     [SerializeField] private LayerMask _groundLayerMask;
@@ -79,9 +81,18 @@ public class PlayerController : MonoBehaviour
         _characterController.enabled = true;
     }
 
-    public void SetPushVelocity(Vector3 velocity)
+    public void ApplyPushBack(Vector3 direction, float distance)
     {
-        _pushVelocity = velocity;
+        // Fancy math to apply the right amount of force
+        Vector3 pushMagnitude = distance * new Vector3(
+            Mathf.Log(1f / (Time.deltaTime * _drag.x + 1)) / -Time.deltaTime, 0,
+            Mathf.Log(1f / (Time.deltaTime * _drag.z + 1)) / -Time.deltaTime);
+        _pushBackVelocity += Vector3.Scale(direction, pushMagnitude);
+    }
+
+    public void SetFloorPusherVelocity(Vector3 velocity)
+    {
+        _floorPusherVelocity = velocity;
     }
 
     #region Input System Events
@@ -204,8 +215,13 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        _characterController.Move((_hVelocity + _vVelocity + _pushVelocity) * Time.deltaTime);
-        _pushVelocity = Vector3.zero;
+        // Apply Drag
+        _pushBackVelocity.x /= 1 + _drag.x * Time.deltaTime;
+        _pushBackVelocity.y /= 1 + _drag.y * Time.deltaTime;
+        _pushBackVelocity.z /= 1 + _drag.z * Time.deltaTime;
+
+        _characterController.Move((_hVelocity + _vVelocity + _pushBackVelocity + _floorPusherVelocity) * Time.deltaTime);
+        _floorPusherVelocity = Vector3.zero;
     }
 
     void HandleAnimator()

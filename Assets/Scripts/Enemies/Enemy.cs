@@ -10,6 +10,12 @@ public class Enemy : Actor
     private Rigidbody _rigidBody;
     private CapsuleCollider _capsuleCollider;
 
+    [Header("Attack values")]
+    [SerializeField] private float _damage;
+    [SerializeField] private float _pushBackDist;
+    [SerializeField] private float _disablePlayerInputTime;
+
+
     [Header("Physics properties")]
     [SerializeField] private Vector3 _drag;
     private Vector3 _moveVel;
@@ -71,5 +77,21 @@ public class Enemy : Actor
         _pushBackVel += Vector3.Scale(direction, pushMagnitude);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (!other.CompareTag("Player"))
+            return;
 
+        PlayerController playerController = other.GetComponent<PlayerController>();
+
+        Vector3 dir = (playerController.transform.position - transform.position);
+        dir.y = 0;
+        dir.Normalize();
+
+        if (playerController.actor.ApplyDamage(_damage))
+        {
+            playerController.ApplyPushBack(dir, _pushBackDist);
+            playerController.TemporaryDisableInput(_disablePlayerInputTime);
+        }
+    }
 }
