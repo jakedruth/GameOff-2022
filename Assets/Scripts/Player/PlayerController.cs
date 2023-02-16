@@ -58,10 +58,16 @@ public class PlayerController : MonoBehaviour
 
     private void Init()
     {
+        actor.OnTakeDamage.AddListener(UpdateHUD);
         _swordController.SetOwner(actor);
         _boomerangController.SetOwner(actor);
 
         _facing = Vector3.forward;
+    }
+
+    void Start()
+    {
+        HUD.instance.HealthBar.SetHeartCount(Mathf.RoundToInt(actor.maxHP));
     }
 
     public Vector3 GetCenter()
@@ -191,7 +197,7 @@ public class PlayerController : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         // Update rotation
         transform.rotation = Quaternion.LookRotation(_facing, Vector3.up);
@@ -213,7 +219,7 @@ public class PlayerController : MonoBehaviour
         HandleAnimator();
     }
 
-    void FixedUpdate()
+    protected void FixedUpdate()
     {
         // Apply Drag
         _pushBackVelocity.x /= 1 + _drag.x * Time.deltaTime;
@@ -230,13 +236,18 @@ public class PlayerController : MonoBehaviour
         _Animator.SetBool("Attack1", _swordController.inputKey);
     }
 
-    void OnControllerColliderHit(ControllerColliderHit hit)
+    protected void OnControllerColliderHit(ControllerColliderHit hit)
     {
         // Handle taking a hit?
         if (hit.gameObject.CompareTag("Enemy"))
         {
 
         }
+    }
+
+    protected void UpdateHUD()
+    {
+        HUD.instance.HealthBar.SetHeartCount(Mathf.RoundToInt(actor.CurrentHP));
     }
 
     private Vector3 SnapToAngle(Vector3 input, float snapAngle, Vector3 forward)
