@@ -7,6 +7,6 @@ public class Key : Pickup
     public override void handleOnPlayerEnter(PlayerController pc)
     {
         pc.KeyCount++;
-        Debug.Log($"Key count: {pc.KeyCount}");
+        //Debug.Log($"Key count: {pc.KeyCount}");
     }
 }

@@ -7,11 +7,14 @@ public class HUD : MonoBehaviour
     public static HUD instance;
 
     public HealthBar HealthBar { get; private set; }
+    public KeyCounter KeyCounter { get; private set; }
 
-    void Awake()
+    protected void Awake()
     {
         if (instance == null)
             instance = this;
+
         HealthBar = GetComponentInChildren<HealthBar>();
+        KeyCounter = GetComponentInChildren<KeyCounter>();
     }
 }

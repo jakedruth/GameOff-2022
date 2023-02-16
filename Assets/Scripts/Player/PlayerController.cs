@@ -39,7 +39,19 @@ public class PlayerController : MonoBehaviour
     public PlayerInput CurrentPlayerInput { get { return _playerInput; } }
 
     // Inventory (not a good name and should probably move anyways)
-    public int KeyCount { get; set; }
+    private int _keyCount;
+    public int KeyCount
+    {
+        get
+        {
+            return _keyCount;
+        }
+        set
+        {
+            _keyCount = value;
+            HUD.instance.KeyCounter.SetKeyCount(_keyCount);
+        }
+    }
 
     // Start is called before the first frame update
     void Awake()
