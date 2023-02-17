@@ -25,9 +25,8 @@ public class SingleItemRespawner : MonoBehaviour
         {
             // move the existing instance and don't add a listener
             _instance.transform.position = transform.position;
+            _instance.Start();
         }
-
-        _instance.Start();
     }
 
     public void ItemPickedUp()

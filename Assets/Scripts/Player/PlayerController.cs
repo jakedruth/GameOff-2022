@@ -253,13 +253,13 @@ public class PlayerController : MonoBehaviour
         // Handle taking a hit?
         if (hit.gameObject.CompareTag("Enemy"))
         {
-
+            Debug.Log("Hit by Enemy");
         }
     }
 
     protected void UpdateHUD()
     {
-        HUD.instance.HealthBar.SetHeartCount(Mathf.RoundToInt(actor.CurrentHP));
+        HUD.instance.HealthBar.SetHealth(Mathf.RoundToInt(actor.CurrentHP));
     }
 
     private Vector3 SnapToAngle(Vector3 input, float snapAngle, Vector3 forward)

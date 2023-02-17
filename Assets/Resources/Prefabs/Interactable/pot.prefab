@@ -5066,4 +5066,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 091f811d35ea7f74abce741250234066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnPool: {fileID: 0}
+  _spawnPool: {fileID: 11400000, guid: ffcd084f0c28f6344959f71a57a4e06d, type: 2}

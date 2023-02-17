@@ -8,7 +8,7 @@ abstract public class Pickup : MonoBehaviour
     protected Rigidbody _rb;
     public UnityEngine.Events.UnityEvent OnPickedUp;
 
-    public abstract void handleOnPlayerEnter(PlayerController pc);
+    public abstract void HandleOnPlayerEnter(PlayerController pc);
 
     void Reset()
     {
@@ -32,7 +32,7 @@ abstract public class Pickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             OnPickedUp.Invoke();
-            handleOnPlayerEnter(other.GetComponent<PlayerController>());
+            HandleOnPlayerEnter(other.GetComponent<PlayerController>());
             Destroy(gameObject);
         }
     }

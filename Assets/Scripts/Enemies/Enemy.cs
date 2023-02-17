@@ -77,14 +77,14 @@ public class Enemy : Actor
         _pushBackVel += Vector3.Scale(direction, pushMagnitude);
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player"))
             return;
 
         PlayerController playerController = other.GetComponent<PlayerController>();
 
-        Vector3 dir = (playerController.transform.position - transform.position);
+        Vector3 dir = playerController.transform.position - transform.position;
         dir.y = 0;
         dir.Normalize();
 
