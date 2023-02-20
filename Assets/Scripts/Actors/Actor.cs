@@ -20,9 +20,9 @@ public class Actor : MonoBehaviour
     public float delayDestroyOnDeath;
 
     // Actor Events
-    public UnityEngine.Events.UnityEvent OnTakeDamage = new UnityEngine.Events.UnityEvent();
-    public UnityEngine.Events.UnityEvent onDeath = new UnityEngine.Events.UnityEvent();
-    public UnityEngine.Events.UnityEvent onDestroyed = new UnityEngine.Events.UnityEvent();
+    public UnityEngine.Events.UnityEvent OnTakeDamage = new();
+    public UnityEngine.Events.UnityEvent onDeath = new();
+    public UnityEngine.Events.UnityEvent onDestroyed = new();
 
     public virtual void Awake()
     {
@@ -89,7 +89,7 @@ public class Actor : MonoBehaviour
         Destroy(gameObject, delayDestroyOnDeath);
     }
 
-    private void OnDestroy()
+    protected void OnDestroy()
     {
         // Invoke on destroyed
         onDestroyed?.Invoke();
