@@ -38,20 +38,7 @@ public class PlayerController : MonoBehaviour
     public PlayerInput.ControlsChangedEvent ControlsChangedEvent { get { return _playerInput.controlsChangedEvent; } }
     public PlayerInput CurrentPlayerInput { get { return _playerInput; } }
 
-    // Inventory (not a good name and should probably move anyways)
-    private int _keyCount;
-    public int KeyCount
-    {
-        get
-        {
-            return _keyCount;
-        }
-        set
-        {
-            _keyCount = value;
-            HUD.instance.KeyCounter.SetKeyCount(_keyCount);
-        }
-    }
+    public Inventory inventory;
 
     // Start is called before the first frame update
     void Awake()
@@ -70,16 +57,16 @@ public class PlayerController : MonoBehaviour
 
     private void Init()
     {
-        actor.OnTakeDamage.AddListener(UpdateHUD);
         _swordController.SetOwner(actor);
         _boomerangController.SetOwner(actor);
 
         _facing = Vector3.forward;
+        inventory = new Inventory();
     }
 
     void Start()
     {
-        HUD.instance.HealthBar.SetHeartCount(Mathf.RoundToInt(actor.maxHP));
+        HUD.instance.HealthBar.SetMaxHeatCount(Mathf.RoundToInt(actor.maxHP));
     }
 
     public Vector3 GetCenter()
@@ -257,11 +244,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    protected void UpdateHUD()
-    {
-        HUD.instance.HealthBar.SetHealth(Mathf.RoundToInt(actor.CurrentHP));
-    }
-
     private Vector3 SnapToAngle(Vector3 input, float snapAngle, Vector3 forward)
     {
         float angle = Vector3.Angle(input, forward);
@@ -277,5 +259,36 @@ public class PlayerController : MonoBehaviour
         Quaternion q = Quaternion.AngleAxis(deltaAngle, axis);
         return q * input;
     }
+}
 
+[System.Serializable]
+public class Inventory
+{
+    [System.Serializable]
+    public class InventorySlot<T>
+    {
+        private T slot;
+        public UnityEngine.Events.UnityEvent<T> OnSlotUpdated;
+
+        public T Get()
+        {
+            return slot;
+        }
+
+        public void Set(T value)
+        {
+            if (slot.Equals(value))
+                return;
+
+            slot = value;
+            OnSlotUpdated.Invoke(slot);
+        }
+
+        public override string ToString()
+        {
+            return slot.ToString();
+        }
+    }
+
+    public InventorySlot<int> key;
 }
