@@ -42,11 +42,12 @@ public class Lock : MonoBehaviour
     {
         if (_requireKey)
         {
-            if (PlayerController.instance.KeyCount == 0)
+            int keyCount = PlayerController.instance.inventory.key.Get();
+            if (keyCount == 0)
                 return;
 
-            PlayerController.instance.KeyCount--;
-            Debug.Log($"Using key. New key count: {PlayerController.instance.KeyCount}");
+            PlayerController.instance.inventory.key.Set(keyCount - 1);
+            Debug.Log($"Using key. New key count: {PlayerController.instance.inventory.key.Get()}");
         }
 
         onUnlock.Invoke();

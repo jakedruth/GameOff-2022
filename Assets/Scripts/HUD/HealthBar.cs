@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// TODO: change to include half hearts. Maybe quarter heart too?
+// TODO: rename class to include HUD
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Sprite heartFull;
     [SerializeField] private Sprite heartEmpty;
 
-    public void SetHeartCount(int amount)
+    public void SetMaxHeatCount(int amount)
     {
         int count = transform.childCount;
         for (int i = count - 1; i >= 0; i--)

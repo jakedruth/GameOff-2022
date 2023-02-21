@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: rename class to include HUD
 public class KeyCounter : MonoBehaviour
 {
     TMPro.TMP_Text _text;
@@ -9,7 +10,6 @@ public class KeyCounter : MonoBehaviour
     protected void Awake()
     {
         _text = GetComponentInChildren<TMPro.TMP_Text>();
-        SetKeyCount(0);
     }
 
     public void SetKeyCount(int amount)
