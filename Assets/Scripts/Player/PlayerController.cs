@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        Vector3 input = context.ReadValue<Vector2>().Vector2ToVector3_XZ();
+        Vector3 input = context.ReadValue<Vector2>().ToVector3_XZ();
         input = SnapToAngle(input, 45f, Vector3.forward);
 
         if (context.performed)
