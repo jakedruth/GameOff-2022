@@ -74,11 +74,28 @@ public class OverworldNavigator : MonoBehaviour
     {
         Debug.Log("Beginning to move");
         _isMoving = true;
-        Vector3 targetPos = invertPath ? route.nodeA.transform.position : route.nodeB.transform.position;
-        while (transform.position != targetPos)
+
+        if (invertPath)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, _moveSpeed * Time.deltaTime);
-            yield return null;
+            for (int i = route.path.Length - 1; i >= 0; i--)
+            {
+                while (transform.position != route.path[i])
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, route.path[i], _moveSpeed * Time.deltaTime);
+                    yield return null;
+                }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < route.path.Length; i++)
+            {
+                while (transform.position != route.path[i])
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, route.path[i], _moveSpeed * Time.deltaTime);
+                    yield return null;
+                }
+            }
         }
 
         _isMoving = false;
