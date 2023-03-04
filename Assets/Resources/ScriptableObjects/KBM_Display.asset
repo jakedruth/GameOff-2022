@@ -15,6 +15,6 @@ MonoBehaviour:
   controlSchemeName: KBM
   deviceDisplayName: Keyboard & Mouse
   moveTag: <sprite=86><sprite=120><sprite=121><sprite=122>
-  interactTag: <sprite=87>
+  interactTag: <cspace=-0.2em><sprite=235><sprite=236><sprite=237><cspace=+0.2em>
   swordTag: <sprite=126>
   boomerangTag: <sprite=127>

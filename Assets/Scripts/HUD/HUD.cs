@@ -24,7 +24,7 @@ public class HUD : MonoBehaviour
         KeyCounter = GetComponentInChildren<KeyCounter>();
     }
 
-    protected void Start()
+    void Start()
     {
         // Health Bar
         HealthBar.SetMaxHeatCount(Mathf.RoundToInt(PlayerController.instance.actor.maxHP));

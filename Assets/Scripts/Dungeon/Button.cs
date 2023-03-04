@@ -33,7 +33,7 @@ public class Button : MonoBehaviour
             onButtonDown.Invoke();
     }
 
-    void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
             SetState(true);

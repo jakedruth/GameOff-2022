@@ -8,6 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/TestAreas/TA_Jake.unity
     guid: 25aabc9df1fa39348a22484db77de865
+  - enabled: 1
+    path: Assets/Scenes/WorldMap.unity
+    guid: 7c2c482258b29ec4ea644e63469b71de
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 648a2936138d82346ae39d698c345567,
       type: 2}
