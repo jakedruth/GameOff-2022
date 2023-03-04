@@ -17,7 +17,7 @@ public class OverworldNavigator : MonoBehaviour
     protected void Awake()
     {
         _overworldManager = FindObjectOfType<OverworldManager>();
-        _currentNode = _overworldManager.routes[0].nodeA;
+        _currentNode = _overworldManager.startNode;
         transform.position = _currentNode.transform.position;
     }
 
@@ -39,7 +39,8 @@ public class OverworldNavigator : MonoBehaviour
 
     public void Submit(InputAction.CallbackContext context)
     {
-
+        if (context.phase == InputActionPhase.Performed && !_isMoving)
+            _overworldManager.LoadLevel(_currentNode);
     }
 
     public void Cancel(InputAction.CallbackContext context)
@@ -49,22 +50,27 @@ public class OverworldNavigator : MonoBehaviour
 
     private void HandleMoveInput(CompassDirection moveDir)
     {
-        List<Route> routes = _overworldManager.GetRoutesWithNode(_currentNode);
-        for (int i = 0; i < routes.Count; i++)
+        Trail trail = _currentNode.GetTrail(moveDir);
+        if (trail != null)
         {
-            Route route = routes[i];
-            if (route.nodeA == _currentNode && route.directionA == moveDir)
-            {
-                StartCoroutine(HandleMovement(route, false));
-                return;
-            }
 
-            if (route.nodeB == _currentNode && route.directionB == moveDir)
-            {
-                StartCoroutine(HandleMovement(route, true));
-                return;
-            }
         }
+        // List<Route> routes = _overworldManager.GetRoutesWithNode(_currentNode);
+        // for (int i = 0; i < routes.Count; i++)
+        // {
+        //     Route route = routes[i];
+        //     if (route.nodeA == _currentNode && route.directionA == moveDir)
+        //     {
+        //         StartCoroutine(HandleMovement(route, false));
+        //         return;
+        //     }
+
+        //     if (route.nodeB == _currentNode && route.directionB == moveDir)
+        //     {
+        //         StartCoroutine(HandleMovement(route, true));
+        //         return;
+        //     }
+        // }
 
     }
 
