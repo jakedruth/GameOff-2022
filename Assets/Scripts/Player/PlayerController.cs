@@ -268,7 +268,8 @@ public class Inventory
     public class InventorySlot<T>
     {
         private T slot;
-        public UnityEngine.Events.UnityEvent<T> OnSlotUpdated;
+        public UnityEngine.Events.UnityEvent<T> OnSlotUpdated = new();
+        public InventorySlot() { }
 
         public T Get()
         {
@@ -290,5 +291,5 @@ public class Inventory
         }
     }
 
-    public InventorySlot<int> key;
+    public InventorySlot<int> key = new();
 }
