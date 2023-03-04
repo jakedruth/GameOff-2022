@@ -33,7 +33,6 @@ public class OverworldNavigator : MonoBehaviour
                 return;
 
             CompassDirection inputDir = input.ToClosestCompassDirection();
-            Debug.Log($"Input: {input}\tDir: {inputDir}");
             HandleMoveInput(inputDir);
         }
     }
@@ -51,7 +50,6 @@ public class OverworldNavigator : MonoBehaviour
     private void HandleMoveInput(CompassDirection moveDir)
     {
         List<Route> routes = _overworldManager.GetRoutesWithNode(_currentNode);
-        Debug.Log(routes.Count);
         for (int i = 0; i < routes.Count; i++)
         {
             Route route = routes[i];
@@ -72,7 +70,6 @@ public class OverworldNavigator : MonoBehaviour
 
     private IEnumerator HandleMovement(Route route, bool invertPath)
     {
-        Debug.Log("Beginning to move");
         _isMoving = true;
 
         if (invertPath)
