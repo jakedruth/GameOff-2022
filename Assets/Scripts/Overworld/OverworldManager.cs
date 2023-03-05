@@ -8,6 +8,15 @@ public class OverworldManager : MonoBehaviour
     [SerializeField] private List<Path> paths;
     public int PathCount { get { return paths.Count; } }
 
+    protected void Start()
+    {
+        for (int i = 0; i < PathCount; i++)
+        {
+            // GameManager.Instance.gameData.unlockedPaths[i] = paths[i].pathUnlocked; // for debugging purposes
+            paths[i].pathUnlocked = GameManager.Instance.gameData.unlockedPaths[i];
+        }
+    }
+
     protected void OnDrawGizmosSelected()
     {
         Vector3 offset = Vector3.up * 0.1f;
@@ -42,6 +51,7 @@ public class OverworldManager : MonoBehaviour
         return paths[index];
     }
 
+    // TODO: Implement the load level function
     public void LoadLevel(LevelNode node)
     {
         Debug.Log($"[{node.name}] - Loading Level '{node.levelName}'");

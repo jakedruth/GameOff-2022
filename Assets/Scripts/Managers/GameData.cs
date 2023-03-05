@@ -4,19 +4,13 @@ using System.Reflection;
 [System.Serializable]
 public class GameData
 {
-    //Player
-    public float playerMoveSpeed = 1f;
-    public float playerDashCooldown = 1f;
-    public float playerHPMax = 1f;
-    public float playerHPRegen = 1f;
-    public float playerLuck = 1f;
+    // Player Data
+    public int MaxHP;
 
-    //Gun
-    public float gunDamage = 1f;
-    public float gunFireRate = 1f;
-    public float gunReloadSpeed = 1f;
-    public float gunMagSize = 1f;
-    public float gunRange = 1f;
+    // Inventory Data
+
+    // Overworld Data
+    public bool[] unlockedPaths = new bool[13];
 
     public object GetFieldValue(string fieldName)
     {

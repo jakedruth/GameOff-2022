@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    [SerializeField] private bool _loadGameDataOnAwake;
     public GameData gameData;
 
     private CanvasGroup _pauseGroup;
@@ -44,6 +45,9 @@ public class GameManager : MonoBehaviour
 
         gameData = new GameData();
         _pauseGroup = transform.GetComponentInChildren<CanvasGroup>();
+
+        if (_loadGameDataOnAwake)
+            LoadGameData();
     }
 
     public void Update()
@@ -88,10 +92,18 @@ public class GameManager : MonoBehaviour
     [System.Serializable]
     public class UnityEventBool : UnityEvent<bool> { }
 
+    [ContextMenu("Save Game Data")]
     public void SaveGameData()
     {
         SaveLoadSystem.Save(this.gameData);
     }
+
+    [ContextMenu("Load Game Data")]
+    public void LoadGameData()
+    {
+        LoadGameData(true);
+    }
+
     public void LoadGameData(bool displayLoadErrorLog = true)
     {
         gameData = SaveLoadSystem.Load(displayLoadErrorLog);

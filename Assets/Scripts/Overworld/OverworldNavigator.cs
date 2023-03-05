@@ -57,7 +57,7 @@ public class OverworldNavigator : MonoBehaviour
     private IEnumerator HandleMovement(Trail trail)
     {
         Path path = _overworldManager.GetPath(trail);
-        if (path == null)
+        if (path == null || !path.pathUnlocked)
             yield break;
 
         _isMoving = true;
