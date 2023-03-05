@@ -51,57 +51,36 @@ public class OverworldNavigator : MonoBehaviour
     private void HandleMoveInput(CompassDirection moveDir)
     {
         Trail trail = _currentNode.GetTrail(moveDir);
-        if (trail != null)
-        {
-
-        }
-        // List<Route> routes = _overworldManager.GetRoutesWithNode(_currentNode);
-        // for (int i = 0; i < routes.Count; i++)
-        // {
-        //     Route route = routes[i];
-        //     if (route.nodeA == _currentNode && route.directionA == moveDir)
-        //     {
-        //         StartCoroutine(HandleMovement(route, false));
-        //         return;
-        //     }
-
-        //     if (route.nodeB == _currentNode && route.directionB == moveDir)
-        //     {
-        //         StartCoroutine(HandleMovement(route, true));
-        //         return;
-        //     }
-        // }
-
+        StartCoroutine(HandleMovement(trail));
     }
 
-    private IEnumerator HandleMovement(Route route, bool invertPath)
+    private IEnumerator HandleMovement(Trail trail)
     {
-        _isMoving = true;
+        Path path = _overworldManager.GetPath(trail);
+        if (path == null)
+            yield break;
 
-        if (invertPath)
+        _isMoving = true;
+        for (int i = 0; i < path.Length; i++)
         {
-            for (int i = route.path.Length - 1; i >= 0; i--)
+            int index = trail.invertPath ? path.Length - 1 - i : i;
+            Vector3 start = transform.position;
+            Vector3 end = path[index];
+            float distance = Vector3.Distance(start, end);
+            float time = (distance + 0.01f) / (_moveSpeed + 0.01f);
+            float t = 0;
+            while (t <= time)
             {
-                while (transform.position != route.path[i])
-                {
-                    transform.position = Vector3.MoveTowards(transform.position, route.path[i], _moveSpeed * Time.deltaTime);
-                    yield return null;
-                }
+                t += Time.deltaTime;
+                float k = t / time;
+                transform.position = Vector3.Lerp(start, end, k);
+
+                yield return null;
             }
-        }
-        else
-        {
-            for (int i = 0; i < route.path.Length; i++)
-            {
-                while (transform.position != route.path[i])
-                {
-                    transform.position = Vector3.MoveTowards(transform.position, route.path[i], _moveSpeed * Time.deltaTime);
-                    yield return null;
-                }
-            }
+            transform.position = end;
         }
 
         _isMoving = false;
-        _currentNode = invertPath ? route.nodeA : route.nodeB;
+        _currentNode = trail.targetNode;
     }
 }

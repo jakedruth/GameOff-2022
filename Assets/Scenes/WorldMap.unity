@@ -138,7 +138,7 @@ GameObject:
   m_Layer: 0
   m_Name: LevelNode_01
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -156,29 +156,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: TestSendMessage
   northTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
   eastTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
   southTrail:
-    enabled: 1
-    value:
-      node: {fileID: 381645002}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 0
+    targetNode: {fileID: 381645002}
+    invertPath: 0
   westTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
 --- !u!23 &111639091
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -259,7 +251,7 @@ GameObject:
   m_Layer: 0
   m_Name: LevelNode_03
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -342,29 +334,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: TestSendMessage
   northTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 4
+    targetNode: {fileID: 1034161066}
+    invertPath: 0
   eastTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 5
+    targetNode: {fileID: 2106538899}
+    invertPath: 0
   southTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
   westTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 3
+    targetNode: {fileID: 381645002}
+    invertPath: 1
 --- !u!1 &381644998
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,7 +364,7 @@ GameObject:
   m_Layer: 0
   m_Name: LevelNode_02
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -463,29 +447,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: TestSendMessage
   northTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 0
+    targetNode: {fileID: 111639090}
+    invertPath: 1
   eastTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 3
+    targetNode: {fileID: 198947620}
+    invertPath: 0
   southTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 1
+    targetNode: {fileID: 1482591089}
+    invertPath: 0
   westTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
 --- !u!1 &458182754
 GameObject:
   m_ObjectHideFlags: 0
@@ -501,7 +477,7 @@ GameObject:
   m_Layer: 0
   m_Name: LevelNode_09
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -584,29 +560,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: TestSendMessage
   northTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 8
+    targetNode: {fileID: 2106538899}
+    invertPath: 1
   eastTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 12
+    targetNode: {fileID: 948253183}
+    invertPath: 0
   southTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
   westTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
 --- !u!1 &469064073
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,6 +724,56 @@ MonoBehaviour:
     points:
     - {x: -3, y: 0, z: 0}
     - {x: -3, y: 0, z: -3}
+  - pathUnlocked: 0
+    points:
+    - {x: -3, y: 0, z: -3}
+    - {x: -1, y: 0, z: -3}
+    - {x: -1, y: 0, z: -2}
+  - pathUnlocked: 0
+    points:
+    - {x: -3, y: 0, z: 0}
+    - {x: -1, y: 0, z: 0}
+  - pathUnlocked: 0
+    points:
+    - {x: -1, y: 0, z: 0}
+    - {x: -1, y: 0, z: 2}
+  - pathUnlocked: 0
+    points:
+    - {x: -1, y: 0, z: 0}
+    - {x: 1, y: 0, z: 0}
+  - pathUnlocked: 0
+    points:
+    - {x: 1, y: 0, z: 0}
+    - {x: 1, y: 0, z: 3}
+  - pathUnlocked: 0
+    points:
+    - {x: -1, y: 0, z: 2}
+    - {x: -1, y: 0, z: 3}
+    - {x: 1, y: 0, z: 3}
+  - pathUnlocked: 0
+    points:
+    - {x: 1, y: 0, z: 0}
+    - {x: 1, y: 0, z: -1}
+    - {x: 2, y: 0, z: -1}
+    - {x: 2, y: 0, z: -2}
+    - {x: 1, y: 0, z: -2}
+    - {x: 1, y: 0, z: -3}
+  - pathUnlocked: 0
+    points:
+    - {x: 1, y: 0, z: 0}
+    - {x: 3, y: 0, z: 0}
+  - pathUnlocked: 0
+    points:
+    - {x: 3, y: 0, z: 0}
+    - {x: 3, y: 0, z: 3}
+  - pathUnlocked: 0
+    points:
+    - {x: 3, y: 0, z: 0}
+    - {x: 3, y: 0, z: -3}
+  - pathUnlocked: 0
+    points:
+    - {x: 1, y: 0, z: -3}
+    - {x: 3, y: 0, z: -3}
 --- !u!1 &742386995
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,7 +789,7 @@ GameObject:
   m_Layer: 0
   m_Name: LevelNode_07
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -854,29 +872,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: TestSendMessage
   northTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
   eastTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
   southTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 6
+    targetNode: {fileID: 2106538899}
+    invertPath: 1
   westTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 7
+    targetNode: {fileID: 1034161066}
+    invertPath: 1
 --- !u!1 &780603634
 GameObject:
   m_ObjectHideFlags: 0
@@ -889,7 +899,7 @@ GameObject:
   - component: {fileID: 780603636}
   - component: {fileID: 780603635}
   m_Layer: 0
-  m_Name: PlayerCursor
+  m_Name: root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -975,7 +985,7 @@ GameObject:
   m_Layer: 0
   m_Name: LevelNode_10
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1058,29 +1068,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: TestSendMessage
   northTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 11
+    targetNode: {fileID: 1969520809}
+    invertPath: 1
   eastTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
   southTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
   westTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 12
+    targetNode: {fileID: 458182758}
+    invertPath: 1
 --- !u!1 &1034161062
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,7 +1098,7 @@ GameObject:
   m_Layer: 0
   m_Name: LevelNode_06
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1179,29 +1181,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: TestSendMessage
   northTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 7
+    targetNode: {fileID: 742386999}
+    invertPath: 0
   eastTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
   southTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 4
+    targetNode: {fileID: 198947620}
+    invertPath: 1
   westTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
 --- !u!1 &1188302426
 GameObject:
   m_ObjectHideFlags: 0
@@ -1217,7 +1211,7 @@ GameObject:
   m_Layer: 0
   m_Name: LevelNode_12
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1300,29 +1294,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: TestSendMessage
   northTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
   eastTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
   southTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 10
+    targetNode: {fileID: 1969520809}
+    invertPath: 1
   westTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
 --- !u!1 &1299330095
 GameObject:
   m_ObjectHideFlags: 0
@@ -1453,7 +1439,7 @@ GameObject:
   m_Layer: 0
   m_Name: LevelNode_04
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1536,29 +1522,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: TestSendMessage
   northTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 1
+    targetNode: {fileID: 381645002}
+    invertPath: 1
   eastTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 2
+    targetNode: {fileID: 1552519220}
+    invertPath: 0
   southTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
   westTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
 --- !u!1 &1552519216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,7 +1552,7 @@ GameObject:
   m_Layer: 0
   m_Name: LevelNode_05
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1657,29 +1635,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: TestSendMessage
   northTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
   eastTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
   southTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 2
+    targetNode: {fileID: 1482591089}
+    invertPath: 1
   westTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
 --- !u!1001 &1741880625
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1882,7 +1852,7 @@ GameObject:
   m_Layer: 0
   m_Name: LevelNode_11
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1965,29 +1935,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: TestSendMessage
   northTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 10
+    targetNode: {fileID: 1188302430}
+    invertPath: 0
   eastTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: -1
+    targetNode: {fileID: 0}
+    invertPath: 0
   southTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 11
+    targetNode: {fileID: 948253183}
+    invertPath: 0
   westTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 9
+    targetNode: {fileID: 2106538899}
+    invertPath: 1
 --- !u!1 &2007221106
 GameObject:
   m_ObjectHideFlags: 0
@@ -2189,7 +2151,7 @@ GameObject:
   m_Layer: 0
   m_Name: LevelNode_08
   m_TagString: Untagged
-  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2272,26 +2234,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelName: TestSendMessage
   northTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 6
+    targetNode: {fileID: 742386999}
+    invertPath: 0
   eastTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 9
+    targetNode: {fileID: 1969520809}
+    invertPath: 0
   southTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 8
+    targetNode: {fileID: 458182758}
+    invertPath: 0
   westTrail:
-    enabled: 0
-    value:
-      node: {fileID: 0}
-      pathIndex: 0
-      invertPath: 0
+    pathIndex: 5
+    targetNode: {fileID: 198947620}
+    invertPath: 1

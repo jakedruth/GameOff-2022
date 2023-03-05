@@ -28,6 +28,11 @@ namespace JDR.ExtensionMethods
             return (CompassDirection)bestIndex;
         }
 
+        public static Vector3 ToVector3(this CompassDirection cd)
+        {
+            return DIRECTIONS[(int)cd];
+        }
+
         public static CompassDirection GetOpposite(this CompassDirection cd)
         {
             return (CompassDirection)(((int)cd + 2) % 4);

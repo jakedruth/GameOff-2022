@@ -8,7 +8,7 @@ namespace Editor
     {
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            var valueProperty = property.FindPropertyRelative("value");
+            var valueProperty = property.FindPropertyRelative("data");
             return EditorGUI.GetPropertyHeight(valueProperty);
         }
 
@@ -18,7 +18,7 @@ namespace Editor
             GUIContent label
         )
         {
-            var valueProperty = property.FindPropertyRelative("value");
+            var valueProperty = property.FindPropertyRelative("data");
             var enabledProperty = property.FindPropertyRelative("enabled");
 
             EditorGUI.BeginProperty(position, label, property);
