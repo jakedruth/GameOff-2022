@@ -11,7 +11,7 @@ public class SwordController : MonoBehaviour
     private Sword _instance;
 
     [Header("Sword Value")]
-    [SerializeField] private float _damage;
+    [SerializeField] private int _damage;
     [SerializeField] private float _pushBackDist;
 
     public bool inputKey { get; set; }

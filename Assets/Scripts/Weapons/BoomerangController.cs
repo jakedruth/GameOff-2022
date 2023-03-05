@@ -13,7 +13,7 @@ public class BoomerangController : MonoBehaviour
     public bool CanThrow { get { return _boomerangCount < _maxBoomerangCount; } }
 
     [Header("Boomerang Values")]
-    [SerializeField] private float _damage;
+    [SerializeField] private int _damage;
     [SerializeField] private float _moveTime;
     [SerializeField] private float _distance;
     [SerializeField] private float _acceleration;

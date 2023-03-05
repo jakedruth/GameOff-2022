@@ -6,9 +6,9 @@ using UnityEngine;
 public class Actor : MonoBehaviour
 {
     // TODO: Change to int
-    public float maxHP;
-    public float CurrentHP { get; private set; }
-    public float NormalizedHP { get { return Mathf.Clamp01(CurrentHP / maxHP); } }
+    public int maxHP;
+    public int CurrentHP { get; private set; }
+    public float NormalizedHP { get { return Mathf.Clamp01((float)CurrentHP / maxHP); } }
     public float invulnerabilityTime;
     public float InvulnerableTimer { get; private set; }
     public bool IsInvulnerable => InvulnerableTimer > 0;
@@ -30,7 +30,7 @@ public class Actor : MonoBehaviour
         CurrentHP = maxHP;
     }
 
-    public bool ApplyDamage(float damage, bool ignoreInvulnerability = false)
+    public bool ApplyDamage(int damage, bool ignoreInvulnerability = false)
     {
         if (IsInvulnerable && !ignoreInvulnerability)
             return false;

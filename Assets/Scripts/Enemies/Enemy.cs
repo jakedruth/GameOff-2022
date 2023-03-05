@@ -11,7 +11,7 @@ public class Enemy : Actor
     private CapsuleCollider _capsuleCollider;
 
     [Header("Attack values")]
-    [SerializeField] private float _damage;
+    [SerializeField] private int _damage;
     [SerializeField] private float _pushBackDist;
     [SerializeField] private float _disablePlayerInputTime;
 
