@@ -51,10 +51,10 @@ public class OverworldManager : MonoBehaviour
         return paths[index];
     }
 
-    // TODO: Implement the load level function
     public void LoadLevel(LevelNode node)
     {
-        Debug.Log($"[{node.name}] - Loading Level '{node.levelName}'");
+        Debug.Log($"<color=brown>[{node.name}]</color> - Loading Level '{node.levelName}'");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(node.levelName, UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
 }
 

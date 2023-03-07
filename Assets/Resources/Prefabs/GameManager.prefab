@@ -146,17 +146,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8af6f0f4da9d144b9137b9b693e4637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _loadGameDataOnAwake: 0
   gameData:
-    playerMoveSpeed: 1
-    playerDashCooldown: 1
-    playerHPMax: 1
-    playerHPRegen: 1
-    playerLuck: 1
-    gunDamage: 1
-    gunFireRate: 1
-    gunReloadSpeed: 1
-    gunMagSize: 1
-    gunRange: 1
+    MaxHP: 0
+    unlockedPaths: 00000000000000000000000000
   onIsPausedChanged:
     m_PersistentCalls:
       m_Calls: []
