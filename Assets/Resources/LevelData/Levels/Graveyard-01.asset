@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 227961e7e79328b4b87c0142642c876b, type: 3}
+  m_Name: Graveyard-01
+  m_EditorClassIdentifier: 
+  RoomDetails:
+  - {fileID: 11400000, guid: f45352bba741c854880cade63a8227fe, type: 2}
+  - {fileID: 11400000, guid: f45352bba741c854880cade63a8227fe, type: 2}
+  - {fileID: 11400000, guid: f45352bba741c854880cade63a8227fe, type: 2}
+  - {fileID: 11400000, guid: f45352bba741c854880cade63a8227fe, type: 2}
+  buildInstructions:
+  - roomA:
+      roomDetailIndex: 0
+      doorID: 0
+    roomB:
+      roomDetailIndex: 1
+      doorID: 2
+    connectionType: 0
+  - roomA:
+      roomDetailIndex: 0
+      doorID: 1
+    roomB:
+      roomDetailIndex: 2
+      doorID: 3
+    connectionType: 0
+  - roomA:
+      roomDetailIndex: 2
+      doorID: 0
+    roomB:
+      roomDetailIndex: 3
+      doorID: 2
+    connectionType: 0
+  - roomA:
+      roomDetailIndex: 1
+      doorID: 1
+    roomB:
+      roomDetailIndex: 3
+      doorID: 3
+    connectionType: 0

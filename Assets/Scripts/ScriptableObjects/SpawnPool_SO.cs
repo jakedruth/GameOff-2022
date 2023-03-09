@@ -5,7 +5,7 @@ using UnityEngine;
 using JDR.Utils;
 
 
-[CreateAssetMenu(fileName = "Spawn Pool", menuName = "GameOff-2022/SpawnPool")]
+[CreateAssetMenu(fileName = "SpawnPool", menuName = "GameOff-2022/SpawnPool")]
 public class SpawnPool_SO : ScriptableObject
 {
     public List<WeightedElement<GameObject>> spawnList;
