@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider))]
 public class RoomTrigger : MonoBehaviour
 {
     [SerializeField] private bool _triggerRoomOnce;
@@ -11,7 +12,18 @@ public class RoomTrigger : MonoBehaviour
     public UnityEngine.Events.UnityEvent onBeginTriggerRoom;
     public UnityEngine.Events.UnityEvent onEndTriggerRoom;
 
-    void OnTriggerEnter(Collider other)
+    protected void Reset()
+    {
+        BoxCollider trigger = GetComponent<BoxCollider>();
+        if (trigger == null)
+        {
+            trigger = gameObject.AddComponent<BoxCollider>();
+        }
+
+        trigger.isTrigger = true;
+    }
+
+    protected void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag("Player"))
             return;

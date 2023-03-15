@@ -17,6 +17,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f45352bba741c854880cade63a8227fe, type: 2}
   - {fileID: 11400000, guid: f45352bba741c854880cade63a8227fe, type: 2}
   - {fileID: 11400000, guid: f45352bba741c854880cade63a8227fe, type: 2}
+  - {fileID: 11400000, guid: c0b3358b97119174c9788d510bd2893f, type: 2}
   buildInstructions:
   - roomA:
       roomDetailIndex: 0
@@ -45,4 +46,11 @@ MonoBehaviour:
     roomB:
       roomDetailIndex: 3
       doorID: 3
+    connectionType: 0
+  - roomA:
+      roomDetailIndex: 1
+      doorID: 3
+    roomB:
+      roomDetailIndex: 4
+      doorID: 2
     connectionType: 0

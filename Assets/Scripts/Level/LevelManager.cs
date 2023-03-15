@@ -17,6 +17,12 @@ public class LevelManager : MonoBehaviour
     public void SetRoomsCollection(Room[] rooms)
     {
         _rooms = rooms;
+        foreach (Room r in _rooms)
+        {
+            if (r == null)
+                continue;
+            r.transform.SetParent(transform);
+        }
     }
 
     public Room GetRoom(int index)
