@@ -36,17 +36,16 @@ public class LevelData_SO : ScriptableObject
             // Check to see if roomB needs to be moved
             if (!bIsBuilt)
             {
+                // Rotate roomB so the doors are facing each other
                 float alpha = (Vector3.SignedAngle(doorA.forward, doorB.forward, Vector3.up) - 180) % 360;
-                roomB.transform.rotation = Quaternion.AngleAxis(alpha, Vector3.down);
-                Vector3 localA = doorA.transform.position - roomA.transform.position;
-                Vector3 localB = doorB.transform.position - roomB.transform.position;
+                roomB.transform.rotation = Quaternion.AngleAxis(alpha, Vector3.down); // Not entirely sure why this needs to be Vector3.down
 
-                //Vector3 localDelta = doorA.localPosition - doorB.localPosition + doorA.forward;
-                Vector3 localDelta = localA - localB + doorA.forward;
-                roomB.transform.position = roomA.transform.position + localDelta;
+                // Calculate the difference between the door and it's room in world space
+                Vector3 diffA = doorA.transform.position - roomA.transform.position;
+                Vector3 diffB = doorB.transform.position - roomB.transform.position;
+                Vector3 displacement = diffA - diffB + doorA.forward;
+                roomB.transform.position = roomA.transform.position + displacement;
             }
-
-
 
             // Handle the connection type
             doorA.gameObject.SetActive(false);
@@ -81,7 +80,6 @@ public struct LevelBuildInstruction
     public RoomDoorPair roomA;
     public RoomDoorPair roomB;
     public RoomConnection connectionType;
-
 }
 
 public enum RoomConnection
