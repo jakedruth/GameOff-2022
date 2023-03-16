@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ff96fe133f3306d40942835bc3894b7e, type: 3}
-  m_Name: LoongRoom
+  m_Name: LongRoom
   m_EditorClassIdentifier: 
   room: {fileID: 3145135546081109846, guid: fdde18cc4f1475a459a1102e8c77a4fc, type: 3}
   modifiers:

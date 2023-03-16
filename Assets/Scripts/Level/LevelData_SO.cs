@@ -36,11 +36,17 @@ public class LevelData_SO : ScriptableObject
             // Check to see if roomB needs to be moved
             if (!bIsBuilt)
             {
-                // TODO: Handle if a room needs to be rotated
+                float alpha = (Vector3.SignedAngle(doorA.forward, doorB.forward, Vector3.up) - 180) % 360;
+                roomB.transform.rotation = Quaternion.AngleAxis(alpha, Vector3.down);
+                Vector3 localA = doorA.transform.position - roomA.transform.position;
+                Vector3 localB = doorB.transform.position - roomB.transform.position;
 
-                Vector3 localDelta = doorA.localPosition - doorB.localPosition + doorA.forward;
+                //Vector3 localDelta = doorA.localPosition - doorB.localPosition + doorA.forward;
+                Vector3 localDelta = localA - localB + doorA.forward;
                 roomB.transform.position = roomA.transform.position + localDelta;
             }
+
+
 
             // Handle the connection type
             doorA.gameObject.SetActive(false);
