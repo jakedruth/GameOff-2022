@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 // TODO: change to include half hearts. Maybe quarter heart too?
 // TODO: rename class to include HUD
-public class HealthBar : MonoBehaviour
+public class HUDHealthBar : MonoBehaviour
 {
     [SerializeField] private Sprite heartFull;
     [SerializeField] private Sprite heartEmpty;

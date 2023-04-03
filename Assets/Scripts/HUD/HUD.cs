@@ -1,4 +1,3 @@
-using System.ComponentModel;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,8 +6,8 @@ public class HUD : MonoBehaviour
 {
     public static HUD instance;
 
-    public HealthBar HealthBar { get; private set; }
-    public KeyCounter KeyCounter { get; private set; }
+    public HUDHealthBar HealthBar { get; private set; }
+    public HUDKeyCounter KeyCounter { get; private set; }
 
     protected void Awake()
     {
@@ -20,8 +19,8 @@ public class HUD : MonoBehaviour
 
         instance = this;
 
-        HealthBar = GetComponentInChildren<HealthBar>();
-        KeyCounter = GetComponentInChildren<KeyCounter>();
+        HealthBar = GetComponentInChildren<HUDHealthBar>();
+        KeyCounter = GetComponentInChildren<HUDKeyCounter>();
     }
 
     void Start()
