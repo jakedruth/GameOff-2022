@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 _facing;
     private Vector3 _inputMove;
 
+    [SerializeField] private InputActionAsset _playerActionAsset;
+
     [Header("Movement Values")]
     [SerializeField] private float _maxSpeed;
     [SerializeField] private float _acceleration;
@@ -57,6 +59,15 @@ public class PlayerController : MonoBehaviour
 
     private void Init()
     {
+        // TODO: Find each action and add delegate functions
+        // - move (started, performed, canceled)
+        // - sword (started, canceled)
+        // - boomerang (started, canceled)
+        _playerInput.currentActionMap.FindAction("Move").actionMap.actionTriggered += OnMove;
+
+        //_playerInput.currentActionMap.FindAction("Sword").actionMap.actionTriggered += OnSword;
+        //_playerInput.currentActionMap.FindAction("Boomerang").actionMap.actionTriggered += OnBoomerang;
+
         _swordController.SetOwner(actor);
         _boomerangController.SetOwner(actor);
 
