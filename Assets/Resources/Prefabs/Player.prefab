@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 3112893051104742688}
   - component: {fileID: 3112893051104742719}
   - component: {fileID: 569088337688399833}
+  - component: {fileID: 7218426754279672208}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -291,12 +292,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86e466043b35e0488c5794f3e0790ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerActionAsset: {fileID: 0}
   _maxSpeed: 6
   _acceleration: 50
   _drag: {x: 20, y: 20, z: 20}
   _groundLayerMask:
     serializedVersion: 2
     m_Bits: 192
+  inventory:
+    key:
+      OnSlotUpdated:
+        m_PersistentCalls:
+          m_Calls: []
 --- !u!114 &3112893051104742719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -331,6 +338,19 @@ MonoBehaviour:
   _distance: 4
   _acceleration: 50
   _waitTime: 0.5
+--- !u!114 &7218426754279672208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3112893051104742693}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b85d66c277a81d04b9cbce54b65e7ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 1256399448}
 --- !u!1 &5805760983474929454
 GameObject:
   m_ObjectHideFlags: 0

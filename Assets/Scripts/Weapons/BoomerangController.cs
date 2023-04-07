@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: Convert to type ItemHandler
 public class BoomerangController : MonoBehaviour
 {
     private Actor _owner;

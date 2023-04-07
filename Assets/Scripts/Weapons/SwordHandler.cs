@@ -2,50 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SwordController : MonoBehaviour
+public class SwordHandler : ItemHandler
 {
-    private Actor _owner;
-    private Sword _swordPrefab;
+    public override string PrefabPath => "Prefabs/Sword";
 
-    [SerializeField] private Transform _spawnPoint;
+    private readonly Sword _prefab;
     private Sword _instance;
 
-    [Header("Sword Value")]
-    [SerializeField] private int _damage;
-    [SerializeField] private float _pushBackDist;
+    [SerializeField] private int _damage = 5;
+    [SerializeField] private float _pushBackDist = 3;
 
-    public bool inputKey { get; set; }
-
-    void Awake()
+    public SwordHandler(ItemController controller, Actor actor, Animator animator) : base(controller, actor, animator)
     {
-        _swordPrefab = Resources.Load<Sword>("Prefabs/Sword");
+        _prefab = Resources.Load<Sword>(PrefabPath);
     }
 
-    public void SetOwner(Actor actor)
+    public override void HandleMovement(ref Vector3 input, ref float speed)
     {
-        _owner = actor;
+        if (InputKey)
+            speed = 0;
     }
 
-    public void StartAttack()
+    public override void StartAction()
     {
-        inputKey = true;
+        InputKey = true;
         if (_instance != null)
             return;
 
-        _instance = Instantiate(_swordPrefab, _spawnPoint, false);
+        _instance = Object.Instantiate(_prefab, _controller.spawnPoint, false);
         _instance.SetOnHitCallBack(OnHit);
-
-        Collider c1 = GetComponent<Collider>();
-        Collider c2 = _instance.GetComponent<Collider>();
-
-        Physics.IgnoreCollision(c1, c2, true);
     }
 
-    public void EndAttack()
+    public override void EndAction()
     {
-        inputKey = false;
+        InputKey = false;
 
-        Destroy(_instance.gameObject);
+        Object.Destroy(_instance.gameObject);
         _instance = null;
     }
 
@@ -65,13 +57,11 @@ public class SwordController : MonoBehaviour
                 bool tookDamage = actor.ApplyDamage(_damage);
 
                 if (tookDamage && actor is Enemy enemy)
-                    enemy.ApplyPushBack(transform.forward, _pushBackDist);
+                    enemy.ApplyPushBack(actor.transform.forward, _pushBackDist);
 
                 break;
             default:
                 break;
         }
-
-
     }
 }

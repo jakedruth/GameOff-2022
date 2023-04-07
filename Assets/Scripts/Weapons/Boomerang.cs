@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class Boomerang : MonoBehaviour
 {
+    //TODO: Move Boomerang stats to here from handler
+    // Stats like damage, move time, distance, acceleration, wait time
+
     private Action<Boomerang, Collider> onHitCallBack;
 
     public enum Phase
