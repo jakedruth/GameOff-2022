@@ -6,6 +6,6 @@ public class HeartPickup : Pickup
 {
     public override void HandleOnPlayerEnter(PlayerController pc)
     {
-        pc.actor.ApplyDamage(-1, true);
+        pc.Actor.ApplyDamage(-1, true);
     }
 }

@@ -26,8 +26,8 @@ public class HUD : MonoBehaviour
     void Start()
     {
         // Health Bar
-        HealthBar.SetMaxHeatCount(Mathf.RoundToInt(PlayerController.instance.actor.maxHP));
-        HealthBar.SetHealth(Mathf.RoundToInt(PlayerController.instance.actor.CurrentHP));
+        HealthBar.SetMaxHeatCount(Mathf.RoundToInt(PlayerController.instance.Actor.maxHP));
+        HealthBar.SetHealth(Mathf.RoundToInt(PlayerController.instance.Actor.CurrentHP));
 
         // Key Counter
         KeyCounter.SetKeyCount(PlayerController.instance.inventory.key.Get());
@@ -37,13 +37,13 @@ public class HUD : MonoBehaviour
 
     private void InitListeners()
     {
-        PlayerController.instance.actor.OnTakeDamage.AddListener(HandleHealthChanged);
+        PlayerController.instance.Actor.OnTakeDamage.AddListener(HandleHealthChanged);
         PlayerController.instance.inventory.key.OnSlotUpdated.AddListener(HandleKeyCountUpdated);
     }
 
     private void HandleHealthChanged()
     {
-        HealthBar.SetHealth(Mathf.RoundToInt(PlayerController.instance.actor.CurrentHP));
+        HealthBar.SetHealth(Mathf.RoundToInt(PlayerController.instance.Actor.CurrentHP));
     }
 
     private void HandleKeyCountUpdated(int newValue)

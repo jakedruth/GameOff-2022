@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Sword",
+                    "name": "Action1",
                     "type": "Button",
                     "id": "e604edae-8618-4363-885c-2ab87eb51c93",
                     "expectedControlType": "Button",
@@ -33,9 +33,27 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Boomerang",
+                    "name": "Action2",
                     "type": "Button",
                     "id": "b5457345-fa58-4d12-b9ce-aa6d70adc61e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Action3",
+                    "type": "Button",
+                    "id": "d9b22b2d-7104-407d-97ef-742a8212a4f3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "543cff0a-0381-4c48-8f53-2eb46246c1d7",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -160,7 +178,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Sword",
+                    "action": "Action1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -171,7 +189,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";KBM",
-                    "action": "Sword",
+                    "action": "Action1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -182,7 +200,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KBM",
-                    "action": "Sword",
+                    "action": "Action1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -193,18 +211,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
-                    "action": "Boomerang",
+                    "action": "Action2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "10d28030-db83-4f8a-a87b-9cd7431ae98e",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Mouse>/middleButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "KBM",
-                    "action": "Boomerang",
+                    "action": "Action2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -215,7 +233,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "KBM",
-                    "action": "Boomerang",
+                    "action": "Action2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -238,6 +256,61 @@
                     "processors": "",
                     "groups": "KBM",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "052763b4-eb79-4288-9ea8-a64a65f68519",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Action3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "79cf7f17-55e0-40c8-843d-5326031eb38f",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KBM",
+                    "action": "Action3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "27bc36ae-3441-430b-94a9-c3e913930b2c",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KBM",
+                    "action": "Action3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "27006fde-86fe-495f-a97f-54f19eb73f97",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0ed4a77a-4382-4260-a301-c17603526eec",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KBM",
+                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
