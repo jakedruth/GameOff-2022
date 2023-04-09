@@ -5,43 +5,33 @@ using UnityEngine;
 
 public class Boomerang : MonoBehaviour
 {
-    //TODO: Move Boomerang stats to here from handler
-    // Stats like damage, move time, distance, acceleration, wait time
-
     private Action<Boomerang, Collider> onHitCallBack;
 
-    public enum Phase
-    {
-        MOVE,
-        WAIT,
-        RETURN,
-    }
-
+    public enum Phase { MOVE, WAIT, RETURN, }
     public Phase phase { get; private set; }
-    private float _timer;
+
+    public int damage;
+    public float moveTime;
+    public float distance;
+    public float acceleration;
+    public float waitTime;
+
+    private PlayerController _owner;
+    private float _speed;
     private Vector3 _direction;
     private Vector3 _velocity;
-    private float _yOffset;
+    private float _timer;
 
-    private float _moveTime;
-    private float _speed;
-    private float _acceleration;
-    private float _waitTime;
+    private List<Transform> _grabbedItems;
 
-    public List<Transform> grabbedItems;
-
-    public void InitParameters(Actor actor, float moveTime, float distance, float acceleration, float waitTime)
+    public void InitParameters(PlayerController pc)
     {
+        _owner = pc;
+        _grabbedItems = new List<Transform>();
+
         SetPhase(Phase.MOVE);
-
         _direction = transform.forward;
-        _yOffset = transform.position.y;
-
-        _moveTime = moveTime;
         _speed = distance / moveTime;
-        _acceleration = acceleration;
-        _waitTime = waitTime;
-
         _velocity = _direction * _speed;
     }
 
@@ -51,28 +41,28 @@ public class Boomerang : MonoBehaviour
         switch (phase)
         {
             case Phase.MOVE:
-                if (_timer > _moveTime)
+                if (_timer > moveTime)
                 {
                     SetPhase(Phase.WAIT);
                 }
                 break;
             case Phase.WAIT:
-                _velocity = Vector3.MoveTowards(_velocity, Vector3.zero, _acceleration * Time.deltaTime);
+                _velocity = Vector3.MoveTowards(_velocity, Vector3.zero, acceleration * Time.deltaTime);
 
-                if (_timer > _waitTime)
+                if (_timer > waitTime)
                 {
                     // Set the Phase
                     SetPhase(Phase.RETURN);
                 }
                 break;
             case Phase.RETURN:
-                Vector3 dir = PlayerController.instance.GetCenter() - transform.position;
+                Vector3 dir = _owner.GetCenter() - transform.position;
                 dir.Normalize();
                 Vector3 targetVel = dir * _speed;
 
-                _velocity = Vector3.MoveTowards(_velocity, targetVel, _acceleration * Time.deltaTime);
+                _velocity = Vector3.MoveTowards(_velocity, targetVel, acceleration * Time.deltaTime);
 
-                if (_timer > 10)
+                if (_timer > 10) // Could not reach the player some how, just delete the boomerang
                     Destroy(gameObject);
 
                 break;
@@ -82,14 +72,14 @@ public class Boomerang : MonoBehaviour
 
         transform.position += _velocity * Time.deltaTime;
 
-        if (grabbedItems.Count > 0)
+        if (_grabbedItems.Count > 0)
         {
-            for (int i = grabbedItems.Count - 1; i >= 0; i--)
+            for (int i = _grabbedItems.Count - 1; i >= 0; i--)
             {
-                Transform item = grabbedItems[i];
+                Transform item = _grabbedItems[i];
                 if (item == null)
                 {
-                    grabbedItems.RemoveAt(i);
+                    _grabbedItems.RemoveAt(i);
                     continue;
                 }
 
@@ -101,9 +91,14 @@ public class Boomerang : MonoBehaviour
     public void ReturnImmediately()
     {
         SetPhase(Phase.RETURN);
-        Vector3 dir = PlayerController.instance.GetCenter() - transform.position;
+        Vector3 dir = _owner.GetCenter() - transform.position;
         dir.Normalize();
         _velocity = dir * _speed;
+    }
+
+    public void GrabItem(Transform newItem)
+    {
+        _grabbedItems.Add(newItem);
     }
 
     public void SetPhase(Phase nextPhase)
@@ -113,7 +108,7 @@ public class Boomerang : MonoBehaviour
 
         // Get collider with the owner and self
         Collider c1 = GetComponent<Collider>();
-        Collider c2 = PlayerController.instance.GetComponent<Collider>();
+        Collider c2 = _owner.GetComponent<Collider>();
 
         // Ignore collisions during the first phase
         Physics.IgnoreCollision(c1, c2, phase == Phase.MOVE);

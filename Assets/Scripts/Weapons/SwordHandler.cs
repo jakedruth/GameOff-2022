@@ -9,10 +9,7 @@ public class SwordHandler : ItemHandler
     private readonly Sword _prefab;
     private Sword _instance;
 
-    [SerializeField] private int _damage = 5;
-    [SerializeField] private float _pushBackDist = 3;
-
-    public SwordHandler(ItemController controller, Actor actor, Animator animator) : base(controller, actor, animator)
+    public SwordHandler(ItemController controller, PlayerController playerController, Animator animator) : base(controller, playerController, animator)
     {
         _prefab = Resources.Load<Sword>(PrefabPath);
     }
@@ -29,13 +26,17 @@ public class SwordHandler : ItemHandler
         if (_instance != null)
             return;
 
-        _instance = Object.Instantiate(_prefab, _controller.spawnPoint, false);
+
+        _animator.SetBool("Attack1", true);
+
+        _instance = Object.Instantiate(_prefab, _itemController.spawnPoint, false);
         _instance.SetOnHitCallBack(OnHit);
     }
 
     public override void EndAction()
     {
         InputKey = false;
+        _animator.SetBool("Attack1", false);
 
         Object.Destroy(_instance.gameObject);
         _instance = null;
@@ -53,11 +54,11 @@ public class SwordHandler : ItemHandler
                 break;
             case "Pot":
             case "Enemy":
-                Actor actor = collider.gameObject.GetComponent<Actor>();
-                bool tookDamage = actor.ApplyDamage(_damage);
+                Actor otherActor = collider.gameObject.GetComponent<Actor>();
+                bool tookDamage = otherActor.ApplyDamage(_prefab.Damage);
 
-                if (tookDamage && actor is Enemy enemy)
-                    enemy.ApplyPushBack(actor.transform.forward, _pushBackDist);
+                if (tookDamage && otherActor is Enemy enemy)
+                    enemy.ApplyPushBack(_playerController.transform.forward, _prefab.PushBackDistance);
 
                 break;
             default:

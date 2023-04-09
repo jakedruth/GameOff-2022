@@ -88,7 +88,7 @@ public class Enemy : Actor
         dir.y = 0;
         dir.Normalize();
 
-        if (playerController.actor.ApplyDamage(_damage))
+        if (playerController.Actor.ApplyDamage(_damage))
         {
             playerController.ApplyPushBack(dir, _pushBackDist);
             playerController.TemporaryDisableInput(_disablePlayerInputTime);

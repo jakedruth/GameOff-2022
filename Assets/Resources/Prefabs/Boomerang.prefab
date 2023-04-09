@@ -190,10 +190,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6390617998184287664}
+  - component: {fileID: 5828102410941153373}
   - component: {fileID: 78977801489705455}
   - component: {fileID: 6390617998184287667}
   - component: {fileID: 5340229137491942175}
-  - component: {fileID: 5828102410941153373}
   m_Layer: 8
   m_Name: Boomerang
   m_TagString: Untagged
@@ -218,6 +218,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &5828102410941153373
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6390617998184287665}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1da5ab8cc7eb71340a9e3f5f481fe708, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!65 &78977801489705455
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -259,27 +279,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 706d671cd33bc1842aa0ae26983bbc47, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grabbedItems: []
---- !u!95 &5828102410941153373
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6390617998184287665}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1da5ab8cc7eb71340a9e3f5f481fe708, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  damage: 1
+  moveTime: 0.4
+  distance: 3
+  acceleration: 50
+  waitTime: 0.5
 --- !u!1 &8357557378253816052
 GameObject:
   m_ObjectHideFlags: 0

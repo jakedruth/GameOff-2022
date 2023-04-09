@@ -9,21 +9,23 @@ using System;
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController instance;
-    public Actor actor { get; private set; }
+    public Actor Actor { get; private set; }
 
     // Components
     private PlayerInput _playerInput;
     private ItemController _itemController;
     private CharacterController _characterController;
-    private SwordController _swordController;
-    private BoomerangController _boomerangController;
     private Animator _animator;
 
     // Inputs
     private Vector3 _facing;
     private Vector3 _inputMove;
-
-    [SerializeField] private InputActionAsset _playerActionAsset;
+    private InputAction _moveAction;
+    private InputAction _interactAction;
+    private InputAction _action1Action;
+    private InputAction _action2Action;
+    private InputAction _action3Action;
+    private InputAction _pauseAction;
 
     [Header("Movement Values")]
     [SerializeField] private float _maxSpeed;
@@ -45,16 +47,14 @@ public class PlayerController : MonoBehaviour
     public Inventory inventory;
 
     // Start is called before the first frame update
-    void Awake()
+    protected void Awake()
     {
         instance = this;
-        actor = GetComponent<Actor>();
+        Actor = GetComponent<Actor>();
 
         _playerInput = GetComponent<PlayerInput>();
         _itemController = GetComponent<ItemController>();
         _characterController = GetComponent<CharacterController>();
-        _swordController = GetComponent<SwordController>();
-        _boomerangController = GetComponent<BoomerangController>();
         _animator = GetComponentInChildren<Animator>();
 
         Init();
@@ -62,85 +62,87 @@ public class PlayerController : MonoBehaviour
 
     private void Init()
     {
-        _itemController.InitReferences(actor, _animator);
+        _itemController.InitReferences(this, _animator);
         _itemController.SetItem<SwordHandler>(0);
-
-        _swordController.SetOwner(actor);
-        _boomerangController.SetOwner(actor);
+        _itemController.SetItem<BoomerangHandler>(1, 1);
 
         _facing = Vector3.forward;
         inventory = new Inventory();
     }
 
-    void OnEnable()
+    #region Setup Input events
+    protected void OnEnable()
     {
         // Move
-        InputAction move = _playerInput.currentActionMap.FindAction("Move");
-        move.started += OnMove;
-        move.performed += OnMove;
-        move.canceled += OnMove;
+        _moveAction = _playerInput.currentActionMap.FindAction("Move");
+        _moveAction.started += OnMove;
+        _moveAction.performed += OnMove;
+        _moveAction.canceled += OnMove;
 
         // Interact
-        InputAction interact = _playerInput.currentActionMap.FindAction("Interact");
-        interact.started += OnInteract;
-        interact.performed += OnInteract;
-        interact.canceled += OnInteract;
+        _interactAction = _playerInput.currentActionMap.FindAction("Interact");
+        _interactAction.started += OnInteract;
+        _interactAction.performed += OnInteract;
+        _interactAction.canceled += OnInteract;
 
         // Action 1
-        InputAction action1 = _playerInput.currentActionMap.FindAction("Action1");
-        action1.started += OnAction1;
-        action1.performed += OnAction1;
-        action1.canceled += OnAction1;
+        _action1Action = _playerInput.currentActionMap.FindAction("Action1");
+        _action1Action.started += OnAction1;
+        _action1Action.performed += OnAction1;
+        _action1Action.canceled += OnAction1;
 
         // Action 2
-        InputAction action2 = _playerInput.currentActionMap.FindAction("Action2");
-        action2.started += OnAction2;
-        action2.performed += OnAction2;
-        action2.canceled += OnAction2;
+        _action2Action = _playerInput.currentActionMap.FindAction("Action2");
+        _action2Action.started += OnAction2;
+        _action2Action.performed += OnAction2;
+        _action2Action.canceled += OnAction2;
 
         // Action 3
-        InputAction action3 = _playerInput.currentActionMap.FindAction("Action3");
-        action3.started += OnAction2;
-        action3.performed += OnAction2;
-        action3.canceled += OnAction2;
+        _action3Action = _playerInput.currentActionMap.FindAction("Action3");
+        _action3Action.started += OnAction3;
+        _action3Action.performed += OnAction3;
+        _action3Action.canceled += OnAction3;
+
+        // Pause
+        _pauseAction = _playerInput.currentActionMap.FindAction("Pause");
+        _pauseAction.started += OnPause;
     }
 
-    void OnDisable()
+    protected void OnDisable()
     {
         // Move
-        InputAction move = _playerInput.currentActionMap.FindAction("Move");
-        move.started -= OnMove;
-        move.performed -= OnMove;
-        move.canceled -= OnMove;
+        _moveAction.started -= OnMove;
+        _moveAction.performed -= OnMove;
+        _moveAction.canceled -= OnMove;
 
         // Interact
-        InputAction interact = _playerInput.currentActionMap.FindAction("Interact");
-        interact.started -= OnInteract;
-        interact.performed -= OnInteract;
-        interact.canceled -= OnInteract;
+        _interactAction.started -= OnInteract;
+        _interactAction.performed -= OnInteract;
+        _interactAction.canceled -= OnInteract;
 
         // Action 1
-        InputAction action1 = _playerInput.currentActionMap.FindAction("Action1");
-        action1.started -= OnAction1;
-        action1.performed -= OnAction1;
-        action1.canceled -= OnAction1;
+        _action1Action.started -= OnAction1;
+        _action1Action.performed -= OnAction1;
+        _action1Action.canceled -= OnAction1;
 
         // Action 2
-        InputAction action2 = _playerInput.currentActionMap.FindAction("Action2");
-        action2.started -= OnAction2;
-        action2.performed -= OnAction2;
-        action2.canceled -= OnAction2;
+        _action2Action.started -= OnAction2;
+        _action2Action.performed -= OnAction2;
+        _action2Action.canceled -= OnAction2;
 
         // Action 3
-        InputAction action3 = _playerInput.currentActionMap.FindAction("Action3");
-        action3.started -= OnAction3;
-        action3.performed -= OnAction3;
-        action3.canceled -= OnAction3;
-    }
+        _action3Action.started -= OnAction3;
+        _action3Action.performed -= OnAction3;
+        _action3Action.canceled -= OnAction3;
 
-    void Start()
+        // Pause
+        _pauseAction.started -= OnPause;
+    }
+    #endregion 
+
+    protected void Start()
     {
-        HUD.instance.HealthBar.SetMaxHeatCount(Mathf.RoundToInt(actor.maxHP));
+        HUD.instance.HealthBar.SetMaxHeatCount(Mathf.RoundToInt(Actor.maxHP));
     }
 
     public Vector3 GetCenter()
@@ -222,6 +224,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnAction1(InputAction.CallbackContext context)
     {
+
         switch (context.phase)
         {
             case InputActionPhase.Disabled:
@@ -248,10 +251,12 @@ public class PlayerController : MonoBehaviour
             case InputActionPhase.Waiting:
                 break;
             case InputActionPhase.Started:
+                _itemController.ItemActionStarted(1);
                 break;
             case InputActionPhase.Performed:
                 break;
             case InputActionPhase.Canceled:
+                _itemController.ItemActionEnded(1);
                 break;
         }
     }
@@ -265,60 +270,21 @@ public class PlayerController : MonoBehaviour
             case InputActionPhase.Waiting:
                 break;
             case InputActionPhase.Started:
+                _itemController.ItemActionStarted(2);
                 break;
             case InputActionPhase.Performed:
                 break;
             case InputActionPhase.Canceled:
+                _itemController.ItemActionEnded(2);
                 break;
         }
     }
 
-    public void OnSword(InputAction.CallbackContext context)
+    private void OnPause(InputAction.CallbackContext context)
     {
-        switch (context.phase)
-        {
-            case InputActionPhase.Disabled:
-                _swordController.EndAttack();
-                break;
-            case InputActionPhase.Waiting:
-                break;
-            case InputActionPhase.Started:
-                _swordController.StartAttack();
-                break;
-            case InputActionPhase.Performed:
-                break;
-            case InputActionPhase.Canceled:
-                _swordController.EndAttack();
-                break;
-        }
-    }
-
-    public void OnBoomerang(InputAction.CallbackContext context)
-    {
-        switch (context.phase)
-        {
-            case InputActionPhase.Disabled:
-                _boomerangController.EndAttack();
-                break;
-            case InputActionPhase.Waiting:
-                break;
-            case InputActionPhase.Started:
-                if (_boomerangController.CanThrow)
-                {
-                    _boomerangController.StartAttack();
-                    TemporaryDisableInput(0.25f);
-                    _animator.SetTrigger("Attack2");
-                }
-                break;
-            case InputActionPhase.Performed:
-                break;
-            case InputActionPhase.Canceled:
-                _boomerangController.EndAttack();
-                break;
-        }
+        GameManager.Instance.ToggleIsPaused();
     }
     #endregion
-
 
     // Update is called once per frame
     protected void Update()
@@ -361,7 +327,6 @@ public class PlayerController : MonoBehaviour
     void HandleAnimator()
     {
         _animator.SetFloat("Walk_Speed", _hVelocity.sqrMagnitude);
-        _animator.SetBool("Attack1", _swordController.inputKey);
     }
 
     protected void OnControllerColliderHit(ControllerColliderHit hit)

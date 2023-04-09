@@ -76,8 +76,6 @@ GameObject:
   - component: {fileID: 3112893051104742690}
   - component: {fileID: 3112893051104742689}
   - component: {fileID: 3112893051104742688}
-  - component: {fileID: 3112893051104742719}
-  - component: {fileID: 569088337688399833}
   - component: {fileID: 7218426754279672208}
   m_Layer: 0
   m_Name: Player
@@ -292,7 +290,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86e466043b35e0488c5794f3e0790ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerActionAsset: {fileID: 0}
   _maxSpeed: 6
   _acceleration: 50
   _drag: {x: 20, y: 20, z: 20}
@@ -304,40 +301,6 @@ MonoBehaviour:
       OnSlotUpdated:
         m_PersistentCalls:
           m_Calls: []
---- !u!114 &3112893051104742719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3112893051104742693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd0495872342048499e6419297bcef8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spawnPoint: {fileID: 1256399448}
-  _damage: 5
-  _pushBackDist: 3
---- !u!114 &569088337688399833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3112893051104742693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aff54a38845541747a7286d89004ab30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spawnPoint: {fileID: 1256399448}
-  _maxBoomerangCount: 1
-  _damage: 1
-  _moveTime: 0.4
-  _distance: 4
-  _acceleration: 50
-  _waitTime: 0.5
 --- !u!114 &7218426754279672208
 MonoBehaviour:
   m_ObjectHideFlags: 0
