@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6655638450432251840}
   - component: {fileID: 8397731936672427658}
   - component: {fileID: 5021239347013421598}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7614358192448378198}
   - component: {fileID: 3014812134918183867}
   - component: {fileID: 7663344039931564277}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -745,7 +745,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 15
+    angle: 60
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -4084,7 +4084,7 @@ ParticleSystem:
     lifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4977,9 +4977,9 @@ GameObject:
   - component: {fileID: 8087911396200181493}
   - component: {fileID: 6874313231986293792}
   - component: {fileID: 6874313231986293799}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: pot
-  m_TagString: Pot
+  m_TagString: Prop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5066,4 +5066,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 091f811d35ea7f74abce741250234066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isInteractable: 1
   _spawnPool: {fileID: 11400000, guid: ffcd084f0c28f6344959f71a57a4e06d, type: 2}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1923709694}
   - component: {fileID: 2295195293997048203}
   - component: {fileID: 7480764335981388027}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1707958482783379155}
   - component: {fileID: 7023748046977069917}
   - component: {fileID: 3119778976137977935}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2010620670457438512}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Prompt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ GameObject:
   - component: {fileID: 2811794820077920522}
   - component: {fileID: 8264849638341008687}
   - component: {fileID: 8419950989933009968}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 4529710953081964346}
   - component: {fileID: 9003098829037993606}
   - component: {fileID: 7399310211172431575}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: bg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,6 +436,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4938155143509218053, guid: b436cf6abaec2174b87a11c7896137b7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4938155144438270712, guid: b436cf6abaec2174b87a11c7896137b7,
         type: 3}
       propertyPath: m_RootOrder
@@ -495,6 +500,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LockedDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 4938155144438270714, guid: b436cf6abaec2174b87a11c7896137b7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b436cf6abaec2174b87a11c7896137b7, type: 3}

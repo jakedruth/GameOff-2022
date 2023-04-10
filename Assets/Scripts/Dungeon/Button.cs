@@ -15,7 +15,7 @@ public class Button : MonoBehaviour
     public UnityEngine.Events.UnityEvent onButtonDown;
     public ButtonStateChanged onButtonStateChanged;
 
-    void Awake()
+    protected void Awake()
     {
         meshFilter = GetComponentInChildren<MeshFilter>();
     }
@@ -39,7 +39,7 @@ public class Button : MonoBehaviour
             SetState(true);
     }
 
-    void OnTriggerExit(Collider other)
+    protected void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
             SetState(false);

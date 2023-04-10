@@ -3,20 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pot : MonoBehaviour
+public class Prop : Interactable
 {
     private ParticleSystem _particleSystem;
 
-    public Actor actor { get; private set; }
+    public Actor Actor { get; private set; }
     [SerializeField] private SpawnPool_SO _spawnPool;
-
 
     void Awake()
     {
         _particleSystem = GetComponentInChildren<ParticleSystem>();
         _particleSystem.gameObject.SetActive(false);
-        actor = GetComponent<Actor>();
-        actor.onDeath.AddListener(HandleOnDeath);
+        Actor = GetComponent<Actor>();
+        Actor.onDeath.AddListener(HandleOnDeath);
     }
 
     private void HandleOnDeath()
@@ -33,5 +32,15 @@ public class Pot : MonoBehaviour
             return;
 
         GameObject instance = Instantiate(prefab, transform.position, Quaternion.identity);
+    }
+
+    public override bool TryInteract()
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void Interact()
+    {
+        throw new NotImplementedException();
     }
 }

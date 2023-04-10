@@ -59,7 +59,7 @@ public class BoomerangHandler : ItemHandler
                 pickup.DisableCollision();
                 boomerang.GrabItem(pickup.transform);
                 break;
-            //case "Pot":
+            //case "Prop":
             case "Enemy":
                 boomerang.ReturnImmediately();
                 Actor hit = collider.gameObject.GetComponent<Actor>();

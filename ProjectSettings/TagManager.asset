@@ -8,8 +8,8 @@ TagManager:
   - Weapon
   - Switch
   - Pickup
-  - Pot
   - Wall
+  - Prop
   layers:
   - Default
   - TransparentFX
@@ -21,7 +21,7 @@ TagManager:
   - Fence
   - Weapons
   - TriggerBoxes
-  - 
+  - Interactable
   - 
   - 
   - 

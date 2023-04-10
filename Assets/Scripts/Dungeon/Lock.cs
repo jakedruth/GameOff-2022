@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Lock : MonoBehaviour
+public class Lock : Interactable
 {
     // Components
     private Transform _prompt;
@@ -83,5 +83,16 @@ public class Lock : MonoBehaviour
 
         other.GetComponent<PlayerController>().OnInteractEvent.RemoveListener(Unlock);
         SetDisplayPrompt(false);
+    }
+
+    // TODO: Re-haul the interaction on locks
+    public override bool TryInteract()
+    {
+        throw new NotImplementedException();
+    }
+
+    protected override void Interact()
+    {
+        throw new NotImplementedException();
     }
 }

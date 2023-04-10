@@ -52,7 +52,7 @@ public class SwordHandler : ItemHandler
                 Switch s = collider.gameObject.GetComponent<Switch>();
                 s.ActivateSwitch();
                 break;
-            case "Pot":
+            case "Prop":
             case "Enemy":
                 Actor otherActor = collider.gameObject.GetComponent<Actor>();
                 bool tookDamage = otherActor.ApplyDamage(_prefab.Damage);
