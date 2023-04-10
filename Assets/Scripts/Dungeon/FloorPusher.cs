@@ -9,7 +9,7 @@ public class FloorPusher : MonoBehaviour
 
     [SerializeField] private float _pushSpeed;
 
-    void Update()
+    void FixedUpdate()
     {
         if (pushersAffectingPlayer.Count > 0)
         {
