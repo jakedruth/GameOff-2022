@@ -55,4 +55,9 @@ public class Door : MonoBehaviour
             yield return null;
         }
     }
+
+    public float GetAnimateDoorTime()
+    {
+        return _animateDoorTime;
+    }
 }

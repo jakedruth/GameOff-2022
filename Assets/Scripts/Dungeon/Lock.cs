@@ -4,9 +4,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Door))]
 public class Lock : Interactable
 {
     // Components
+    private Door _door;
     private Transform _prompt;
     private TMPro.TMP_Text _promptText;
 
@@ -19,6 +21,7 @@ public class Lock : Interactable
 
     void Awake()
     {
+        _door = GetComponent<Door>();
         _prompt = transform.GetChild(1);
         _promptText = _prompt.GetComponentInChildren<TMPro.TMP_Text>();
     }
@@ -87,6 +90,8 @@ public class Lock : Interactable
 
     protected override void Interact()
     {
+        PlayerController.instance.TemporaryDisableInput(_door.GetAnimateDoorTime());
+
         onUnlock.Invoke();
         SetDisplayPrompt(false);
         Destroy(this);

@@ -545,34 +545,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07604687a780fd34ca4f1e1b25d8fcd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isInteractable: 1
   _requireKey: 1
   onUnlock:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1410192755970281495}
-        m_TargetAssemblyTypeName: Door, Assembly-CSharp
-        m_MethodName: SetDoorState
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
---- !u!114 &1410192755970281495 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4938155144438270715, guid: b436cf6abaec2174b87a11c7896137b7,
-    type: 3}
-  m_PrefabInstance: {fileID: 6275162619354733292}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1410192755970281494}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3455cca9ac91ffd41aa97acbabbd62b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+      m_Calls: []
 --- !u!4 &1410192756647676390 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4938155143509218058, guid: b436cf6abaec2174b87a11c7896137b7,
