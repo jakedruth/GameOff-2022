@@ -5,7 +5,6 @@ using UnityEngine;
 [SelectionBase]
 public class Actor : MonoBehaviour
 {
-    // TODO: Change to int
     public int maxHP;
     public int CurrentHP { get; private set; }
     public float NormalizedHP { get { return Mathf.Clamp01((float)CurrentHP / maxHP); } }

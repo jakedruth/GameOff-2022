@@ -36,11 +36,12 @@ public class Prop : Interactable
 
     public override bool TryInteract()
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        return true;
     }
 
     protected override void Interact()
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
     }
 }

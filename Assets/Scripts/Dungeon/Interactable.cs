@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Interactable : MonoBehaviour
 {
+    public const string InteractLayerName = "Interactable";
     [SerializeField] protected bool _isInteractable = true;
     public bool IsInteractable { get { return _isInteractable; } set { _isInteractable = value; } }
 
@@ -18,7 +19,7 @@ public abstract class Interactable : MonoBehaviour
 
     private void SetLayerRecursive(Transform parent)
     {
-        parent.gameObject.layer = LayerMask.NameToLayer("Interactable");
+        parent.gameObject.layer = LayerMask.NameToLayer(InteractLayerName);
         foreach (Transform child in parent)
         {
             SetLayerRecursive(child);

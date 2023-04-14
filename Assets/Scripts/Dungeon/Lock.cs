@@ -38,23 +38,6 @@ public class Lock : Interactable
         _promptText.text = $"Press {displaySetting.interactTag}";
     }
 
-    public void Unlock()
-    {
-        if (_requireKey)
-        {
-            int keyCount = PlayerController.instance.inventory.key.Get();
-            if (keyCount == 0)
-                return;
-
-            PlayerController.instance.inventory.key.Set(keyCount - 1);
-            Debug.Log($"Using key. New key count: {PlayerController.instance.inventory.key.Get()}");
-        }
-
-        onUnlock.Invoke();
-        SetDisplayPrompt(false);
-        Destroy(this);
-    }
-
     private void SetDisplayPrompt(bool value)
     {
         _displayPrompt = value;
@@ -63,7 +46,7 @@ public class Lock : Interactable
 
     void OnDestroy()
     {
-        PlayerController.instance?.OnInteractEvent.RemoveListener(Unlock);
+        //PlayerController.instance?.OnInteractEvent.RemoveListener(Unlock);
         SetDisplayPrompt(false);
     }
 
@@ -72,7 +55,7 @@ public class Lock : Interactable
         if (!other.CompareTag("Player"))
             return;
 
-        other.GetComponent<PlayerController>().OnInteractEvent.AddListener(Unlock);
+        //other.GetComponent<PlayerController>().OnInteractEvent.AddListener(Unlock);
         SetDisplayPrompt(true);
     }
 
@@ -81,18 +64,31 @@ public class Lock : Interactable
         if (!other.CompareTag("Player"))
             return;
 
-        other.GetComponent<PlayerController>().OnInteractEvent.RemoveListener(Unlock);
+        //other.GetComponent<PlayerController>().OnInteractEvent.RemoveListener(Unlock);
         SetDisplayPrompt(false);
     }
 
-    // TODO: Re-haul the interaction on locks
     public override bool TryInteract()
     {
-        throw new NotImplementedException();
+        Debug.Log("Try Interact");
+        if (_requireKey)
+        {
+            int keyCount = PlayerController.instance.inventory.key.Get();
+            if (keyCount == 0)
+                return false;
+
+            PlayerController.instance.inventory.key.Set(keyCount - 1);
+            Debug.Log($"Using key. New key count: {PlayerController.instance.inventory.key.Get()}");
+        }
+
+        Interact();
+        return true;
     }
 
     protected override void Interact()
     {
-        throw new NotImplementedException();
+        onUnlock.Invoke();
+        SetDisplayPrompt(false);
+        Destroy(this);
     }
 }

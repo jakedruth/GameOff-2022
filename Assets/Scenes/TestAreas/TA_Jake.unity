@@ -40010,11 +40010,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3112893051104742689, guid: 9169389b5f0da0d4a9a182a689907ad6,
         type: 3}
-      propertyPath: m_NotificationBehavior
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112893051104742689, guid: 9169389b5f0da0d4a9a182a689907ad6,
-        type: 3}
       propertyPath: m_ActionEvents.Array.size
       value: 20
       objectReference: {fileID: 0}

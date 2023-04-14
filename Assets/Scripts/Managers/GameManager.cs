@@ -52,7 +52,6 @@ public class GameManager : MonoBehaviour
 
     public void Update()
     {
-        // TODO: Probs change in full game
         // if (Input.GetKeyDown(KeyCode.Escape))
         // {
         //     if (SceneManager.GetActiveScene().buildIndex == 0)
