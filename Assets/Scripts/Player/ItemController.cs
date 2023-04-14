@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ItemController : MonoBehaviour
 {
@@ -33,20 +34,12 @@ public class ItemController : MonoBehaviour
             items[index] = Activator.CreateInstance(typeof(T), this, _playerController, _animator, args) as ItemHandler;
     }
 
-    public void ItemActionStarted(int index)
+    public void HandleItemAction(int index, InputAction.CallbackContext context)
     {
         if (items[index] == null)
             return;
 
-        items[index].StartAction();
-    }
-
-    public void ItemActionEnded(int index)
-    {
-        if (items[index] == null)
-            return;
-
-        items[index].EndAction();
+        items[index].HandleAction(context);
     }
 
     public void HandleMovement(ref Vector3 input, ref float speed)
@@ -78,6 +71,7 @@ public abstract class ItemHandler
     }
 
     public virtual void HandleMovement(ref Vector3 input, ref float speed) { }
-    public abstract void StartAction();
-    public abstract void EndAction();
+    public abstract void HandleAction(InputAction.CallbackContext context);
+    protected abstract void StartAction();
+    protected abstract void EndAction();
 }

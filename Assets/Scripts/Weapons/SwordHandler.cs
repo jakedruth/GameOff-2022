@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SwordHandler : ItemHandler
 {
@@ -20,7 +21,26 @@ public class SwordHandler : ItemHandler
             speed = 0;
     }
 
-    public override void StartAction()
+    public override void HandleAction(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Disabled:
+                break;
+            case InputActionPhase.Waiting:
+                break;
+            case InputActionPhase.Started:
+                StartAction();
+                break;
+            case InputActionPhase.Performed:
+                break;
+            case InputActionPhase.Canceled:
+                EndAction();
+                break;
+        }
+    }
+
+    protected override void StartAction()
     {
         InputKey = true;
         if (_instance != null)
@@ -33,7 +53,7 @@ public class SwordHandler : ItemHandler
         _instance.SetOnHitCallBack(OnHit);
     }
 
-    public override void EndAction()
+    protected override void EndAction()
     {
         InputKey = false;
         _animator.SetBool("Attack1", false);
