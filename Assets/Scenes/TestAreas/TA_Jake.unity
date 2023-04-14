@@ -40008,76 +40008,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3112893051104742689, guid: 9169389b5f0da0d4a9a182a689907ad6,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112893051104742689, guid: 9169389b5f0da0d4a9a182a689907ad6,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[14].m_ActionId
-      value: 3e7f7d3a-b4bb-4762-9721-e6026053e6c3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112893051104742689, guid: 9169389b5f0da0d4a9a182a689907ad6,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[15].m_ActionId
-      value: d9b22b2d-7104-407d-97ef-742a8212a4f3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112893051104742689, guid: 9169389b5f0da0d4a9a182a689907ad6,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[16].m_ActionId
-      value: 543cff0a-0381-4c48-8f53-2eb46246c1d7
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112893051104742689, guid: 9169389b5f0da0d4a9a182a689907ad6,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[17].m_ActionId
-      value: 3aff05d1-1089-4238-95c4-3cc7bda9c439
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112893051104742689, guid: 9169389b5f0da0d4a9a182a689907ad6,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[18].m_ActionId
-      value: e443855e-65b9-409c-9e7c-60b2dcb7b312
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112893051104742689, guid: 9169389b5f0da0d4a9a182a689907ad6,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[19].m_ActionId
-      value: 784ae294-5b3e-4e69-ad64-c191c7b24d17
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112893051104742689, guid: 9169389b5f0da0d4a9a182a689907ad6,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[14].m_ActionName
-      value: Cutscene/Continue[/Mouse/leftButton,/Keyboard/j]
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112893051104742689, guid: 9169389b5f0da0d4a9a182a689907ad6,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[15].m_ActionName
-      value: Player/Action3[/Mouse/rightButton,/Keyboard/l]
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112893051104742689, guid: 9169389b5f0da0d4a9a182a689907ad6,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[16].m_ActionName
-      value: Player/Pause[/Keyboard/escape]
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112893051104742689, guid: 9169389b5f0da0d4a9a182a689907ad6,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[17].m_ActionName
-      value: OverWorldMap/Navigate[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112893051104742689, guid: 9169389b5f0da0d4a9a182a689907ad6,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[18].m_ActionName
-      value: OverWorldMap/Cancel[/Keyboard/k]
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112893051104742689, guid: 9169389b5f0da0d4a9a182a689907ad6,
-        type: 3}
-      propertyPath: m_ActionEvents.Array.data[19].m_ActionName
-      value: OverWorldMap/Submit[/Keyboard/space,/Keyboard/j]
-      objectReference: {fileID: 0}
-    - target: {fileID: 3112893051104742690, guid: 9169389b5f0da0d4a9a182a689907ad6,
-        type: 3}
-      propertyPath: maxHP
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3112893051104742692, guid: 9169389b5f0da0d4a9a182a689907ad6,
         type: 3}
       propertyPath: m_RootOrder
@@ -40106,17 +40036,17 @@ PrefabInstance:
     - target: {fileID: 3112893051104742692, guid: 9169389b5f0da0d4a9a182a689907ad6,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3112893051104742692, guid: 9169389b5f0da0d4a9a182a689907ad6,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3112893051104742692, guid: 9169389b5f0da0d4a9a182a689907ad6,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3112893051104742692, guid: 9169389b5f0da0d4a9a182a689907ad6,
         type: 3}

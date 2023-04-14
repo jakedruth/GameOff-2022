@@ -5067,4 +5067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isInteractable: 1
+  _breakOnImpact: 1
+  _torqueOnThrow: 1
+  _damageOnThrow: 10
   _spawnPool: {fileID: 11400000, guid: ffcd084f0c28f6344959f71a57a4e06d, type: 2}

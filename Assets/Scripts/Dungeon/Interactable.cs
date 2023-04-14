@@ -5,11 +5,23 @@ using UnityEngine;
 public abstract class Interactable : MonoBehaviour
 {
     public const string InteractLayerName = "Interactable";
-    [SerializeField] protected bool _isInteractable = true;
-    public bool IsInteractable { get { return _isInteractable; } set { _isInteractable = value; } }
+    [SerializeField] private bool _isInteractable = true;
 
-    public abstract bool TryInteract();
-    protected abstract void Interact();
+    public bool IsInteractable { get { return _isInteractable; } protected set { _isInteractable = value; } }
+
+    public bool TryInteract(InteractController controller)
+    {
+        if (!IsInteractable)
+            return false;
+
+        bool success = CanInteract(controller);
+        if (success)
+            Interact(controller);
+
+        return success;
+    }
+    protected abstract bool CanInteract(InteractController controller);
+    protected abstract void Interact(InteractController controller);
 
     protected void Reset()
     {

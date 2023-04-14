@@ -2,31 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bomb : Interactable
+public class Bomb : Throwable
 {
     [SerializeField] private int _damage;
     [SerializeField] private float _blastRadius;
+    [SerializeField] private float _blastTime;
+    private float _timer;
 
-    // Start is called before the first frame update
     protected void Start()
     {
-
+        _timer = _blastTime;
     }
 
     // Update is called once per frame
     protected void Update()
     {
-
+        _timer -= Time.deltaTime;
+        if (_timer <= 0)
+        {
+            Explode();
+        }
     }
 
-    public override bool TryInteract()
+    public void Explode()
     {
-        throw new System.NotImplementedException();
-    }
 
-    protected override void Interact()
-    {
-        throw new System.NotImplementedException();
     }
 
     private void OnDrawGizmosSelected()

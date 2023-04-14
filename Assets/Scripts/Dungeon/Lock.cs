@@ -69,9 +69,8 @@ public class Lock : Interactable
         SetDisplayPrompt(false);
     }
 
-    public override bool TryInteract()
+    protected override bool CanInteract(InteractController controller)
     {
-        Debug.Log("Try Interact");
         if (_requireKey)
         {
             int keyCount = PlayerController.instance.inventory.key.Get();
@@ -82,11 +81,10 @@ public class Lock : Interactable
             Debug.Log($"Using key. New key count: {PlayerController.instance.inventory.key.Get()}");
         }
 
-        Interact();
         return true;
     }
 
-    protected override void Interact()
+    protected override void Interact(InteractController controller)
     {
         PlayerController.instance.TemporaryDisableInput(_door.GetAnimateDoorTime());
 

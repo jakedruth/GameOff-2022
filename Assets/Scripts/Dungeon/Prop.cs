@@ -3,15 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Prop : Interactable
+public class Prop : Throwable
 {
     private ParticleSystem _particleSystem;
 
     public Actor Actor { get; private set; }
     [SerializeField] private SpawnPool_SO _spawnPool;
 
-    void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         _particleSystem = GetComponentInChildren<ParticleSystem>();
         _particleSystem.gameObject.SetActive(false);
         Actor = GetComponent<Actor>();
@@ -32,16 +33,5 @@ public class Prop : Interactable
             return;
 
         GameObject instance = Instantiate(prefab, transform.position, Quaternion.identity);
-    }
-
-    public override bool TryInteract()
-    {
-        //throw new NotImplementedException();
-        return true;
-    }
-
-    protected override void Interact()
-    {
-        //throw new NotImplementedException();
     }
 }
