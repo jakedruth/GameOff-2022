@@ -58,7 +58,6 @@ public class Lock : Interactable
         if (!other.CompareTag("Player"))
             return;
 
-        //other.GetComponent<PlayerController>().OnInteractEvent.AddListener(Unlock);
         SetDisplayPrompt(true);
     }
 
@@ -67,7 +66,6 @@ public class Lock : Interactable
         if (!other.CompareTag("Player"))
             return;
 
-        //other.GetComponent<PlayerController>().OnInteractEvent.RemoveListener(Unlock);
         SetDisplayPrompt(false);
     }
 

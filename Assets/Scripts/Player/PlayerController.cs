@@ -216,7 +216,6 @@ public class PlayerController : MonoBehaviour
         _inputMove = input;
     }
 
-    public UnityEngine.Events.UnityEvent OnInteractEvent { get; set; } = new UnityEngine.Events.UnityEvent();
     private void OnInteract(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -225,62 +224,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // private void OnAction1(InputAction.CallbackContext context)
-    // {
-    //     switch (context.phase)
-    //     {
-    //         case InputActionPhase.Disabled:
-    //             break;
-    //         case InputActionPhase.Waiting:
-    //             break;
-    //         case InputActionPhase.Started:
-    //             _itemController.ItemActionStarted(0);
-    //             break;
-    //         case InputActionPhase.Performed:
-    //             break;
-    //         case InputActionPhase.Canceled:
-    //             _itemController.ItemActionEnded(0);
-    //             break;
-    //     }
-    // }
-
-    // private void OnAction2(InputAction.CallbackContext context)
-    // {
-    //     switch (context.phase)
-    //     {
-    //         case InputActionPhase.Disabled:
-    //             break;
-    //         case InputActionPhase.Waiting:
-    //             break;
-    //         case InputActionPhase.Started:
-    //             _itemController.ItemActionStarted(1);
-    //             break;
-    //         case InputActionPhase.Performed:
-    //             break;
-    //         case InputActionPhase.Canceled:
-    //             _itemController.ItemActionEnded(1);
-    //             break;
-    //     }
-    // }
-
-    // private void OnAction3(InputAction.CallbackContext context)
-    // {
-    //     switch (context.phase)
-    //     {
-    //         case InputActionPhase.Disabled:
-    //             break;
-    //         case InputActionPhase.Waiting:
-    //             break;
-    //         case InputActionPhase.Started:
-    //             _itemController.ItemActionStarted(2);
-    //             break;
-    //         case InputActionPhase.Performed:
-    //             break;
-    //         case InputActionPhase.Canceled:
-    //             _itemController.ItemActionEnded(2);
-    //             break;
-    //     }
-    // }
 
     private void OnAction(InputAction.CallbackContext context)
     {
@@ -289,32 +232,6 @@ public class PlayerController : MonoBehaviour
         int index = context.action.name.Last() - '1';
 
         _itemController.HandleItemAction(index, context);
-
-        // int index = -1;
-        // int last = context.action.name.Last();
-        // Debug.Log(last);
-        // if (context.action.name == "Action1")
-        //     index = 0;
-        // else if (context.action.name == "Action2")
-        //     index = 1;
-        // else if (context.action.name == "Action3")
-        //     index = 2;
-
-        // switch (context.phase)
-        // {
-        //     case InputActionPhase.Disabled:
-        //         break;
-        //     case InputActionPhase.Waiting:
-        //         break;
-        //     case InputActionPhase.Started:
-        //         _itemController.ItemActionStarted(index);
-        //         break;
-        //     case InputActionPhase.Performed:
-        //         break;
-        //     case InputActionPhase.Canceled:
-        //         _itemController.ItemActionEnded(index);
-        //         break;
-        // }
     }
 
     private void OnPause(InputAction.CallbackContext context)
@@ -363,7 +280,6 @@ public class PlayerController : MonoBehaviour
 
     protected bool BeginInteract()
     {
-        // OnInteractEvent?.Invoke();
         Vector3 checkPoint = GetCenter() + transform.forward;
         const float radius = 0.5f;
         int layerMask = LayerMask.GetMask(Interactable.InteractLayerName);
