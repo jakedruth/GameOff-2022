@@ -87,21 +87,21 @@ public class PlayerController : MonoBehaviour
 
         // Action 1
         _action1Action = _playerInput.currentActionMap.FindAction("Action1");
-        _action1Action.started += OnAction1;
-        _action1Action.performed += OnAction1;
-        _action1Action.canceled += OnAction1;
+        _action1Action.started += OnAction;
+        _action1Action.performed += OnAction;
+        _action1Action.canceled += OnAction;
 
         // Action 2
         _action2Action = _playerInput.currentActionMap.FindAction("Action2");
-        _action2Action.started += OnAction2;
-        _action2Action.performed += OnAction2;
-        _action2Action.canceled += OnAction2;
+        _action2Action.started += OnAction;
+        _action2Action.performed += OnAction;
+        _action2Action.canceled += OnAction;
 
         // Action 3
         _action3Action = _playerInput.currentActionMap.FindAction("Action3");
-        _action3Action.started += OnAction3;
-        _action3Action.performed += OnAction3;
-        _action3Action.canceled += OnAction3;
+        _action3Action.started += OnAction;
+        _action3Action.performed += OnAction;
+        _action3Action.canceled += OnAction;
 
         // Pause
         _pauseAction = _playerInput.currentActionMap.FindAction("Pause");
@@ -121,19 +121,19 @@ public class PlayerController : MonoBehaviour
         _interactAction.canceled -= OnInteract;
 
         // Action 1
-        _action1Action.started -= OnAction1;
-        _action1Action.performed -= OnAction1;
-        _action1Action.canceled -= OnAction1;
+        _action1Action.started -= OnAction;
+        _action1Action.performed -= OnAction;
+        _action1Action.canceled -= OnAction;
 
         // Action 2
-        _action2Action.started -= OnAction2;
-        _action2Action.performed -= OnAction2;
-        _action2Action.canceled -= OnAction2;
+        _action2Action.started -= OnAction;
+        _action2Action.performed -= OnAction;
+        _action2Action.canceled -= OnAction;
 
         // Action 3
-        _action3Action.started -= OnAction3;
-        _action3Action.performed -= OnAction3;
-        _action3Action.canceled -= OnAction3;
+        _action3Action.started -= OnAction;
+        _action3Action.performed -= OnAction;
+        _action3Action.canceled -= OnAction;
 
         // Pause
         _pauseAction.started -= OnPause;
@@ -224,8 +224,72 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnAction1(InputAction.CallbackContext context)
+    // private void OnAction1(InputAction.CallbackContext context)
+    // {
+    //     switch (context.phase)
+    //     {
+    //         case InputActionPhase.Disabled:
+    //             break;
+    //         case InputActionPhase.Waiting:
+    //             break;
+    //         case InputActionPhase.Started:
+    //             _itemController.ItemActionStarted(0);
+    //             break;
+    //         case InputActionPhase.Performed:
+    //             break;
+    //         case InputActionPhase.Canceled:
+    //             _itemController.ItemActionEnded(0);
+    //             break;
+    //     }
+    // }
+
+    // private void OnAction2(InputAction.CallbackContext context)
+    // {
+    //     switch (context.phase)
+    //     {
+    //         case InputActionPhase.Disabled:
+    //             break;
+    //         case InputActionPhase.Waiting:
+    //             break;
+    //         case InputActionPhase.Started:
+    //             _itemController.ItemActionStarted(1);
+    //             break;
+    //         case InputActionPhase.Performed:
+    //             break;
+    //         case InputActionPhase.Canceled:
+    //             _itemController.ItemActionEnded(1);
+    //             break;
+    //     }
+    // }
+
+    // private void OnAction3(InputAction.CallbackContext context)
+    // {
+    //     switch (context.phase)
+    //     {
+    //         case InputActionPhase.Disabled:
+    //             break;
+    //         case InputActionPhase.Waiting:
+    //             break;
+    //         case InputActionPhase.Started:
+    //             _itemController.ItemActionStarted(2);
+    //             break;
+    //         case InputActionPhase.Performed:
+    //             break;
+    //         case InputActionPhase.Canceled:
+    //             _itemController.ItemActionEnded(2);
+    //             break;
+    //     }
+    // }
+
+    private void OnAction(InputAction.CallbackContext context)
     {
+        int index = -1;
+        if (context.action.name == "Action1")
+            index = 0;
+        else if (context.action.name == "Action2")
+            index = 1;
+        else if (context.action.name == "Action3")
+            index = 2;
 
         switch (context.phase)
         {
@@ -234,50 +298,12 @@ public class PlayerController : MonoBehaviour
             case InputActionPhase.Waiting:
                 break;
             case InputActionPhase.Started:
-                _itemController.ItemActionStarted(0);
+                _itemController.ItemActionStarted(index);
                 break;
             case InputActionPhase.Performed:
                 break;
             case InputActionPhase.Canceled:
-                _itemController.ItemActionEnded(0);
-                break;
-        }
-    }
-
-    private void OnAction2(InputAction.CallbackContext context)
-    {
-        switch (context.phase)
-        {
-            case InputActionPhase.Disabled:
-                break;
-            case InputActionPhase.Waiting:
-                break;
-            case InputActionPhase.Started:
-                _itemController.ItemActionStarted(1);
-                break;
-            case InputActionPhase.Performed:
-                break;
-            case InputActionPhase.Canceled:
-                _itemController.ItemActionEnded(1);
-                break;
-        }
-    }
-
-    private void OnAction3(InputAction.CallbackContext context)
-    {
-        switch (context.phase)
-        {
-            case InputActionPhase.Disabled:
-                break;
-            case InputActionPhase.Waiting:
-                break;
-            case InputActionPhase.Started:
-                _itemController.ItemActionStarted(2);
-                break;
-            case InputActionPhase.Performed:
-                break;
-            case InputActionPhase.Canceled:
-                _itemController.ItemActionEnded(2);
+                _itemController.ItemActionEnded(index);
                 break;
         }
     }
