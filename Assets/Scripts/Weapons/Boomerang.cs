@@ -123,6 +123,15 @@ public class Boomerang : MonoBehaviour
     {
         onHitCallBack(this, other);
     }
+
+    internal void DropPickupItems()
+    {
+        for (int i = _grabbedItems.Count - 1; i >= 0; i--)
+        {
+            Pickup pickup = _grabbedItems[i].GetComponent<Pickup>();
+            pickup?.EnableCollision();
+        }
+    }
 }
 
 

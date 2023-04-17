@@ -40068,6 +40068,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8582855642412766446, guid: 9169389b5f0da0d4a9a182a689907ad6,
+        type: 3}
+      propertyPath: _throwPower.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8582855642412766446, guid: 9169389b5f0da0d4a9a182a689907ad6,
+        type: 3}
+      propertyPath: _throwPower.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8582855642412766446, guid: 9169389b5f0da0d4a9a182a689907ad6,
+        type: 3}
+      propertyPath: _throwPower.z
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9169389b5f0da0d4a9a182a689907ad6, type: 3}
 --- !u!4 &4802349742280074016

@@ -42,6 +42,11 @@ abstract public class Pickup : MonoBehaviour
         _rb.isKinematic = true;
     }
 
+    public void EnableCollision()
+    {
+        _rb.isKinematic = false;
+    }
+
     void OnDestroy()
     {
         OnPickedUp.RemoveAllListeners();

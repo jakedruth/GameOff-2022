@@ -87,7 +87,7 @@ public class Lock : Interactable
     protected override void Interact(InteractController controller)
     {
         PlayerController.instance.TemporaryDisableInput(_door.GetAnimateDoorTime());
-
+        _door.SetDoorState(true);
         onUnlock.Invoke();
         SetDisplayPrompt(false);
         Destroy(this);

@@ -28,29 +28,35 @@ public class Throwable : Interactable
         _body.isKinematic = true;
     }
 
-    public void Throw(Vector3 direction, float power)
+    public void Throw(Vector3 velocity)
     {
         transform.SetParent(null);
         HasBeenThrown = true;
 
         _body.isKinematic = false;
         _body.constraints = RigidbodyConstraints.None;
-        _body.AddForce(direction * power, ForceMode.Impulse);
+        _body.AddForce(velocity, ForceMode.VelocityChange);
         _body.AddRelativeTorque(Vector3.right * _torqueOnThrow, ForceMode.Impulse);
     }
 
-    private void OnCollisionEnter(Collision other)
+    protected void OnCollisionEnter(Collision other)
     {
-        if (HasBeenThrown)
-        {
-            Actor otherActor = other.gameObject.GetComponent<Actor>();
-            otherActor?.ApplyDamage(_damageOnThrow);
+        if (!HasBeenThrown)
+            return;
 
-            if (_breakOnImpact)
-            {
-                Actor actor = GetComponent<Actor>();
-                actor.InstantKill();
-            }
+        // Check if you hit a switch
+        Switch otherSwitch = other.gameObject.GetComponent<Switch>();
+        otherSwitch?.ActivateSwitch();
+
+        // Check if you hit an actor
+        Actor otherActor = other.gameObject.GetComponent<Actor>();
+        otherActor?.ApplyDamage(_damageOnThrow);
+
+        // Should this break when thrown?
+        if (_breakOnImpact)
+        {
+            Actor actor = GetComponent<Actor>();
+            actor?.InstantKill();
         }
     }
 }

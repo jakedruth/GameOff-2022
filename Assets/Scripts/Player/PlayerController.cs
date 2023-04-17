@@ -223,9 +223,12 @@ public class PlayerController : MonoBehaviour
         _interactController.HandleInteractAction(context);
     }
 
-
     private void OnAction(InputAction.CallbackContext context)
     {
+        // Ignore action if we are carrying an object
+        if (_interactController.IsCarryingAnObject)
+            return;
+
         // Gets the last char and uses it as an int. 
         // Subtracts the char '1' to make the range 0 to 2
         int index = context.action.name.Last() - '1';

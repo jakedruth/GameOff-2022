@@ -66,6 +66,7 @@ public class BoomerangHandler : ItemHandler
             case "Player":
                 if (boomerang.phase == Boomerang.Phase.MOVE)
                     break;
+                boomerang.DropPickupItems();
                 Object.Destroy(boomerang.gameObject);
                 _boomerangCount--;
                 break;

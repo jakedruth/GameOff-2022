@@ -8,15 +8,15 @@ public class InteractController : MonoBehaviour
 {
     [SerializeField] private Transform _carryPoint;
     private Throwable _carryObject;
+    public bool IsCarryingAnObject { get { return _carryObject != null; } }
 
-    [SerializeField] private float _throwAngle;
-    [SerializeField] private float _throwStrength;
+    [SerializeField] private Vector3 _throwVelocity;
 
     public void HandleInteractAction(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            if (_carryObject != null)
+            if (IsCarryingAnObject)
             {
                 ThrowCarryObject();
                 return;
@@ -36,9 +36,8 @@ public class InteractController : MonoBehaviour
 
     private void ThrowCarryObject()
     {
-        Vector3 dir = transform.TransformDirection(Quaternion.AngleAxis(-_throwAngle, Vector3.right) * Vector3.forward);
-        Debug.DrawRay(_carryPoint.position, dir * 2, Color.green, 0.5f, false);
-        _carryObject.Throw(dir, _throwStrength);
+        Vector3 vel = transform.TransformDirection(_throwVelocity);
+        _carryObject.Throw(vel);
         _carryObject = null;
     }
 
