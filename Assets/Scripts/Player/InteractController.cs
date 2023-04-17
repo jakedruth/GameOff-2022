@@ -12,10 +12,6 @@ public class InteractController : MonoBehaviour
     [SerializeField] private float _throwAngle;
     [SerializeField] private float _throwStrength;
 
-    protected void Awake()
-    {
-    }
-
     public void HandleInteractAction(InputAction.CallbackContext context)
     {
         if (context.started)
@@ -52,7 +48,7 @@ public class InteractController : MonoBehaviour
         const float radius = 0.5f;
         int layerMask = LayerMask.GetMask(Interactable.InteractLayerName);
 
-        // /* Debug Drawing
+        /* Debug Drawing
         Debug.DrawLine(checkPoint + Vector3.back * radius, checkPoint + Vector3.forward * radius, Color.green, 0.5f, false);
         Debug.DrawLine(checkPoint + Vector3.down * radius, checkPoint + Vector3.up * radius, Color.green, 0.5f, false);
         Debug.DrawLine(checkPoint + Vector3.left * radius, checkPoint + Vector3.right * radius, Color.green, 0.5f, false);
@@ -61,7 +57,6 @@ public class InteractController : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(checkPoint, radius, layerMask, QueryTriggerInteraction.Ignore);
 
         // Check if there is anything to interact with
-        Debug.Log($"Num of colliders: {colliders.Length}");
         if (colliders.Length == 0)
             return false;
 
@@ -77,7 +72,7 @@ public class InteractController : MonoBehaviour
                 closet = colliders[i];
             }
 
-            // /* Debug Drawing
+            /* Debug Drawing
             Debug.DrawRay(colliders[i].bounds.center, Vector3.up, Color.blue, 0.5f, false);
             /* End Debug Drawing */
         }
