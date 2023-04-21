@@ -1,10 +1,10 @@
 # MagicaVoxel @ Ephtracy
 
 # group
-o 
+o idle
 
 # material
-mtllib bomb.mtl
+mtllib bomb-0-idle.mtl
 usemtl palette
 
 # normals

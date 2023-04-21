@@ -8,7 +8,7 @@ public class Throwable : Interactable
     private Rigidbody _body;
 
     public bool HasBeenThrown { get; set; }
-    [SerializeField] private bool _breakOnImpact;
+    [Header("Throwable Values")][SerializeField] private bool _breakOnImpact;
     [SerializeField] private float _torqueOnThrow;
     [SerializeField] private int _damageOnThrow;
 

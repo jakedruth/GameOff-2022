@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Interactable : MonoBehaviour
 {
     public const string InteractLayerName = "Interactable";
-    [SerializeField] private bool _isInteractable = true;
+    [Header("Interactable values")][SerializeField] private bool _isInteractable = true;
 
     public bool IsInteractable { get { return _isInteractable; } protected set { _isInteractable = value; } }
 
