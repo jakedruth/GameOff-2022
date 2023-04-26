@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7042245113431331792}
   - component: {fileID: 5809272707164747588}
   - component: {fileID: 8782693863497875653}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 1390163059551140240}
   - component: {fileID: 3792494653405820100}
   - component: {fileID: 70501993876498639}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,14 +183,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isInteractable: 1
   _breakOnImpact: 0
-  _torqueOnThrow: 0
+  _torqueOnThrow: 50
   _damageOnThrow: 0
   _particleSystem: {fileID: 5250359392314536884}
   _centerOffset: 0.625
-  _damage: 10
+  _damage: 1
   _blastRadius: 3
   _blastTime: 5
   _animSpeedMultiplier: 0.75
+  OnExplode:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5250359392314536884
 GameObject:
   m_ObjectHideFlags: 0

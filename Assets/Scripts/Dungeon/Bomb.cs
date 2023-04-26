@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,10 +17,13 @@ public class Bomb : Throwable
     private float _timer;
     private float _animSpeed = 1;
 
+    public UnityEngine.Events.UnityEvent OnExplode;
+
     protected override void Awake()
     {
         base.Awake();
         _animator = GetComponentInChildren<Animator>();
+        OnExplode = new UnityEngine.Events.UnityEvent();
     }
 
     protected void Start()
@@ -71,6 +75,8 @@ public class Bomb : Throwable
                 continue;
             }
         }
+
+        OnExplode?.Invoke();
 
         Destroy(gameObject);
     }

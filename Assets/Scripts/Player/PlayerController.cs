@@ -66,11 +66,16 @@ public class PlayerController : MonoBehaviour
     private void Init()
     {
         _itemController.InitReferences(this, _animator);
+
+        // Testing Items
         _itemController.SetItem<SwordHandler>(0);
         _itemController.SetItem<BoomerangHandler>(1, 1);
+        _itemController.SetItem<BombHandler>(2);
 
         _facing = Vector3.forward;
         inventory = new Inventory();
+
+        inventory.bombCount.Set(10);
     }
 
     #region Setup Input events
@@ -276,7 +281,11 @@ public class PlayerController : MonoBehaviour
         _pushBackVelocity.y /= 1 + _drag.y * Time.deltaTime;
         _pushBackVelocity.z /= 1 + _drag.z * Time.deltaTime;
 
-        _characterController.Move((_hVelocity + _vVelocity + _pushBackVelocity + _floorPusherVelocity) * Time.deltaTime);
+        Vector3 totalVelocity = _hVelocity + _vVelocity + _pushBackVelocity + _floorPusherVelocity;
+
+        // Might have to do some ray casting here...
+
+        _characterController.Move(totalVelocity * Time.deltaTime);
         _floorPusherVelocity = Vector3.zero;
     }
 
@@ -341,5 +350,6 @@ public class Inventory
         }
     }
 
-    public InventorySlot<int> key = new();
+    public InventorySlot<int> keyCount = new();
+    public InventorySlot<int> bombCount = new();
 }

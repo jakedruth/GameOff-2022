@@ -73,12 +73,12 @@ public class Lock : Interactable
     {
         if (_requireKey)
         {
-            int keyCount = PlayerController.instance.inventory.key.Get();
+            int keyCount = PlayerController.instance.inventory.keyCount.Get();
             if (keyCount == 0)
                 return false;
 
-            PlayerController.instance.inventory.key.Set(keyCount - 1);
-            Debug.Log($"Using key. New key count: {PlayerController.instance.inventory.key.Get()}");
+            PlayerController.instance.inventory.keyCount.Set(keyCount - 1);
+            Debug.Log($"Using key. New key count: {PlayerController.instance.inventory.keyCount.Get()}");
         }
 
         return true;

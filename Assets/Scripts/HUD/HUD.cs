@@ -30,7 +30,7 @@ public class HUD : MonoBehaviour
         HealthBar.SetHealth(Mathf.RoundToInt(PlayerController.instance.Actor.CurrentHP));
 
         // Key Counter
-        KeyCounter.SetKeyCount(PlayerController.instance.inventory.key.Get());
+        KeyCounter.SetKeyCount(PlayerController.instance.inventory.keyCount.Get());
 
         InitListeners();
     }
@@ -38,7 +38,7 @@ public class HUD : MonoBehaviour
     private void InitListeners()
     {
         PlayerController.instance.Actor.OnTakeDamage.AddListener(HandleHealthChanged);
-        PlayerController.instance.inventory.key.OnSlotUpdated.AddListener(HandleKeyCountUpdated);
+        PlayerController.instance.inventory.keyCount.OnSlotUpdated.AddListener(HandleKeyCountUpdated);
     }
 
     private void HandleHealthChanged()
